@@ -1,20 +1,36 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
+// import Image from "../components/image"
 import SEO from "../components/seo"
+import { Container, Segment, Button, Icon } from "semantic-ui-react"
+import { Helmet } from "react-helmet"
 
+// const IndexPage = () => (
+//   <Layout>
+//     <SEO title="Herman White - JavaScript Developer" />
+//     <h1>Hi people</h1>
+//     <p>Welcome to your new Gatsby site.</p>
+//     <p>Now go build something great.</p>
+//   </Layout>
+// )
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    <SEO title="Herman White - JavaScript Developer" />
+    <Helmet>
+      <link
+        rel="stylesheet"
+        href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
+      />
+    </Helmet>
+    <Segment inverted raised style={{ margin: "auto", textAlign: "center" }}>
+      <h1>Hello, I'm Herman White.</h1>
+      <h2>I'm a JavaScript Developer.</h2>
+      <Button basic inverted icon labelPosition="right">
+        View My Work
+        <Icon name="angle right" />
+      </Button>
+    </Segment>
   </Layout>
 )
 
