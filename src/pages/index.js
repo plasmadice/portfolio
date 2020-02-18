@@ -4,7 +4,6 @@ import Layout from "../components/layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
 import { Container, Segment, Button, Icon } from "semantic-ui-react"
-import { Helmet } from "react-helmet"
 
 // const IndexPage = () => (
 //   <Layout>
@@ -17,12 +16,7 @@ import { Helmet } from "react-helmet"
 const IndexPage = () => (
   <Layout>
     <SEO title="Herman White - JavaScript Developer" />
-    <Helmet>
-      <link
-        rel="stylesheet"
-        href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"
-      />
-    </Helmet>
+
     <Segment inverted raised style={{ margin: "auto", textAlign: "center" }}>
       <h1>Hello, I'm Herman White.</h1>
       <h2>I'm a JavaScript Developer.</h2>

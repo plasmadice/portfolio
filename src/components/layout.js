@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import { Container, Segment, Button, Icon } from "semantic-ui-react"
 import { Helmet } from "react-helmet"
+import ButtonFooter from "./ButtonFooter"
 
 import Header from "./header"
 import "./layout.css"
@@ -16,6 +17,7 @@ const Layout = ({ children }) => (
       height: "100vh",
       display: "flex",
       backgroundColor: "#1b1c1d",
+      justifyContent: "space-between",
     }}
   >
     <Helmet>
@@ -25,6 +27,7 @@ const Layout = ({ children }) => (
       />
     </Helmet>
     {children}
+    <ButtonFooter />
   </Container>
 )
 
