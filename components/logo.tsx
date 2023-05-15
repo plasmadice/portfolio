@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 // list of random H drawn with framer-motion
 const logoList = [
   <motion.svg
-    className="text-black dark:text-white h-[50px] md:h-[70px]"
+    className="text-white dark:text-white h-[50px] md:h-[70px]"
     width="50"
     height="70"
     viewBox="0 0 50 70"
@@ -64,7 +64,7 @@ const logoList = [
     />
   </motion.svg>,
   <motion.svg
-    className="text-black dark:text-white h-[50px] md:h-[70px]"
+    className="text-white dark:text-white h-[50px] md:h-[70px]"
     width="50"
     height="70"
     viewBox="0 0 50 70"
@@ -97,7 +97,7 @@ const logoList = [
     />
   </motion.svg>,
   <motion.svg
-    className="text-black dark:text-white h-[50px] md:h-[70px]"
+    className="text-white dark:text-white h-[50px] md:h-[70px]"
     width="50"
     height="70"
     viewBox="0 0 50 70"
@@ -130,7 +130,7 @@ const logoList = [
     />
   </motion.svg>,
   <motion.svg
-    className="text-black dark:text-white h-[50px] md:h-[70px]"
+    className="text-white dark:text-white h-[50px] md:h-[70px]"
     width="50"
     height="70"
     viewBox="0 0 50 70"
@@ -171,7 +171,7 @@ const logoList = [
     />
   </motion.svg>,
   <motion.svg
-    className="text-black dark:text-white h-[50px] md:h-[70px]"
+    className="text-white dark:text-white h-[50px] md:h-[70px]"
     width="50"
     height="70"
     viewBox="0 0 50 70"
@@ -212,7 +212,7 @@ const logoList = [
     />
   </motion.svg>,
   <motion.svg
-    className="text-black dark:text-white h-[50px] md:h-[70px]"
+    className="text-white dark:text-white h-[50px] md:h-[70px]"
     width="50"
     height="70"
     viewBox="0 0 50 70"

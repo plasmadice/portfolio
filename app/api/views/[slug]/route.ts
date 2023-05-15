@@ -9,7 +9,8 @@ type Props = {
 
 export async function handler(req: Request, { params }: Props) {
   const slug = params.slug
-  try {
+
+  const main = async () => {
     if (!slug) {
       return NextResponse.json({ message: "Slug is required." })
     }
@@ -38,10 +39,12 @@ export async function handler(req: Request, { params }: Props) {
         total: views,
       })
     }
-  } catch (e) {
-    console.log(e)
-    return NextResponse.json({ message: e.message })
   }
+
+  return main().catch((e) => {
+    console.log("Error in views/[slug]/route.ts", e)
+    return NextResponse.json({ message: e.message })
+  })
 }
 
 export { handler as GET, handler as POST }

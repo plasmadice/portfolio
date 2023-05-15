@@ -24,7 +24,6 @@ export default function ViewCounter({
   trackView: boolean
 }) {
   const { data } = useSWR<PostView[]>("/api/views", fetcher)
-  console.log(data)
   const viewsForSlug = data && data.find((view) => view.slug === slug)
   const views = new Number(viewsForSlug?.count || 0)
 

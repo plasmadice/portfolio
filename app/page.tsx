@@ -7,19 +7,11 @@ import { name, about, bio, avatar } from "lib/info"
 export const revalidate = 60
 
 export default async function HomePage() {
-  let starCount, originalStarCount, views
-
-  console.log(`process.env.NEXT_PUBLIC_URL: ${process.env.NEXT_PUBLIC_URL}`)
-
-  try {
-    ;[starCount, originalStarCount, views] = await Promise.all([
-      getStarCount(),
-      getOriginalStarCount(),
-      getBlogViews(),
-    ])
-  } catch (error) {
-    console.error(error)
-  }
+  let [starCount, originalStarCount, views] = await Promise.all([
+    getStarCount(),
+    getOriginalStarCount(),
+    getBlogViews(),
+  ])
 
   return (
     <section>
@@ -87,18 +79,6 @@ export default async function HomePage() {
             <ArrowIcon />
             <p className="h-7">Your Github</p>
           </a>
-        </li>
-        <li>
-          <Link
-            className="flex items-center hover:text-neutral-700 dark:hover:text-neutral-200 transition-all"
-            rel="noopener noreferrer"
-            target="_blank"
-            prefetch={false}
-            href="http://localhost:3000/api/og?title=churros"
-          >
-            <ArrowIcon />
-            <p className="h-7">Attempt</p>
-          </Link>
         </li>
       </ul>
     </section>

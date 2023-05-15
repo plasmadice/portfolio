@@ -43,8 +43,8 @@ export const projects = [
       "My previous portfolio. Built with Next.js, TailwindCSS, and hosted on Vercel.",
     technologies: ["React", "Next.js", "MaterialUI"],
     links: {
-      demo: "https://www.seemail.dev/",
-      github: "https://github.com/plasmadice/seemail",
+      demo: "https://port-foe-leo-git-master-phoenixquint.vercel.app/",
+      github: "https://github.com/plasmadice/port-foe-leo",
     },
   },
 ]

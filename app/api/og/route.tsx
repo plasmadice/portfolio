@@ -21,7 +21,7 @@ export async function handler(req: NextRequest) {
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "center",
-          backgroundImage: "url(https://hwhite.dev/og-bg.png)",
+          backgroundImage: `url(${process.env.NEXT_PUBLIC_URL}/og-bg.png)`,
         }}
       >
         <div
