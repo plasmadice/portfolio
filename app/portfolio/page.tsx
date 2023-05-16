@@ -39,7 +39,7 @@ const Project = ({
           {links.demo.length ? (
             <a
               href={links.demo}
-              className="btn btn-primary"
+              className="btn bg-[white] text-black dark:bg-[#111010] dark:text-white btn-outline"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -49,7 +49,7 @@ const Project = ({
           {links.github.length ? (
             <a
               href={links.github}
-              className="btn btn-secondary"
+              className="btn btn-outline"
               target="_blank"
               rel="noopener noreferrer"
             >
