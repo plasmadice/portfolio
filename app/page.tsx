@@ -36,7 +36,7 @@ export default async function HomePage() {
             className="flex items-center gap-2"
           >
             <GitHubIcon />
-            {`${starCount.toLocaleString()} stars on this repo (not currently public)`}
+            {`${starCount.toLocaleString()} stars on this repo`}
           </a>
           <a
             rel="noopener noreferrer"
