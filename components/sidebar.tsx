@@ -20,7 +20,7 @@ const navItems = {
     name: "portfolio",
   },
   "/uses": {
-    name: "what I use",
+    name: "gear",
   },
   // "/guestbook": {
   //   name: "guestbook",

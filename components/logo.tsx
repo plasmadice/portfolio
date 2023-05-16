@@ -197,7 +197,7 @@ export function Logo() {
 
   return (
     <Link
-      className="min-h-[70px] min-w-[50px]"
+      className="md:min-h-[70px] md:min-w-[50px]"
       aria-label="Herman White"
       href="/"
     >
@@ -205,7 +205,7 @@ export function Logo() {
         <motion.svg
           key={index}
           id="logo"
-          className="text-white dark:text-white h-[50px] md:h-[70px]"
+          className="text-white dark:text-white w-[25px] h-[40px] md:h-[70px]"
           width="50"
           height="70"
           viewBox="0 0 50 70"

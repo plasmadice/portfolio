@@ -20,8 +20,8 @@ const Project = ({
   technologies,
   links,
 }: ProjectProps) => (
-  <li key={key} className="m-8">
-    <div className="card glass compact w-96 text-black bg-white dark:text-white dark:bg-[#111010] shadow-xl">
+  <li key={key}>
+    <div className="card glass compact w-80 text-black bg-white dark:text-white dark:bg-[#111010] shadow-xl">
       <figure>
         <img
           src={img}
@@ -64,8 +64,9 @@ const Project = ({
 
 export default function page() {
   return (
-    <main className="flex-grow p-8 w-fit">
-      <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <main className="flex-grow w-fit place-self-start">
+      <h1 className="font-bold text-3xl font-serif">Portfolio/Projects</h1>
+      <ul className="my-5 grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
           <Project key={index} {...project} />
         ))}

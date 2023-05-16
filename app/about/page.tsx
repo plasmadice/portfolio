@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { GitHubIcon, ArrowIcon } from "components/icons"
+import { name } from "lib/info"
 
 export const metadata: Metadata = {
   title: "About",
@@ -12,7 +13,7 @@ export default function AboutPage() {
     <section>
       <h1 className="font-bold text-3xl font-serif">About Me</h1>
       <p className="my-5 text-neutral-800 dark:text-neutral-200">
-        Hello, I'm <b>Herman</b>.
+        Hello, I'm <b>{name.split(" ")[0]}</b>.
       </p>
       <div className="prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200">
         <p>
