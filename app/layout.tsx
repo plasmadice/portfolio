@@ -14,7 +14,7 @@ const kaisei = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Herman White",
+    default: "Herman White | Software Engineer",
     template: "%s | Herman White",
   },
   description: "Developer, creator, and skater.",
