@@ -32,20 +32,20 @@ export default async function HomePage() {
           <a
             rel="noopener noreferrer"
             target="_blank"
-            href="https://github.com/leerob/leerob.io"
-            className="flex items-center gap-2"
-          >
-            <GitHubIcon />
-            {`${originalStarCount.toLocaleString()} stars on the original repo`}
-          </a>
-          <a
-            rel="noopener noreferrer"
-            target="_blank"
             href="https://github.com/plasmadice/portfolio"
             className="flex items-center gap-2"
           >
             <GitHubIcon />
-            {`${starCount.toLocaleString()} stars on this repo`}
+            {`${starCount.toLocaleString()} stars on this repo (not currently public)`}
+          </a>
+          <a
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://github.com/leerob/leerob.io"
+            className="flex items-center gap-2"
+          >
+            <GitHubIcon />
+            {`${originalStarCount.toLocaleString()} stars on the repo this is based on`}
           </a>
 
           <Link href="/blog" className="flex items-center">
