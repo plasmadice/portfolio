@@ -22,7 +22,7 @@ const Project = ({
   links,
 }: ProjectProps) => (
   <li key={key}>
-    <div className="card compact w-80 text-black bg-white dark:text-white dark:bg-[#111010] shadow-xl">
+    <div className="card glass compact w-80 text-black bg-white dark:text-white dark:bg-[#111010] shadow-xl">
       <figure>
         <img
           src={img}
