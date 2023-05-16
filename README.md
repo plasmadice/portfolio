@@ -36,3 +36,13 @@ CREATE TABLE views (
 ## Cloning / Forking
 
 Best to first reach out to the [original](https://github.com/leerob/leerob.io.git) to see if there have been significant updates.
+
+## Vercel Setup
+
+In order for the environment variable `NEXT_PUBLIC_URL` to operate correctly you need to [set two extra scoped .env variables in Vercel](https://github.com/vercel/next.js/discussions/16429#discussioncomment-1302156).
+
+Locally - Set in `.env.local`
+Preview - `NEXT_PUBLIC_URL=https://$NEXT_PUBLIC_VERCEL_URL`
+Production - `NEXT_PUBLIC_URL=https://yourdomain.com`
+
+The .env.production file may not be needed. It contains `NEXT_PUBLIC_URL=https://$NEXT_PUBLIC_VERCEL_URL`. If you `yarn build` and `yarn start` this may be needed for some things to work locally, but this may not be the case.
