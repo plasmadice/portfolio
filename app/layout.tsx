@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "Herman White",
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_URL}/og.jpg`, // TODO: REPLACE
+        url: `${process.env.NEXT_PUBLIC_URL}/og.jpg`,
         width: 1920,
         height: 1080,
       },
