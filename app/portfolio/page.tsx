@@ -1,4 +1,5 @@
 import { projects } from "lib/info"
+import { GitHubIcon } from "components/icons"
 
 type ProjectProps = {
   key: number
@@ -21,7 +22,7 @@ const Project = ({
   links,
 }: ProjectProps) => (
   <li key={key}>
-    <div className="card glass compact w-80 text-black bg-white dark:text-white dark:bg-[#111010] shadow-xl">
+    <div className="card compact w-80 text-black bg-white dark:text-white dark:bg-[#111010] shadow-xl">
       <figure>
         <img
           src={img}
@@ -39,7 +40,7 @@ const Project = ({
           {links.demo.length ? (
             <a
               href={links.demo}
-              className="btn bg-[white] text-black dark:bg-[#111010] dark:text-white btn-outline"
+              className="btn glass bg-[white] hover:text-white text-black dark:bg-[#111010] dark:text-white btn-outline"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -49,11 +50,14 @@ const Project = ({
           {links.github.length ? (
             <a
               href={links.github}
-              className="btn btn-outline"
+              className="btn btn-outline bg-[white] text-black dark:bg-[#111010] dark:text-white"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Github
+              Github{" "}
+              <div className="pl-2">
+                <GitHubIcon />
+              </div>
             </a>
           ) : null}
         </div>
