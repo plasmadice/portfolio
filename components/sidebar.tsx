@@ -19,12 +19,9 @@ const navItems = {
   "/portfolio": {
     name: "portfolio",
   },
-  "/uses": {
+  "/gear": {
     name: "gear",
   },
-  // "/guestbook": {
-  //   name: "guestbook",
-  // },
 }
 export default function Navbar() {
   let pathname = usePathname() || "/"

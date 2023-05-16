@@ -12,7 +12,7 @@ export default async function sitemap() {
     "/blog",
     "/guestbook",
     "/portfolio",
-    "/uses",
+    "/gear",
   ].map((route) => ({
     url: `${process.env.NEXT_PUBLIC_URL}${route}`,
     lastModified: new Date().toISOString().split("T")[0],
