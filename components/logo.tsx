@@ -6,14 +6,7 @@ import { useEffect, useState } from "react"
 
 // list of random H drawn with framer-motion
 const logoList = [
-  <motion.svg
-    className="text-white dark:text-white h-[50px] md:h-[70px]"
-    width="50"
-    height="70"
-    viewBox="0 0 50 70"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <>
     <motion.path
       initial={{ opacity: 0, pathLength: 0 }}
       animate={{ opacity: 1, pathLength: 1 }}
@@ -62,15 +55,8 @@ const logoList = [
       stroke="currentColor"
       strokeWidth={5}
     />
-  </motion.svg>,
-  <motion.svg
-    className="text-white dark:text-white h-[50px] md:h-[70px]"
-    width="50"
-    height="70"
-    viewBox="0 0 50 70"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  </>,
+  <>
     <motion.path
       initial={{ opacity: 0, pathLength: 0 }}
       animate={{ opacity: 1, pathLength: 1 }}
@@ -95,15 +81,8 @@ const logoList = [
       stroke="currentColor"
       strokeWidth={10}
     />
-  </motion.svg>,
-  <motion.svg
-    className="text-white dark:text-white h-[50px] md:h-[70px]"
-    width="50"
-    height="70"
-    viewBox="0 0 50 70"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  </>,
+  <>
     <motion.path
       initial={{ opacity: 0, pathLength: 0 }}
       animate={{ opacity: 1, pathLength: 1 }}
@@ -128,56 +107,8 @@ const logoList = [
       stroke="currentColor"
       strokeWidth={10}
     />
-  </motion.svg>,
-  <motion.svg
-    className="text-white dark:text-white h-[50px] md:h-[70px]"
-    width="50"
-    height="70"
-    viewBox="0 0 50 70"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <motion.path
-      initial={{ opacity: 0, pathLength: 0 }}
-      animate={{ opacity: 1, pathLength: 1 }}
-      transition={{ duration: 0.5, type: "spring", stiffness: 50 }}
-      d="M10 0V30C10 40 15 45 25 45"
-      stroke="currentColor"
-      strokeWidth={10}
-    />
-    <motion.path
-      initial={{ opacity: 0, pathLength: 0 }}
-      animate={{ opacity: 1, pathLength: 1 }}
-      transition={{ duration: 0.5, type: "spring", stiffness: 50 }}
-      d="M40 0V30C40 40 35 45 25 45"
-      stroke="currentColor"
-      strokeWidth={10}
-    />
-    <motion.path
-      initial={{ opacity: 0, pathLength: 0 }}
-      animate={{ opacity: 1, pathLength: 1 }}
-      transition={{ duration: 0.5, type: "spring", stiffness: 50 }}
-      d="M10 70V50C10 40 15 35 25 35"
-      stroke="currentColor"
-      strokeWidth={10}
-    />
-    <motion.path
-      initial={{ opacity: 0, pathLength: 0 }}
-      animate={{ opacity: 1, pathLength: 1 }}
-      transition={{ duration: 0.5, type: "spring", stiffness: 50 }}
-      d="M40 70V50C40 40 35 35 25 35"
-      stroke="currentColor"
-      strokeWidth={10}
-    />
-  </motion.svg>,
-  <motion.svg
-    className="text-white dark:text-white h-[50px] md:h-[70px]"
-    width="50"
-    height="70"
-    viewBox="0 0 50 70"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  </>,
+  <>
     <motion.path
       initial={{ opacity: 0, pathLength: 0 }}
       animate={{ opacity: 1, pathLength: 1 }}
@@ -210,15 +141,8 @@ const logoList = [
       stroke="currentColor"
       strokeWidth={10}
     />
-  </motion.svg>,
-  <motion.svg
-    className="text-white dark:text-white h-[50px] md:h-[70px]"
-    width="50"
-    height="70"
-    viewBox="0 0 50 70"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  </>,
+  <>
     <motion.path
       initial={{ opacity: 0, pathLength: 0 }}
       animate={{ opacity: 1, pathLength: 1 }}
@@ -243,19 +167,54 @@ const logoList = [
       stroke="currentColor"
       strokeWidth={10}
     />
-  </motion.svg>,
+  </>,
 ]
 
 export function Logo() {
   // choose random item from list
-  const [randomItem, setRandomItem] = useState(0)
+  const [item, setItem] = useState(0)
+  const [items, setItems] = useState<any>([logoList[item]])
+
   useEffect(() => {
-    setRandomItem(Math.floor(Math.random() * logoList.length))
+    const interval = setInterval(() => {
+      setItem((prevItem) => {
+        return (prevItem + 1) % logoList.length
+      })
+      setItems([])
+    }, 5000) // changes every 5 seconds
+
+    // clear interval on component unmount
+    return () => {
+      clearInterval(interval)
+    }
   }, [])
 
+  useEffect(() => {
+    if (!items.length) {
+      setItems([logoList[item]])
+    }
+  }, [items])
+
   return (
-    <Link aria-label="Herman White" href="/">
-      {logoList[randomItem]}
+    <Link
+      className="min-h-[70px] min-w-[50px]"
+      aria-label="Herman White"
+      href="/"
+    >
+      {items.map((item, index) => (
+        <motion.svg
+          key={index}
+          id="logo"
+          className="text-white dark:text-white h-[50px] md:h-[70px]"
+          width="50"
+          height="70"
+          viewBox="0 0 50 70"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {item}
+        </motion.svg>
+      ))}
     </Link>
   )
 }
