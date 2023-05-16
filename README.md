@@ -1,6 +1,6 @@
 # portfolio
 
-#### The portfolio template was created by [leerob.io](https://github.com/leerob/leerob.io.git)
+### Tech Stack
 
 - **Framework**: [Next.js](https://nextjs.org/)
 - **Database**: [PlanetScale](https://planetscale.com)
