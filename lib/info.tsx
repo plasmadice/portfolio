@@ -44,7 +44,7 @@ export const projects = [
       "My previous portfolio. Built with Next.js, MaterialUI, and hosted on Vercel.",
     technologies: ["React", "Next.js", "MaterialUI"],
     links: {
-      demo: "https://port-foe-leo-git-master-phoenixquint.vercel.app/",
+      demo: "port-foe-leo.vercel.app",
       github: "https://github.com/plasmadice/port-foe-leo",
     },
   },
