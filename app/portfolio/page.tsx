@@ -30,13 +30,19 @@ const Project = ({
           className="object-cover h-64 w-full" // ensure a 3:2 ratio
         />
       </figure>
-      <div className="card-body prose lg:prose-xl text-inherit">
+      <div className="card-body text-inherit">
+        <a
+          href={links.demo ? links.demo : links.github ? links.github : "/"}
+          className="card-title w-min"
+        >
+          {title}
+        </a>
         <p>{description}</p>
         {/* Display technologies here */}
         <p className="mt-4">
           <strong>Stack: </strong> {technologies.join(", ")}
         </p>
-        <div className="card-actions justify-end">
+        <div className="card-actions justify-end mt-4">
           {links.demo.length ? (
             <a
               href={links.demo}

@@ -40,7 +40,7 @@ export const projects = [
     title: "Previous Portfolio",
     img: "/images/oldportfolio.png",
     description:
-      "My previous portfolio. Built with Next.js, TailwindCSS, and hosted on Vercel.",
+      "My previous portfolio. Built with Next.js, MaterialUI, and hosted on Vercel.",
     technologies: ["React", "Next.js", "MaterialUI"],
     links: {
       demo: "https://port-foe-leo-git-master-phoenixquint.vercel.app/",
