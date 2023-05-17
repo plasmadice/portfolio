@@ -1,6 +1,7 @@
 import me from "../app/avatar.png"
 
 export const name = "Herman White"
+export const descpription = "Developer, creator, and skater."
 export const avatar = me
 export const projects = [
   {

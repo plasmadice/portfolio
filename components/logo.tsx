@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { name } from "lib/info"
 
 // list of random H drawn with framer-motion
 const logoList = [
@@ -198,7 +199,7 @@ export function Logo() {
   return (
     <Link
       className="md:min-h-[70px] md:min-w-[50px]"
-      aria-label="Herman White"
+      aria-label={name}
       href="/"
     >
       {items.map((item, index) => (

@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import localFont from "next/font/local"
 import Sidebar from "../components/sidebar"
 import { Analytics } from "@vercel/analytics/react"
+import { name, descpription } from "lib/info"
 
 const kaisei = localFont({
   src: "../public/fonts/kaisei-tokumin-latin-700-normal.woff2",
@@ -14,15 +15,15 @@ const kaisei = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Herman White | Software Engineer",
-    template: "%s | Herman White",
+    default: `${name} | Software Engineer`,
+    template: `%s | ${name}`,
   },
-  description: "Developer, creator, and skater.",
+  description: descpription,
   openGraph: {
-    title: "Herman White",
-    description: "Developer, creator, and skater.",
-    url: "https://hwhite.dev/",
-    siteName: "Herman White",
+    title: name,
+    description: descpription,
+    url: process.env.NEXT_PUBLIC_URL,
+    siteName: name,
     images: [
       {
         url: `${process.env.NEXT_PUBLIC_URL}/og.jpg`,
@@ -47,10 +48,6 @@ export const metadata: Metadata = {
   icons: {
     shortcut: "/favicon.ico",
   },
-  // verification: {
-  //   google: 'eZSdmzAXlLkKhNJzfgwDqWORghxnJ8qR9_CHdAh5-xw',
-  //   yandex: '14d2e73487fa6c71',
-  // },
 }
 
 export default function RootLayout({
