@@ -13,9 +13,6 @@ In cloning and migrating Leerob.io's [personal website and blog](https://leerob.
 Supposedly Next.js's different routers [should play well together](https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration), but I experienced issues with that (in two separate projects). I opted to fully adopt the new `/app` router by converting the old API routes to modern [route handlers](https://nextjs.org/docs/app/building-your-application/routing/router-handlers).
 
 ```ts title="./pages/views/slug.ts"
-import { queryBuilder } from "lib/planetscale"
-import type { NextApiRequest, NextApiResponse } from "next"
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
