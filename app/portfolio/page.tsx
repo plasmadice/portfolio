@@ -22,7 +22,7 @@ const Project = ({
   links,
 }: ProjectProps) => (
   <li key={key}>
-    <div className="card glass compact w-80 text-black bg-white dark:text-white dark:bg-[#111010] shadow-xl">
+    <div className="antialiased card glass compact w-80 bg-white text-neutral-800 dark:text-neutral-200 dark:bg-neutral-900 shadow-xl">
       <figure>
         <img
           src={img}
@@ -33,7 +33,7 @@ const Project = ({
       <div className="card-body text-inherit">
         <a
           href={links.demo ? links.demo : links.github ? links.github : "/"}
-          className="card-title w-min"
+          className="card-title w-fit"
         >
           {title}
         </a>
@@ -46,7 +46,7 @@ const Project = ({
           {links.demo.length ? (
             <a
               href={links.demo}
-              className="btn glass bg-[white] hover:text-white text-black dark:bg-[#111010] dark:text-white btn-outline"
+              className="btn glass hover:text-white text-black dark:bg-[#111010] dark:text-white btn-outline"
               target="_blank"
               rel="noopener noreferrer"
             >
