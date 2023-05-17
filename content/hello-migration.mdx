@@ -1,0 +1,81 @@
+---
+title: "Migrating leerob.io to Next.js 13 `app` Router Features"
+publishedAt: "2023-05-17"
+summary: "A detailed account of the major changes in the porting process of Leerob.io blog to the newest Next.js 13 `app` router features."
+---
+
+In cloning and migrating Leerob.io's [blog](https://leerob.io/blog) to the [latest](https://nextjs.org/blog/next-13-4) Next.js 13 `app` router features, there were several fundamental shifts to highlight.
+
+## Route Handler Conversion
+
+**First**, the routing structure saw a transformation. Initially, routes were in the `/pages/api/views/[slug].ts` format. This was changed to the new `/app/api/views/[slug]/route.ts` format.
+
+Supposedly Next.js's different routers [should play well together](https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration), but I experienced issues with that (in two separate projects). I opted to fully adopt the new `/app` router by converting the old API routes to modern [route handlers](https://nextjs.org/docs/app/building-your-application/routing/router-handlers).
+
+```ts title="./pages/views/slug.ts"
+import { queryBuilder } from "lib/planetscale"
+import type { NextApiRequest, NextApiResponse } from "next"
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  try {
+    // ...
+  } catch (e) {
+    return res.status(500).json({ message: e.message })
+  }
+}
+```
+
+Wrapping logic in an async function and using `.catch` on it works well. From there, we finish by exporting the `handler` function as the appropriate method(s). I had issues grabbing the `slug` until I remembered that params are passed differently.
+
+```ts {44-46,49} title="./app/api/views/[slug]/route.ts"
+type Props = {
+  params: {
+    slug: string
+  }
+}
+
+export async function handler(req: Request, { params }: Props) {
+  const slug = params.slug
+
+  const main = async () => {
+    // ...
+  }
+
+  return main().catch((e) => {
+    return NextResponse.json({ message: e.message })
+  })
+}
+
+export { handler as GET, handler as POST }
+```
+
+## Additions
+
+A `/portfolio` page was added to showcase personal projects. [DaisyUI](https://daisyui.com/components/) was brought in to style the project cards. In addition, the `/uses` page was exposed and renamed to `/gear`, providing more transparency about the software and hardware I used in the projects.
+
+The logo also got a small buff. It now alternates between different logos every 10 seconds. Initially, it draws once as it renders. The effect of re-drawing the logo is basically achieved by removing and re-adding the new element to the page. This is done seamlessly. There could be better ways to do this that would be more visually pleasing, but due to the nature of this logo being in motion, they couldn't be easily adopted. The [useTransform hook](https://www.framer.com/motion/use-transform/) available in `framer-motion` would be ideal.
+
+Figma was used to create the `og` image file bases. I had several ideas for that one, which I left in the `/public` folder.
+
+## Removals
+
+In an attempt to declutter the code, all Twitter content and Github guestbook content were removed. I do not currently have a Twitter account and do not plan to create a new one in the future. Github guestbook content requires more Github configuration and honestly my friends would see it as an opportunity to spam me with love. Pass.
+
+## Gotchas
+
+- [Cannot use try/catch in route handlers at the moment](https://github.com/vercel/next.js/issues/46737#issuecomment-1506467898) - May be due to the way I am configuring them
+- [PlanetScale database must be configured](https://github.com/leerob/leerob.io/issues/601#issuecomment-1545432668) for the blog to work
+
+## Conclusion
+
+Looking ahead, there are exciting plans for future updates. The addition of different themes using DaisyUI is in the pipeline. In terms of more significant changes, a swap to Vercel KV or Vercel Postgres is being considered for the database system.
+
+## Resources
+
+- [Next.js docs](https://nextjs.org/docs)
+- [DaisyUI](https://daisyui.com/components/)
+- [Tailwind](https://tailwindcss.com/)
+- [PlanetScale](https://planetscale.com/)

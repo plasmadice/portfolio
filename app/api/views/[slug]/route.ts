@@ -1,5 +1,5 @@
 import { queryBuilder } from "lib/planetscale"
-import { NextResponse, NextRequest } from "next/server"
+import { NextResponse } from "next/server"
 
 type Props = {
   params: {
@@ -22,7 +22,7 @@ export async function handler(req: Request, { params }: Props) {
 
     const views = !data.length ? 0 : Number(data[0].count)
 
-    if (req.method === "POST") {
+    if (req.method === "POST" && process.env.NODE_ENV === "production") {
       await queryBuilder
         .insertInto("views")
         .values({ slug, count: 1 })
@@ -42,7 +42,6 @@ export async function handler(req: Request, { params }: Props) {
   }
 
   return main().catch((e) => {
-    console.log("Error in views/[slug]/route.ts", e)
     return NextResponse.json({ message: e.message })
   })
 }

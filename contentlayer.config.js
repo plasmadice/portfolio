@@ -3,7 +3,6 @@ import remarkGfm from "remark-gfm"
 import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import { name } from "lib/info"
 
 /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields = {
@@ -26,7 +25,7 @@ const computedFields = {
       url: `${process.env.NEXT_PUBLIC_URL}/blog/${doc._raw.flattenedPath}`,
       author: {
         "@type": "Person",
-        name: name,
+        name: "Herman White",
       },
     }),
   },

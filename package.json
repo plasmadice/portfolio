@@ -5,7 +5,7 @@
     "build": "next build",
     "build-only": "next build",
     "start": "next start",
-    "clean": "rm -rf .next ./node_modules && yarn"
+    "clean": "rm -rf .next ./node_modules .contentlayer && yarn"
   },
   "dependencies": {
     "@octokit/rest": "^19.0.8",
