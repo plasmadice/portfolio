@@ -7,13 +7,17 @@ export const metadata: Metadata = {
 
 export default function UsesPage() {
   return (
-    <section>
-      <h1 className="font-bold text-3xl font-serif mb-8">Tech I'm Using</h1>
-      <p className="text-neutral-700 dark:text-neutral-300 mt-2 mb-8">
+    <section className="prose dark:prose-invert text-neutral-800 dark:text-neutral-200">
+      <h1 className="text-inherit font-bold text-3xl font-serif mb-8">
+        Tech I'm Using
+      </h1>
+      <p className="mt-2 mb-8 text-inherit">
         Here's the tech I'm currently using for coding
       </p>
-      <div className="prose prose-neutral dark:prose-invert">
-        <h3 id="computer-office">Computer / Office</h3>
+      <div>
+        <h3 id="computer-office" className="text-inherit">
+          Computer / Office
+        </h3>
         <ul>
           <li>14&quot; Macbook Pro M2 Max</li>
           <li>27&quot; LG UltraGear 27GL83A-B</li>
@@ -23,12 +27,16 @@ export default function UsesPage() {
           <li>IKEA IDÅSEN</li>
           <li>Steelcase Gesture</li>
         </ul>
-        <h3 id="coding">Coding</h3>
+        <h3 id="coding" className="text-inherit">
+          Coding
+        </h3>
         <ul>
           <li>Editor: VSCode - Theme: Dark Modern</li>
           <li>Terminal: zsh</li>
         </ul>
-        <h3 id="software">Software</h3>
+        <h3 id="software" className="text-inherit">
+          Software
+        </h3>
         <ul>
           <li>Alfred</li>
           <li>Keyboard Maestro</li>
@@ -38,7 +46,9 @@ export default function UsesPage() {
           {/* <li>Grammarly</li> */}
           {/* <li>Texts</li> */}
         </ul>
-        <h3 id="other-tech">Other Tech</h3>
+        <h3 id="other-tech" className="text-inherit">
+          Other Tech
+        </h3>
         <ul>
           {/* <li>Apple Airpods Pro</li>
           <li>Apple Watch</li>

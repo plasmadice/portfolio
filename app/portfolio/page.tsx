@@ -75,7 +75,9 @@ const Project = ({
 export default function page() {
   return (
     <main className="flex-grow w-fit place-self-start">
-      <h1 className="font-bold text-3xl font-serif">Portfolio/Projects</h1>
+      <h1 className="font-bold text-3xl font-serif text-neutral-800 dark:text-neutral-200">
+        Portfolio/Projects
+      </h1>
       <ul className="my-5 grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
           <Project key={index} {...project} />
