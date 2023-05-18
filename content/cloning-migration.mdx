@@ -8,7 +8,8 @@ In cloning and migrating Leerob.io's [personal website and blog](https://leerob.
 
 ## Route Handler Conversion
 
-**First**, the routing structure saw a transformation. From `/pages/api/views/[slug].ts` to the new `/app/api/views/[slug]/route.ts` format.
+<b>First</b>, the routing structure saw a transformation. From
+`/pages/api/views/[slug].ts` to the new `/app/api/views/[slug]/route.ts` format.
 
 Supposedly Next.js's different routers [should play well together](https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration), but I experienced issues with that (in two separate projects). I opted to fully adopt the new `/app` router by converting the old API routes to modern [route handlers](https://nextjs.org/docs/app/building-your-application/routing/router-handlers).
 
