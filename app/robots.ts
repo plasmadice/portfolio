@@ -1,11 +1,11 @@
-export default function robots() {
+import { MetadataRoute } from "next"
+
+export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [
-      {
-        userAgent: "*",
-      },
-    ],
-    sitemap: "https://hwhite.dev/sitemap.xml",
-    host: "https://hwhite.dev",
+    rules: {
+      userAgent: "*",
+    },
+    sitemap: `${process.env.NEXT_PUBLIC_URL}/sitemap.xml`,
+    host: `${process.env.NEXT_PUBLIC_URL}`,
   }
 }

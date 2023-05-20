@@ -6,17 +6,12 @@ export default async function sitemap() {
     lastModified: post.publishedAt,
   }))
 
-  const routes = [
-    "",
-    "/about",
-    "/blog",
-    "/guestbook",
-    "/portfolio",
-    "/gear",
-  ].map((route) => ({
-    url: `${process.env.NEXT_PUBLIC_URL}${route}`,
-    lastModified: new Date().toISOString().split("T")[0],
-  }))
+  const routes = ["", "/about", "/blog", "/portfolio", "/gear"].map(
+    (route) => ({
+      url: `${process.env.NEXT_PUBLIC_URL}${route}`,
+      lastModified: new Date().toISOString().split("T")[0],
+    })
+  )
 
   return [...routes, ...blogs]
 }
