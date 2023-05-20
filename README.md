@@ -43,6 +43,6 @@ In order for the environment variable `NEXT_PUBLIC_URL` to operate correctly you
 
 Locally - Set in `.env.local`
 Preview - `NEXT_PUBLIC_URL=https://$NEXT_PUBLIC_VERCEL_URL`
-Production - `NEXT_PUBLIC_URL=https://yourdomain.com`
+Production - `NEXT_PUBLIC_URL=https://www.yourdomain.com` Be sure to specify `www` if vercel automatically redirects there!
 
 The .env.production file may not be needed. It contains `NEXT_PUBLIC_URL=https://$NEXT_PUBLIC_VERCEL_URL`. If you `yarn build` and `yarn start` this may be needed for some things to work locally, but this may not be the case.
