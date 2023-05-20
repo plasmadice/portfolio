@@ -1,19 +1,8 @@
 "use client"
-
-import { useEffect } from "react"
-import useSWR from "swr"
-
+import { useEffect, useState } from "react"
 type PostView = {
   slug: string
   count: string
-}
-
-async function fetcher<JSON = any>(
-  input: RequestInfo,
-  init?: RequestInit
-): Promise<JSON> {
-  const res = await fetch(input, init)
-  return res.json()
 }
 
 export default function ViewCounter({
@@ -23,24 +12,38 @@ export default function ViewCounter({
   slug: string
   trackView: boolean
 }) {
-  const { data } = useSWR<PostView[]>("/api/views", fetcher)
-  const viewsForSlug = data && data.find((view) => view.slug === slug)
-  const views = new Number(viewsForSlug?.count || 0)
+  const [views, setViews] = useState<PostView[]>([])
+  // Track views on page visit? Breaks pages with generic error from undici. Unable to generate pages
+  // if (slug) {
+  //   const registerView = () =>
+  //     fetch(`${process.env.NEXT_PUBLIC_URL}/api/views/${slug}`, {
+  //       method: "POST",
+  //     })
+
+  //   if (trackView) {
+  //     registerView()
+  //   }
+  // }
+
+  const getViews = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/views`)
+
+    const data: PostView[] = await res.json()
+    if (!views.length) {
+      setViews(data)
+    }
+  }
 
   useEffect(() => {
-    const registerView = () =>
-      fetch(`/api/views/${slug}`, {
-        method: "POST",
-      })
+    getViews()
+  }, [])
 
-    if (trackView) {
-      registerView()
-    }
-  }, [slug])
-
+  const data = views
+  const viewsForSlug = data && data.find((view: PostView) => view.slug === slug)
+  const viewCount = new Number(viewsForSlug?.count || 0)
   return (
-    <p className="font-mono text-sm text-neutral-800 dark:text-neutral-200 tracking-tighter">
-      {data ? `${views.toLocaleString()} views` : "​"}
+    <p className="font-mono text-sm text-neutral-500 tracking-tighter">
+      {data ? `${viewCount.toLocaleString()} views` : "​"}
     </p>
   )
 }

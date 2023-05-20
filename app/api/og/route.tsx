@@ -2,6 +2,7 @@ import { ImageResponse } from "@vercel/og"
 import { NextRequest } from "next/server"
 
 export const runtime = "edge"
+
 const font = fetch(
   new URL("../../../public/fonts/kaisei-tokumin-bold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer())

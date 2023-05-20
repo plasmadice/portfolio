@@ -15,6 +15,7 @@ export async function generateMetadata({
   params,
 }): Promise<Metadata | undefined> {
   const post = allBlogs.find((post) => post.slug === params.slug)
+
   if (!post) {
     return
   }
@@ -50,6 +51,7 @@ export async function generateMetadata({
 
 export default async function Blog({ params }) {
   const post = allBlogs.find((post) => post.slug === params.slug)
+  const jsonLd = post?.structuredData
 
   if (!post) {
     notFound()
@@ -57,9 +59,10 @@ export default async function Blog({ params }) {
 
   return (
     <section>
-      <script type="application/ld+json">
-        {JSON.stringify(post.structuredData)}
-      </script>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <h1 className="font-bold text-3xl font-serif max-w-[650px]">
         <Balancer>{post.title}</Balancer>
       </h1>

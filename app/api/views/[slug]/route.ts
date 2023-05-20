@@ -22,12 +22,14 @@ export async function handler(req: Request, { params }: Props) {
 
     const views = !data.length ? 0 : Number(data[0].count)
 
-    if (req.method === "POST" && process.env.NODE_ENV === "production") {
-      await queryBuilder
-        .insertInto("views")
-        .values({ slug, count: 1 })
-        .onDuplicateKeyUpdate({ count: views + 1 })
-        .execute()
+    if (req.method === "POST") {
+      if (process.env.NODE_ENV === "production") {
+        await queryBuilder
+          .insertInto("views")
+          .values({ slug, count: 1 })
+          .onDuplicateKeyUpdate({ count: views + 1 })
+          .execute()
+      }
 
       return NextResponse.json({
         total: views + 1,

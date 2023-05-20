@@ -14,14 +14,13 @@ type ProjectProps = {
 }
 
 const Project = ({
-  key,
   title,
   img,
   description,
   technologies,
   links,
 }: ProjectProps) => (
-  <li key={key}>
+  <li key={title}>
     <div className="antialiased card glass compact w-80 bg-white text-neutral-800 dark:text-neutral-200 dark:bg-neutral-900 shadow-xl">
       <figure>
         <img

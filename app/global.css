@@ -34,6 +34,14 @@ html {
   content: '#';
 }
 
+.prose > h1, .prose > h2, .prose > h3, .prose > h4, .prose > h5, .prose > h6 {
+  color: white;
+}
+
+.prose.prose-quoteless p, .prose.prose-quoteless ul {
+  color: rgb(212, 212, 212)
+}
+
 .prose *:hover > .anchor {
   @apply visible;
 }

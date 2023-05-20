@@ -14,6 +14,7 @@ const kaisei = localFont({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL as string),
   title: {
     default: `${name} | Software Engineer`,
     template: `%s | ${name}`,
@@ -45,6 +46,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  twitter: {
+    title: "Herman White",
+    card: "summary_large_image",
+  },
   icons: {
     shortcut: "/favicon.ico",
   },
@@ -58,9 +63,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={clsx("bg-white dark:bg-[#111010]", kaisei.variable)}
+      className={clsx(
+        "text-black bg-white dark:text-white dark:bg-[#111010]",
+        kaisei.variable
+      )}
     >
-      <body className="antialiased max-w-5xl mb-40 flex flex-col md:flex-row mx-4 mt-8 md:mt-20 lg:mt-32 lg:mx-auto">
+      <body className="antialiased max-w-4xl mb-40 flex flex-col md:flex-row mx-4 mt-8 md:mt-20 lg:mt-32 lg:mx-auto">
         <Sidebar />
         <main className="flex-auto min-w-0 mt-6 md:mt-0 flex flex-col px-2 md:px-0">
           {children}
