@@ -21,15 +21,11 @@ const CustomLink = (props) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />
-}
-
-function CustomImage(props) {
+function CustomImage({className, ...otherProps}: React.ComponentProps<typeof Image>) {
   return (
     <Image
-      className={`rounded-lg${props?.className ? ` ${props.className} ` : ""}`}
-      {...props}
+      className={`rounded-lg${className ? ` ${className}` : ""}`}
+      {...otherProps}
     />
   )
 }
@@ -97,12 +93,43 @@ function ConsCard({ title, cons }) {
   )
 }
 
+// Centers caption under image. Image is centered by default.
+function Caption(props) {
+  return (
+    <figure className={`${props.className ? ` ${props.className}` : "w-fit"}`}>
+        {props.children}
+        <figcaption className="blog-figcaption">
+          {props.caption}
+        </figcaption>
+    </figure>
+  )
+}
+
+function Flex(props) {
+  return (
+    <div className={`flex${props.className ? ` ${props.className}` : ""}`}>
+      {props.children}
+    </div>
+  )
+}
+
+function Grid(props) {
+  return (
+    <div className={`flex${props.className ? ` ${props.className}` : ""}`}>
+      {props.children}
+    </div>
+  )
+}
+
 const components = {
   Image: CustomImage,
   a: CustomLink,
   Callout,
   ProsCard,
   ConsCard,
+  Caption,
+  Flex,
+  Grid,
 }
 
 interface MdxProps {

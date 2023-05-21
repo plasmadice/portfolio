@@ -51,6 +51,12 @@ html {
   @apply !mt-0
 }
 
+/* <Caption></Caption> element MDX */
+
+.blog-figcaption {
+  @apply -translate-y-2 text-center text-sm text-neutral-500 dark:text-neutral-400;
+}
+
 .project-button {
   @apply btn btn-outline bg-[white] dark:bg-[#111010] text-neutral-900 dark:text-neutral-300 hover:bg-neutral-900 hover:text-neutral-300 dark:hover:text-neutral-800 dark:hover:bg-neutral-300
 }
@@ -99,7 +105,6 @@ input[type='email'] {
   -moz-appearance: none;
   appearance: none;
 }
-
 
 table {
   display: block;

@@ -182,7 +182,7 @@ export function Logo() {
         return (prevItem + 1) % logoList.length
       })
       setItems([])
-    }, 10000) // changes every 10 seconds
+    }, 5000) // changes every 10 seconds
 
     // clear interval on component unmount
     return () => {
@@ -198,7 +198,7 @@ export function Logo() {
 
   return (
     <Link
-      className="md:min-h-[70px] md:min-w-[50px]"
+      className="md:min-h-[70px] min-w-[25px] min-h-[40px] md:min-w-[50px]"
       aria-label={name}
       href="/"
     >

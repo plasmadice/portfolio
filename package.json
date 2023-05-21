@@ -5,7 +5,7 @@
     "build": "next build",
     "build-only": "next build",
     "start": "next start",
-    "update": "yarn clean && yarn build && yarn dev",
+    "demo": "yarn clean && yarn build && yarn dev",
     "clean": "rm -rf .next ./node_modules .contentlayer && yarn"
   },
   "dependencies": {
