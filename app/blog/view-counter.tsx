@@ -1,8 +1,18 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import useSWR from "swr"
+
 type PostView = {
   slug: string
   count: string
+}
+
+async function fetcher<JSON = any>(
+  input: RequestInfo,
+  init?: RequestInit
+): Promise<JSON> {
+  const res = await fetch(input, init)
+  return res.json()
 }
 
 export default function ViewCounter({
@@ -12,9 +22,7 @@ export default function ViewCounter({
   slug: string
   trackView: boolean
 }) {
-  const [views, setViews] = useState<PostView[]>([])
-  // Track views on page visit? Breaks pages with generic error from undici. Unable to generate pages
-
+  const { data } = useSWR<PostView[]>("/api/views", fetcher)
   useEffect(() => {
     const registerView = () =>
       fetch(`${process.env.NEXT_PUBLIC_URL}/api/views/${slug}`, {
@@ -25,25 +33,6 @@ export default function ViewCounter({
       registerView()
     }
   }, [slug])
-
-  const getViews = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/views`)
-
-    const data: PostView[] = await res.json()
-    if (!views.length) {
-      setViews(data)
-    }
-  }
-
-  useEffect(() => {
-    getViews()
-  }, [])
-
-  useEffect(() => {
-    getViews()
-  }, [])
-
-  const data = views
   const viewsForSlug = data && data.find((view: PostView) => view.slug === slug)
   const viewCount = new Number(viewsForSlug?.count || 0)
   return (
