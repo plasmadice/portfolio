@@ -42,6 +42,10 @@ html {
   color: rgb(212, 212, 212)
 }
 
+.prose.prose-quoteless.gear-list > :first-child {
+  margin-top: 0 !important;
+}
+
 .prose *:hover > .anchor {
   @apply visible;
 }
