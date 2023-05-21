@@ -1,6 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
-import Image from "next/image"
+import Image from "next/image" // renamed from Image
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 const CustomLink = (props) => {
@@ -23,6 +23,15 @@ const CustomLink = (props) => {
 
 function RoundedImage(props) {
   return <Image alt={props.alt} className="rounded-lg" {...props} />
+}
+
+function CustomImage(props) {
+  return (
+    <Image
+      className={`rounded-lg${props?.className ? ` ${props.className} ` : ""}`}
+      {...props}
+    />
+  )
 }
 
 function Callout(props) {
@@ -89,7 +98,7 @@ function ConsCard({ title, cons }) {
 }
 
 const components = {
-  Image: RoundedImage,
+  Image: CustomImage,
   a: CustomLink,
   Callout,
   ProsCard,
