@@ -35,15 +35,19 @@ html {
 }
 
 .prose > h1, .prose > h2, .prose > h3, .prose > h4, .prose > h5, .prose > h6 {
-  color: white;
+  @apply text-neutral-700 dark:text-neutral-200;
 }
 
-.prose.prose-quoteless p, .prose.prose-quoteless ul, .prose.prose-quoteless a {
-  color: rgb(212, 212, 212)
+.prose.prose-quoteless p, .prose.prose-quoteless ul, .prose.prose-quoteless a, .btn.btn-outline {
+  @apply text-neutral-700 dark:text-neutral-300
 }
 
 .prose.prose-quoteless.gear-list > :first-child {
-  margin-top: 0 !important;
+  @apply !mt-0
+}
+
+.project-button {
+  @apply btn btn-outline bg-[white] dark:bg-[#111010] text-neutral-900 dark:text-neutral-300 hover:bg-neutral-900 hover:text-neutral-300 dark:hover:text-neutral-800 dark:hover:bg-neutral-300
 }
 
 .prose *:hover > .anchor {

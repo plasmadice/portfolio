@@ -45,7 +45,7 @@ const Project = ({
           {links.demo.length ? (
             <a
               href={links.demo}
-              className="btn glass hover:text-white text-black dark:bg-[#111010] dark:text-white btn-outline"
+              className="project-button"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -55,7 +55,7 @@ const Project = ({
           {links.github.length ? (
             <a
               href={links.github}
-              className="btn btn-outline bg-[white] text-black dark:bg-[#111010] dark:text-white"
+              className="project-button"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -133,7 +133,7 @@ const Category = ({ id, name, items }: GearCategory) => (
 
 export default function UsesPage() {
   return (
-    <section className="prose prose-quoteless gear-list dark:prose-invert text-neutral-800">
+    <section className="prose prose-quoteless gear-list dark:prose-invert">
       <h1 className="font-bold text-3xl font-serif mb-8 !mt-0">Gear</h1>
       {Object.values(gear).map((category) => (
         <Category key={category.id} {...category} />
