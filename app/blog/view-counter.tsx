@@ -14,16 +14,17 @@ export default function ViewCounter({
 }) {
   const [views, setViews] = useState<PostView[]>([])
   // Track views on page visit? Breaks pages with generic error from undici. Unable to generate pages
-  // if (slug) {
-  //   const registerView = () =>
-  //     fetch(`${process.env.NEXT_PUBLIC_URL}/api/views/${slug}`, {
-  //       method: "POST",
-  //     })
 
-  //   if (trackView) {
-  //     registerView()
-  //   }
-  // }
+  useEffect(() => {
+    const registerView = () =>
+      fetch(`${process.env.NEXT_PUBLIC_URL}/api/views/${slug}`, {
+        method: "POST",
+      })
+
+    if (trackView) {
+      registerView()
+    }
+  }, [slug])
 
   const getViews = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/views`)
@@ -33,6 +34,10 @@ export default function ViewCounter({
       setViews(data)
     }
   }
+
+  useEffect(() => {
+    getViews()
+  }, [])
 
   useEffect(() => {
     getViews()
