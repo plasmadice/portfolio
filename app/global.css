@@ -38,7 +38,7 @@ html {
   color: white;
 }
 
-.prose.prose-quoteless p, .prose.prose-quoteless ul {
+.prose.prose-quoteless p, .prose.prose-quoteless ul, .prose.prose-quoteless a {
   color: rgb(212, 212, 212)
 }
 
