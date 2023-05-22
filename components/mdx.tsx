@@ -1,6 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
-import Image from "next/image" // renamed from Image
+import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 const CustomLink = (props) => {
@@ -21,10 +21,17 @@ const CustomLink = (props) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-function CustomImage({className, ...otherProps}: React.ComponentProps<typeof Image>) {
+function CustomImage({
+  className,
+  ...otherProps
+}: React.ComponentProps<typeof Image>) {
   return (
     <Image
-      className={`rounded-lg${className ? ` ${className}` : ""}`}
+      className={
+        className?.includes("rounded")
+          ? className
+          : `rounded-lg${className ? ` ${className}` : ""}`
+      }
       {...otherProps}
     />
   )
@@ -33,7 +40,7 @@ function CustomImage({className, ...otherProps}: React.ComponentProps<typeof Ima
 function Callout(props) {
   return (
     <div className="flex bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 my-8">
-      <div className="flex items-center w-4 mr-4">{props.emoji}</div>
+      <div className="flex items-center w-4 mr-4">{props.emoji ? props.emoji : '💡'}</div>
       <div className="w-full callout">{props.children}</div>
     </div>
   )
@@ -97,17 +104,15 @@ function ConsCard({ title, cons }) {
 function Caption(props) {
   return (
     <figure className={`${props.className ? ` ${props.className}` : "w-fit"}`}>
-        {props.children}
-        <figcaption className="blog-figcaption">
-          {props.caption}
-        </figcaption>
+      {props.children}
+      <figcaption className="blog-figcaption">{props.value}</figcaption>
     </figure>
   )
 }
 
 function Flex(props) {
   return (
-    <div className={`flex${props.className ? ` ${props.className}` : ""}`}>
+    <div className={`flex gap-8${props.className ? ` ${props.className}` : ""}`}>
       {props.children}
     </div>
   )
@@ -115,7 +120,7 @@ function Flex(props) {
 
 function Grid(props) {
   return (
-    <div className={`flex${props.className ? ` ${props.className}` : ""}`}>
+    <div className={`grid gap-8${props?.className?.includes('grid-cols') ? ` ${props.className}` : " grid-cols-1 sm:grid-cols-2"}`}>
       {props.children}
     </div>
   )

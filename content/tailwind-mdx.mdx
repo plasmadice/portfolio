@@ -1,0 +1,160 @@
+---
+title: "TailwindCSS and MDX: A Powerful Combo"
+publishedAt: "2023-05-21"
+summary: "Delving into the capabilities of TailwindCSS and MDX."
+---
+
+<Image
+  alt={`Tailwind CSS Logo`}
+  src={`/images/blog/tailwind-mdx-logo.svg`}
+  width={500}
+  height={200}
+  className="mx-auto"
+/>
+
+<br />
+
+Yo!
+
+Today, let's examine **TailwindCSS** and how well it plays with MDX. 
+
+## What is Tailwind?
+
+[TailwindCSS](https://tailwindcss.com/) is a utility-first CSS framework that enables developers to craft designs. It can create some hideous and inline-looking CSS but honestly it is awesome. If you are still on the fence you need to jump onto this side. Let's figure out what we don't know!
+
+## What is MDX?
+
+[MDX](https://mdxjs.com/) is a way to write JSX in Markdown. It allows you to use React components within Markdown files. This is a powerful combination that allows you to create interactive articles. 
+
+It changes the game for developers who want to write. Not as much of a breakthrough as Blue's Clues or Dora the Explorer, but it's a start.
+
+## Getting Tailwind Involved with MDX
+
+Setting things up is easy. Make sure your `tailwind.config.js` file is picking up `.mdx` files. 
+
+<Caption className="w-full" value="This is the first and last time you'll see this much blank space in a code block">
+```js title="./tailwind.config.js"
+module.exports = {
+  content: [
+    "./content/**/*.mdx",
+    // ...
+  ],
+  // ...
+}
+```
+</Caption>
+
+## Utility For Days
+
+I don't particularly enjoy how the above code block fills the container horizontally. Going forward, I'll use `<Flex></Flex>` and `<Grid></Grid>` helpers to prevent code blocks from filling the containers they are in.
+
+<Flex>
+  ```tsx title="./content/mdx.tsx"
+  function Flex(props) {
+    return (
+      <div className={
+        `flex${props.className ? ` ${props.className}` : ""}`
+        }>
+        {props.children}
+      </div>
+    )
+  }
+  ```
+</Flex>
+
+## Example of MDX
+
+We'll use the avatar on the [homepage]('/') for reference. It has some styling applied already.
+
+<Caption value="<Flex> can also put elements on the same line ☝️">
+  <Flex>
+    <Image
+      alt={`avatar`}
+      src={`/images/blog/avatar.png`}
+      className="rounded-full grayscale w-auto h-1/2"
+      width={100}
+      height={100}
+      priority
+    />
+    ```jsx title="./app/page.tsx"
+    <Image
+      alt={`avatar`}
+      src={`/images/blog/avatar.png`}
+      className="rounded-full grayscale"
+      width={100}
+      height={100}
+      {/* placeholder="blur" */}
+      priority
+    />
+    ```
+  </Flex>
+</Caption>
+
+Interestingly, the `placeholder="blur"` property doesn't work in MDX. It throws an error about a missing blurDataURL. This value [should be automatically generated](https://nextjs.org/docs/app/api-reference/components/image#blurdataurl), but it isn't.
+
+## Looking at the TypeScript
+
+Creating custom components within this system is pretty straightforward. [leerob](https://leerob.io/) set things up such that there is an `mdx.tsx` file where you can import components for use. Components are **not** included by default.
+
+Here's the code for the `Image` component after I made a change to how props are handled. It is exported later under the name `Image` for use.
+
+<Caption value='"Interesting" pattern used to prevent props from overwriting'>
+  <Flex>
+  ```tsx title="./content/mdx.tsx"
+  import Image from "next/image"
+
+  function CustomImage({
+    className,
+    ...otherProps
+  }: React.ComponentProps<typeof Image>) {
+    return (
+      <Image
+        className={
+          className?.includes("rounded")
+            ? className
+            : `rounded-lg${className ? ` ${className}` : ""}`
+        }
+        {...otherProps}
+      />
+    )
+  }
+
+  // ...
+  const components = {
+    Image: CustomImage,
+    // ...
+  }
+  ```
+  </Flex>
+</Caption>
+
+## Tailwind Plugins
+Even plugins like DaisyUI work with no mdx-specific setup. Here is the DaisyUI [avatar with ring](https://daisyui.com/components/avatar/#avatar-with-ring).
+
+<Caption value="These are custom figcaptions btw 😼">
+<div className="avatar">
+  <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+    <Image src="/images/blog/avatar.png" width={100} height={100} className="my-0" alt="avatar with daisy ui ring style" />
+  </div>
+</div>
+</Caption>
+```jsx
+<Caption value="These are custom figcaptions btw 😼">
+  <div className="avatar">
+    <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+      <Image
+        src="/images/blog/avatar.png"
+        width={100}
+        height={100}
+        className="my-0"
+        alt="avatar with daisy ui ring style"
+      />
+    </div>
+  </div>
+</Caption>
+```
+
+## Conclusion
+
+Combining Next.js with MDX and TailwindCSS forms a potent combination. I was looking forward to cloning and dissecting this project to understand how to bring React components into articles. I'm quite satisfied with the outcome.
+

@@ -51,8 +51,8 @@ html {
   @apply !mt-0
 }
 
+/* Blog CSS */
 /* <Caption></Caption> element MDX */
-
 .blog-figcaption {
   @apply -translate-y-2 text-center text-sm text-neutral-500 dark:text-neutral-400;
 }
