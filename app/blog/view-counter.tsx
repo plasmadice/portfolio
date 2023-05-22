@@ -33,8 +33,9 @@ export default function ViewCounter({
       registerView()
     }
   }, [slug])
+
   const viewsForSlug = data && data.find((view: PostView) => view.slug === slug)
-  const viewCount = new Number(viewsForSlug?.count || 0)
+  const viewCount = new Number(trackView ? viewsForSlug?.count + 1 : viewsForSlug?.count || 0)
   return (
     <p className="font-mono text-sm text-neutral-500 tracking-tighter">
       {data ? `${viewCount.toLocaleString()} views` : "​"}
