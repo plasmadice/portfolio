@@ -5,11 +5,12 @@ summary: "Delving into the capabilities of TailwindCSS and MDX."
 ---
 
 <Image
-  alt={`Tailwind CSS Logo`}
+  alt={`Tailwind and MDX Logo`}
   src={`/images/blog/tailwind-mdx-logo.svg`}
   width={500}
   height={200}
   className="mx-auto"
+  priority
 />
 
 <br />
@@ -49,7 +50,7 @@ module.exports = {
 I don't particularly enjoy how the above code block fills the container horizontally. Going forward, I'll use `<Flex></Flex>` and `<Grid></Grid>` helpers to prevent code blocks from filling the containers they are in.
 
 <Flex>
-  ```tsx title="./content/mdx.tsx"
+  ```tsx title="./components/mdx.tsx"
   function Flex(props) {
     return (
       <div className={
@@ -100,7 +101,7 @@ Here's the code for the `Image` component after I made a change to how props are
 
 <Caption value='"Interesting" pattern used to prevent props from overwriting'>
   <Flex>
-  ```tsx title="./content/mdx.tsx"
+  ```tsx title="./components/mdx.tsx"
   import Image from "next/image"
 
   function CustomImage({

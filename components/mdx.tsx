@@ -1,6 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
-import Image from "next/image"
+import Image, { type ImageProps } from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 const CustomLink = (props) => {
@@ -37,10 +37,53 @@ function CustomImage({
   )
 }
 
+interface ExtendedImageProps extends React.ComponentProps<typeof Image> {
+  size?: string
+}
+
+function GIF({ className, size, ...otherProps }: ExtendedImageProps) {
+  let dimensions: number
+
+  // Prevents overwriting margin and corner rounding
+  const margin = className && ['m-','mx-','my-'].includes(className) ? className : `mx-auto ${className}`
+  const rounded = margin?.includes("rounded") ? margin : `rounded-lg ${margin}`
+
+  switch (size) {
+    case "xs":
+      dimensions = 100
+      break
+    case "sm":
+      dimensions = 200
+      break
+    case "lg":
+      dimensions = 400
+      break
+    case "xl":
+      dimensions = 500
+      break
+    case "xl2":
+      dimensions = 1000
+      break
+    default:
+      dimensions = 300 // md
+  }
+
+  return (
+    <Image
+      className={rounded}
+      height={dimensions}
+      width={dimensions}
+      {...otherProps}
+    />
+  )
+}
+
 function Callout(props) {
   return (
     <div className="flex bg-neutral-100 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg p-4 my-8">
-      <div className="flex items-center w-4 mr-4">{props.emoji ? props.emoji : '💡'}</div>
+      <div className="flex items-center w-4 mr-4">
+        {props.emoji ? props.emoji : "💡"}
+      </div>
       <div className="w-full callout">{props.children}</div>
     </div>
   )
@@ -112,7 +155,9 @@ function Caption(props) {
 
 function Flex(props) {
   return (
-    <div className={`flex gap-8${props.className ? ` ${props.className}` : ""}`}>
+    <div
+      className={`flex gap-8${props.className ? ` ${props.className}` : ""}`}
+    >
       {props.children}
     </div>
   )
@@ -120,7 +165,13 @@ function Flex(props) {
 
 function Grid(props) {
   return (
-    <div className={`grid gap-8${props?.className?.includes('grid-cols') ? ` ${props.className}` : " grid-cols-1 sm:grid-cols-2"}`}>
+    <div
+      className={`grid gap-8${
+        props?.className?.includes("grid-cols")
+          ? ` ${props.className}`
+          : " grid-cols-1 sm:grid-cols-2"
+      }`}
+    >
       {props.children}
     </div>
   )
@@ -135,6 +186,7 @@ const components = {
   Caption,
   Flex,
   Grid,
+  GIF,
 }
 
 interface MdxProps {

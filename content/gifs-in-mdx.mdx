@@ -1,0 +1,131 @@
+---
+title: "GIFS & The Blogs of Days Past"
+publishedAt: "2023-05-22"
+summary: "Covering my favorite feature of the internet. Moving pictures!"
+---
+
+Let's cover some of my favorite features of my old blog. 
+
+## Ye Olde Blog
+
+Once upon a time, there existed a blog where everyone was happy. Just kidding! My old blog was primarily a place for me to rant about instances of apps and websites using dark patterns against their users. It was indeed not a light topic.
+
+The blog was built in WordPress, and was fairly plain. This was right before Gutenberg blocks were all the rage. It was all downhill from there. But, before that, I had a great time writing those articles.
+
+## GIFS
+
+My **favorite** part was the ability to easily pull in images and GIFs. I'm a big fan of memes. They have the ability to convey emotion through an image or with just a few words. Unfortunately, [Contentlayer](https://www.contentlayer.dev/docs/environments/nextjs#working-with-images) does not currently support images. 
+
+<Caption className="mx-auto" value="This is what I think about that">
+  <GIF alt="GIF of Jennifer Lawrence saying 'Yeah, okay'" src="https://www.reactiongifs.com/r/jlaw-whtvr.gif"/>
+</Caption>
+
+### Potential Solutions
+
+The [originator](https://leerob.io/) for the design of this blog opted to host every image in his repo under `/public/`. This strategy is certainly better in the long run, but I want the ability to quickly get memes on the page without having to host every single image. Hosting the images would take time, and I would be pressured to reduce file sizes. The opposite of what I want to think about when I'm trying to get a laugh.
+
+<GIF size="xl" alt="GIF of guy saying 'Absolutely not'" src="https://media.giphy.com/media/H1YMguVrVeI0Xz5c8v/giphy.gif"/>
+
+One recommendation is to import Next's `<Image />` component. However, it still doesn't clearly state that it can achieve this. In fact, if you take this route, you will have to whitelist every domain from which you intend to fetch images in `next-config.js`. This was the exact route I took after deciding which platform I would source my images from.
+
+```js title="next-config.js"
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.giphy.com",
+        pathname: "/**",
+      },
+    ],
+  },
+  // ...
+}
+```
+
+The above config was enough to allow me to use the `<Image />` component to pull in GIFs, but the `.mdx` code is more verbose than I would like it to be.
+
+```tsx
+<Image
+  alt={`GIF of a skeleton`}
+  src={`https://media.giphy.com/media/MynmWbOPGsv51V3VFW/giphy.gif`}
+  width={200}
+  height={200}
+  className="mx-auto"
+/>
+```
+
+Let's simplify this by making a custom GIF component that passes default values to the `<Image>` underneath. Close your eyes if you are afraid of ugly ternary expressions. I fully expect this to come up during my final reckoning in the afterlife.
+
+### Over Engineering the Solution
+
+```tsx title="./components/mdx.tsx"
+interface ExtendedImageProps extends React.ComponentProps<typeof Image> {
+  size?: string
+}
+
+function GIF({ className, size, ...otherProps }: ExtendedImageProps) {
+  let dimensions: number
+
+  // Prevents overwriting margin and corner rounding
+  const margin = className && ['m-','mx-','my-'].includes(className) ? className : `mx-auto ${className}`
+  const rounded = margin?.includes("rounded") ? margin : `rounded-lg ${margin}`
+
+  switch (size) {
+    case "xs":
+      dimensions = 100
+      break
+    case "sm":
+      dimensions = 200
+      break
+    case "lg":
+      dimensions = 400
+      break
+    case "xl":
+      dimensions = 500
+      break
+    case "xl2":
+      dimensions = 1000
+      break
+    default:
+      dimensions = 300 // md
+  }
+
+  return (
+    <Image
+      className={rounded}
+      height={dimensions}
+      width={dimensions}
+      {...otherProps}
+    />
+  )
+}
+```
+
+Notably, our new component passes `width`, `height`, and a couple of Tailwind classes for styling. The classes can be safely overwritten, but not by all tailwind styles. There are some gotchas that will make it through that are not prefixed with `rounded` or `m` that will still manage to affect those styles.
+
+`size` is a new optional property that we can use to increase the size of the GIF. The default size is `md`, which is 300px. The other sizes are `xs`, `sm`, `lg`, `xl`, and `xl2`. The `xl2` size is 1000px, which practically fills the container.
+
+### The New MDX GIF Component
+
+```tsx
+<GIF
+  alt={`High five GIF`}
+  src={`https://media.giphy.com/media/HX3lSnGXZnaWk/giphy.gif`}
+  size="xl"
+/>
+```
+
+<GIF
+  alt={`High five GIF`}
+  src={`https://media.giphy.com/media/HX3lSnGXZnaWk/giphy.gif`}
+  size="xl"
+/>
+
+# Conclusion
+
+GIFs are an excellent medium to convey emotions and humor over the internet. I'm delighted to have found a way to include them in my blog. While hosting them in the /public folder in Next.js is arguably the optimal approach (since they are not fetched from a third party and can be optimized for the web), there are times when easy access to GIFs is desirable. Sometimes I want easy access to GIFs, and this is a great way to do that.
+
+
+
+

@@ -4,11 +4,20 @@ const { withContentlayer } = require("next-contentlayer")
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "pbs.twimg.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**.giphy.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "**.reactiongifs.com",
         pathname: "/**",
       },
     ],
