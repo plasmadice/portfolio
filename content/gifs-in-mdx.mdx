@@ -47,17 +47,17 @@ The above config was enough to allow me to use the `<Image />` component to pull
 
 ```tsx
 <Image
-  alt={`GIF of a skeleton`}
-  src={`https://media.giphy.com/media/MynmWbOPGsv51V3VFW/giphy.gif`}
-  width={200}
-  height={200}
+  alt={`High five GIF`}
+  src={`https://media.giphy.com/media/HX3lSnGXZnaWk/giphy.gif`}
+  width={500}
+  height={500}
   className="mx-auto"
 />
 ```
 
 Let's simplify this by making a custom GIF component that passes default values to the `<Image>` underneath. Close your eyes if you are afraid of ugly ternary expressions. I fully expect this to come up during my final reckoning in the afterlife.
 
-### Over Engineering the Solution
+### Over-Engineering the Solution
 
 ```tsx title="./components/mdx.tsx"
 interface ExtendedImageProps extends React.ComponentProps<typeof Image> {
