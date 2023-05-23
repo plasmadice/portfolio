@@ -1,15 +1,16 @@
 import Link from "next/link"
 import Image from "next/image"
-import { getBlogViews, getStarCount, getOriginalStarCount } from "lib/metrics"
+import { getBlogViews, getRepoData } from "lib/metrics"
 import { ArrowIcon, GitHubIcon, ViewsIcon } from "components/icons"
 import { name, about, bio, avatar } from "lib/info"
 
 export const revalidate = 60
+export const runtime = 'edge'
 
 export default async function HomePage() {
-  let [starCount, originalStarCount, views] = await Promise.all([
-    getStarCount(),
-    getOriginalStarCount(),
+  let [{stargazers_count: starCount}, {stargazers_count: originalStarCount}, views] = await Promise.all([
+    getRepoData('plasmadice', 'portfolio'),
+    getRepoData('leerob', 'leerob.io'),
     getBlogViews(),
   ])
 

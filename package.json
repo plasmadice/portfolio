@@ -9,7 +9,6 @@
     "clean": "rm -rf .next ./node_modules .contentlayer && yarn"
   },
   "dependencies": {
-    "@octokit/rest": "^19.0.9",
     "@planetscale/database": "^1.7.0",
     "@vercel/analytics": "^1.0.1",
     "@vercel/edge-config": "^0.1.11",

@@ -1,6 +1,5 @@
 import "server-only"
 
-import { Octokit } from "@octokit/rest"
 import { queryBuilder } from "lib/planetscale"
 import { cache } from "react"
 
@@ -13,28 +12,7 @@ export const getBlogViews = cache(async () => {
   return data.reduce((acc, curr) => acc + Number(curr.count), 0)
 })
 
-export const getOriginalStarCount = cache(async () => {
-  const octokit = new Octokit({
-    auth: process.env.GITHUB_TOKEN,
-  })
-
-  const req = await octokit.request("GET /repos/{owner}/{repo}", {
-    owner: "leerob",
-    repo: "leerob.io",
-  })
-
-  return req.data.stargazers_count
-})
-
-export const getStarCount = cache(async () => {
-  const octokit = new Octokit({
-    auth: process.env.GITHUB_TOKEN,
-  })
-
-  const req = await octokit.request("GET /repos/{owner}/{repo}", {
-    owner: "plasmadice",
-    repo: "portfolio",
-  })
-
-  return req.data.stargazers_count
-})
+export const getRepoData = (user: string, repo: string) => {
+  const url = `https://api.github.com/repos/${user}/${repo}`
+  return fetch(url).then((res) => res.json())
+}
