@@ -24,7 +24,7 @@ My **favorite** part was the ability to easily pull in images and GIFs. I'm a bi
 
 The [originator](https://leerob.io/) for the design of this blog opted to host every image in his repo under `/public/`. This strategy is certainly better in the long run, but I want the ability to quickly get memes on the page without having to host every single image. Hosting the images would take time, and I would be pressured to reduce file sizes. The opposite of what I want to think about when I'm trying to get a laugh.
 
-<Callout emoji="🙈">The method above is the reccommended method. Hosting the files yourself offers the best performance and reliability.</Callout>
+<Callout emoji="🙈">The method above is reccommended. Hosting the files yourself offers the best performance and reliability.</Callout>
 
 One recommendation is to import Next's `<Image />` component. However, it still doesn't clearly state that it can achieve this. In fact, if you take this route, you will have to whitelist every domain from which you intend to fetch images in `next-config.js`. This was the exact route I took after deciding which platform I would source my images from.
 
