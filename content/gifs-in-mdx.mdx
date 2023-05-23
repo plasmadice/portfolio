@@ -17,14 +17,14 @@ The blog was built in WordPress, and was fairly plain. This was right before Gut
 My **favorite** part was the ability to easily pull in images and GIFs. I'm a big fan of memes. They have the ability to convey emotion through an image or with just a few words. Unfortunately, [Contentlayer](https://www.contentlayer.dev/docs/environments/nextjs#working-with-images) does not currently support images. 
 
 <Caption className="mx-auto" value="This is what I think about that">
-  <GIF alt="GIF of Jennifer Lawrence saying 'Yeah, okay'" src="https://www.reactiongifs.com/r/jlaw-whtvr.gif"/>
+  <GIF alt="GIF of someone saying 'Are you sure about that?'" src="https://media.giphy.com/media/1swY7LHRqVwzivnvgI/giphy.gif"/>
 </Caption>
 
 ### Potential Solutions
 
 The [originator](https://leerob.io/) for the design of this blog opted to host every image in his repo under `/public/`. This strategy is certainly better in the long run, but I want the ability to quickly get memes on the page without having to host every single image. Hosting the images would take time, and I would be pressured to reduce file sizes. The opposite of what I want to think about when I'm trying to get a laugh.
 
-<GIF size="xl" alt="GIF of guy saying 'Absolutely not'" src="https://media.giphy.com/media/H1YMguVrVeI0Xz5c8v/giphy.gif"/>
+<Callout emoji="🙈">The method above is the reccommended method. Hosting the files yourself offers the best performance and reliability.</Callout>
 
 One recommendation is to import Next's `<Image />` component. However, it still doesn't clearly state that it can achieve this. In fact, if you take this route, you will have to whitelist every domain from which you intend to fetch images in `next-config.js`. This was the exact route I took after deciding which platform I would source my images from.
 
