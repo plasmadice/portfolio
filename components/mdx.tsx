@@ -153,6 +153,18 @@ function Caption(props) {
   )
 }
 
+function Box(props) {
+  // Prevents overwriting margin and width values
+  const margin = props.className && ['m-','mx-','my-'].includes(props.className) ? props.className : `mx-auto ${props.className}`
+  const width = margin && ['w-'].includes(margin) ? margin : `w-fit ${margin}`
+
+  return (
+    <div className={width}>
+      {props.children}
+    </div>
+  )
+}
+
 function Flex(props) {
   return (
     <div
@@ -187,6 +199,7 @@ const components = {
   Flex,
   Grid,
   GIF,
+  Box,
 }
 
 interface MdxProps {

@@ -28,6 +28,7 @@ The [originator](https://leerob.io/) for the design of this blog opted to host e
 
 One recommendation is to import Next's `<Image />` component. However, it still doesn't clearly state that it can achieve this. In fact, if you take this route, you will have to whitelist every domain from which you intend to fetch images in `next-config.js`. This was the exact route I took after deciding which platform I would source my images from.
 
+<Flex>
 ```js title="next-config.js"
 const nextConfig = {
   images: {
@@ -42,9 +43,11 @@ const nextConfig = {
   // ...
 }
 ```
+</Flex>
 
 The above config was enough to allow me to use the `<Image />` component to pull in GIFs, but the `.mdx` code is more verbose than I would like it to be.
 
+<Flex>
 ```tsx
 <Image
   alt={`High five GIF`}
@@ -54,6 +57,7 @@ The above config was enough to allow me to use the `<Image />` component to pull
   className="mx-auto"
 />
 ```
+</Flex>
 
 Let's simplify this by making a custom GIF component that passes default values to the `<Image>` underneath. Close your eyes if you are afraid of ugly ternary expressions. I fully expect this to come up during my final reckoning in the afterlife.
 
@@ -108,6 +112,7 @@ Notably, our new component passes `width`, `height`, and a couple of Tailwind cl
 
 ### The New MDX GIF Component
 
+<Flex>
 ```tsx
 <GIF
   alt={`High five GIF`}
@@ -115,6 +120,7 @@ Notably, our new component passes `width`, `height`, and a couple of Tailwind cl
   size="xl"
 />
 ```
+</Flex>
 
 <GIF
   alt={`High five GIF`}

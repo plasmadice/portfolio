@@ -15,11 +15,6 @@ const nextConfig = {
         hostname: "**.giphy.com",
         pathname: "/**",
       },
-      {
-        protocol: "https",
-        hostname: "**.reactiongifs.com",
-        pathname: "/**",
-      },
     ],
   },
   experimental: {
