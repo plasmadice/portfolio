@@ -1,0 +1,107 @@
+---
+title: "Absolute Imports in TypeScript"
+publishedAt: "2023-05-23"
+summary: "Shorten your imports in TypeScript projects by using Absolute Imports instead of Relative Imports."
+---
+
+Today, let's cover a pretty simple, but useful feature of Node. You can do this in both JavaScript and TypeScript, but today we'll only cover TypeScript's implementation through `tsconfig.json`. 
+
+Let's get started!
+
+## How Imports Typically Work
+
+By default, all imports are relative. Relative imports use the path from the current file to the target, **or** the path from the root of your directory to the target. Alternatively, you can set up absolute imports that will allow you to point to certain files or folders.
+
+Relative imports are the by far the most common. They are also the most verbose. Let's look at an example.
+
+```ts title="./app/api/data/[sortMethod]/[quantity]/route.ts"
+import { MediaSort, AnimeResponse } from "../../../../types"
+```
+
+## First Off, Why?
+
+I'm currently working on (yet another) Next.js project. This one has much more `/app` router action. [The folder structure dictates the routing of the application](https://nextjs.org/docs/app/building-your-application/routing), and so, absolute imports become very enticing as your project grows.
+
+Simple imports from other parts of your app can start to look a little ridiculous. As you can see from above.
+
+It's possible to use absolute imports to clean this up and make this a little more obvious.
+
+```ts title="./app/api/data/[sortMethod]/[quantity]/route.ts"
+import { MediaSort, AnimeResponse } from "@types"
+```
+
+**Much** easier on the eyes. Let's see how this is done.
+
+## Setup
+
+In your `tsconfig.json` file you will need to add a [`baseUrl`](https://www.typescriptlang.org/tsconfig#baseUrl) and the [`paths`](https://www.typescriptlang.org/tsconfig#paths) object. The `baseUrl` sets a base directory from which to resolve non-relative module names. While `paths` lets you map certain values to specific paths.
+
+<Callout emoji="😱">Changing the `baseUrl` to anything other than `./` can cause your app to stop working if you're unsure what you're doing.</Callout>
+
+`paths` is an object that basically contains abbreviations and paths in key:value pairs. Next.js includes the values below for convenience (if you select them during setup). They allow you to use `@` out of the box as a shortcut.
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    // ... other options
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+    }
+  },
+  // ... other options
+}
+```
+
+That's enough to save me tons of "effort" already.
+
+```ts title="./app/api/data/[sortMethod]/[quantity]/route.ts"
+import { MediaSort, AnimeResponse } from "@/app/types"
+```
+
+This is good. I could leave it right here and be satisfied. **Of course, that's not what I did**. 
+
+## Adding More Paths
+
+Some of my resources don't have the `index.ts` approach of importing all items in a folder into one file where they will be exported. Some of them require that I target the specific file or component. Thankfully, I know how to handle this. By creating more paths that will point directly to either the `index.ts` files **or** the folder, we use the wildcard pattern to allow us to specify imports as well.
+
+```json title="tsconfig.json"
+{
+  "compilerOptions": {
+    // ... other options
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "@types": ["./app/types/index.ts"],
+      "@types/*": ["./app/types/*"],
+      "@components": ["./app/components/index.ts"],
+      "@components/*": ["./app/components/*"],
+      "@hooks": ["./hooks/index.ts"],
+      "@hooks/*": ["./hooks"],
+      "@utils": ["./utils/index.ts"],
+      "@utils/*": ["./utils/*"],
+    }
+  },
+  // ... other options
+}
+```
+
+With this, I will be able to turn my brain off when importing things. Win!
+
+```ts title="./app/api/data/[sortMethod]/[quantity]/route.ts"
+import { MediaSort, AnimeResponse } from "@types"
+```
+
+```tsx title="./app/details/[id]/page.tsx"
+// before
+import ImageLoader from "../../components/ImageLoader"
+
+// after
+import ImageLoader from "@components/ImageLoader"
+```
+
+## Conclusion
+
+This is a pretty simple feature, but it can also save you some time and effort. I'm all about that. While path intellisense has imporved immensely over the years, I still find myself wondering exactly where my assets are in relation to a file. This helps me to not have to think about it.
+
+Hopefully this helps someone. Happy coding!
