@@ -103,6 +103,7 @@ Some of my resources don't have the `index.ts` approach of importing all items i
 With this, I will be able to turn my brain off when importing things. Win!
 
 ```ts title="./app/api/data/[sortMethod]/[quantity]/route.ts"
+// '@types' = './app/types/index.ts'
 import { MediaSort, AnimeResponse } from "@types"
 ```
 
@@ -111,6 +112,7 @@ import { MediaSort, AnimeResponse } from "@types"
 import ImageLoader from "../../components/ImageLoader"
 
 // after
+// '@components/ImageLoader' = './app/components/ImageLoader'
 import ImageLoader from "@components/ImageLoader"
 ```
 
