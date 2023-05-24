@@ -14,6 +14,20 @@ By default, all imports are relative. Relative imports use the path from the cur
 
 Relative imports are the by far the most common. They are also the most verbose. Let's look at an example.
 
+<Flex>
+```md title="The folder structure that caused this mess"
+app
+  api
+    data
+      [sortMethod]
+        [quantity]
+          route.ts
+  types
+    typeFile.d.ts
+    index.ts 
+```
+</Flex>
+
 ```ts title="./app/api/data/[sortMethod]/[quantity]/route.ts"
 import { MediaSort, AnimeResponse } from "../../../../types"
 ```
@@ -76,10 +90,10 @@ Some of my resources don't have the `index.ts` approach of importing all items i
       "@types/*": ["./app/types/*"],
       "@components": ["./app/components/index.ts"],
       "@components/*": ["./app/components/*"],
-      "@hooks": ["./hooks/index.ts"],
-      "@hooks/*": ["./hooks"],
-      "@utils": ["./utils/index.ts"],
-      "@utils/*": ["./utils/*"],
+      "@hooks": ["./app/hooks/index.ts"],
+      "@hooks/*": ["./app/hooks"],
+      "@utils": ["./app/utils/index.ts"],
+      "@utils/*": ["./app/utils/*"],
     }
   },
   // ... other options
