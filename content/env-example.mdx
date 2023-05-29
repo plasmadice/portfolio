@@ -1,0 +1,100 @@
+---
+title: "Creating .env.example files"
+publishedAt: "2023-05-28"
+summary: "Create your .env.example files using a safe bash 1-liner"
+---
+
+Before you make your repo public, you're going to want to make sure your .env files are excluded, but you also want to leave some examples for people who might clone your project.
+
+Your `.env` file will be necessary. An `.env.example` file with an example of your needed secrets really helps people to get started.
+
+<Image
+  alt={`Screenshot of vscode file explorer showing .env.example file`}
+  src={`/images/blog/env-example1.png`}
+  width={300}
+  height={300}
+  className="mx-auto"
+  priority
+/>
+
+## Quickly getting the job done
+
+Below is an `.env` file with a couple of values. The `NEXTAUTH_SECRET` was quickly generated with `openssl rand -base64 32`. Assuming it was a valid value, I would not want that to accidentally get committed. Creating `.env.example` files is usually done by hand.
+
+```shell title=".env"
+NEXTAUTH_SECRET=5gMEhyPqbE1ETVILb5SLJ4TcMRnNVQysnSWA/djCF70=
+NEXTAUTH_URL=$NEXT_PUBLIC_URL
+```
+
+```shell title=".env.example"
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=
+```
+
+We can use the `sed` command to remove everything after `=`. Here is how you can do it:
+
+```bash title=".env -> .env.example"
+sed 's/=.*$/=/g' .env > .env.example
+```
+
+**Make sure** you run this in the directory where your `.env` file is located!
+
+This powerful little command will read your `.env` file, replace `=` and anything that comes after it with `=`. Finally, it will output that into a new file named `.env.example`.
+
+Please note that this command assumes that secrets are represented as values in key=value pairs and all secrets should be removed. If there's a more specific pattern to identify secrets, you may need to adjust the regex.
+
+This command will not modify your original `.env` file, so no worries there.
+
+## Creating `.example` files for all environments
+
+That's nice and everything, but what if you have multiple environments and want to have those files backed up as well? We can use a for loop to loop and grab every file that starts with `.env`, but it will avoid files ending in `.example`. This is crucial to avoid duplication.
+
+```bash title=".env* -> .env*.example"
+for file in $(ls .env* | grep -v '.example$'); do sed 's/=.*$/=/g' $file > ${file}.example; done
+```
+
+Pretty powerful stuff. It can safely be run multiple times and effortlessly creates your `.example` files.
+
+<Caption value="Hope this helps at least one soul.">
+    <Image
+    alt={`Screenshot of vscode file explorer showing multiple .env.example files`}
+    src={`/images/blog/env-example2.png`}
+    width={700}
+    height={300}
+    className="mx-auto"
+    />
+</Caption>
+
+This will:
+
+1. List all files starting with `.env`.
+2. Exclude any files ending with `.example` from the list.
+3. Run the `sed` command on each file to replace `key=value` pairs with `key=`, effectively removing the secrets.
+4. Write the output to a new file named `${file}.example`, where `${file}` is the original filename.
+
+## Extra credit - Add to your `.gitignore`
+
+I'd like a `.gitignore` pattern that will ensure that all `.env` files are ignored except those ending in `.example`.
+
+```bash title=".gitignore"
+# Ignore all .env files except .env files ending in .example
+.env*
+!.env*.example
+```
+
+Explanation:
+
+- The first line `.env*` will ignore all files starting with `.env`.
+- The second line `!.env*.example` will not ignore files starting with `.env` and ending with `.example`.
+
+
+## Conclusion
+
+Voila! Create `.example` files for **all** of your environments. Forget about using your brain for this task in the future. Use these scripts.
+
+```bash title=".env -> .env.example"
+sed 's/=.*$/=/g' .env > .env.example
+```
+```bash title=".env* -> .env*.example"
+for file in $(ls .env* | grep -v '.example$'); do sed 's/=.*$/=/g' $file > ${file}.example; done
+```
