@@ -8,7 +8,7 @@ export const projects = [
     title: "LazyAnime",
     img: "/images/lazyanime.png",
     description:
-      "WIP! Most ambitious frontend project yet. Anime info and streaming app.",
+      "WIP! Most ambitious frontend project yet. Anime info and streaming app. User permissions controlled by Discord roles.",
     technologies: ["React", "Next.js", "TailwindCSS", "DaisyUI"],
     links: {
       demo: "https://lazyanime.com/",
