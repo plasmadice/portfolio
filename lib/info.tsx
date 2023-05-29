@@ -5,14 +5,14 @@ export const descpription = "Developer, creator, and skater."
 export const avatar = me
 export const projects = [
   {
-    title: "Animay",
-    img: "/images/animay.png",
+    title: "LazyAnime",
+    img: "/images/lazyanime.png",
     description:
       "WIP! Most ambitious frontend project yet. Anime info and streaming app.",
     technologies: ["React", "Next.js", "TailwindCSS", "DaisyUI"],
     links: {
-      demo: "http://localhost:3000/haha?gotem=true",
-      github: "",
+      demo: "https://lazyanime.com/",
+      github: "https://github.com/plasmadice/lazyanime",
     },
   },
   {
