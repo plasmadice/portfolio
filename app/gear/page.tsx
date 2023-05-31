@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Uses",
+  title: "Gear",
   description: "Gear I'm using",
 }
 
@@ -87,18 +87,22 @@ const gear: GearList = {
         link: "https://karabiner-elements.pqrs.org/",
       },
       {
-        name: "AltTab",
-        link: "https://alt-tab-macos.netlify.app/",
+        name: "Bartender 4",
+        link: "https://www.macbartender.com/Bartender4/",
       },
       {
-        name: "Rectangle",
-        link: "https://rectangleapp.com/",
+        name: "Moom",
+        link: "https://manytricks.com/moom/e",
+      },
+      {
+        name: "Capslock",
+        link: "https://github.com/Plasmadice/Capslock",
       },
     ],
   },
   other: {
     id: "other",
-    name: "Other",
+    name: "Other Stuff",
     items: [
       {
         name: "Lenovo Legion 7 w/ 2060",
