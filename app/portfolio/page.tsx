@@ -1,5 +1,6 @@
 import { projects } from "lib/info"
 import { GitHubIcon } from "components/icons"
+import Image from "next/image"
 
 type ProjectProps = {
   key: number
@@ -23,9 +24,11 @@ const Project = ({
   <li key={title}>
     <div className="antialiased card glass compact w-80 bg-white text-neutral-800 dark:text-neutral-200 dark:bg-neutral-900 shadow-xl">
       <figure>
-        <img
+        <Image
           src={img}
           alt={title}
+          height={320}
+          width={320}
           className="object-cover h-64 w-full" // ensure a 3:2 ratio
         />
       </figure>
