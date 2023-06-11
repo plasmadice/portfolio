@@ -174,8 +174,8 @@ export async function getRecentCommitCount(username: string, email: string, days
   let totalCommits = 0
   let page = 1
   const perPage = 100
-  const oneMonthAgo = new Date()
-  oneMonthAgo.setDate(oneMonthAgo.getDate() - days)
+  const timeFrame = new Date()
+  timeFrame.setDate(timeFrame.getDate() - days)
   let stop = false
 
   while (!stop) {
@@ -193,11 +193,11 @@ export async function getRecentCommitCount(username: string, email: string, days
     const data = await response.json()
 
     if (data.length) {
-      // filter out non-commit events and events older than 30 days and events that are not by me
+      // filter out non-commit events and events older than {days} days and events that are not by me
       const recentCommitEvents = data.filter((event) => {
         return (
           event.type === "PushEvent" &&
-          new Date(event.created_at) >= oneMonthAgo &&
+          new Date(event.created_at) >= timeFrame &&
           event.payload?.commits?.some((commit) => commit.author?.email.includes(email))
         )
       })
@@ -209,8 +209,8 @@ export async function getRecentCommitCount(username: string, email: string, days
         return (acc += userCommits?.length)
       }, 0)
       
-      // check if the last event is older than 30 days, if true, stop the loop
-      if (new Date(data[data.length - 1].created_at) < oneMonthAgo) {
+      // check if the last event is older than {days} days, if true, stop the loop
+      if (new Date(data[data.length - 1].created_at) < timeFrame) {
         stop = true
       }
     } else {
