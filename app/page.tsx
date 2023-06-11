@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import { getBlogViews, getRepoData, getRecentCommitCount } from "lib/metrics"
+import { getBlogViews, getRecentCommitCount, getRecentCommits } from "lib/metrics"
 import { ArrowIcon, GitHubIcon, ViewsIcon } from "components/icons"
 import { name, about, bio, avatar } from "lib/info"
 
@@ -12,6 +12,10 @@ export default async function HomePage() {
     getRecentCommitCount("plasmadice", process.env.GITHUB_EMAIL as string, 30),
     getBlogViews(),
   ])
+
+  const { totalCommits, pushEvents } = await getRecentCommits("plasmadice", process.env.GITHUB_EMAIL as string, 30)
+  console.log('totalCommits', totalCommits)
+  console.log('pushEvents.length', pushEvents.length)
 
   return (
     <section>

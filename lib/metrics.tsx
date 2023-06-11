@@ -122,45 +122,21 @@ type Repository = {
   subscribers_count: number
 }
 
-// /**
-//  * @param {string} owner Owner of repo
-//  * @param {string} repo Name of repo
-//  * @returns {number} Number of total commits the repo contains on main master branch
-//  */
-// export const getTotalCommits = (owner: string, repo: string) => {
-//   let url = `https://api.github.com/repos/${owner}/${repo}/commits?per_page=100`
-//   let pages = 0
+type Commit = {
+  url?: string | null
+  sha?: string | null
+}
 
-//   return fetch(url, {
-//     headers: {
-//       Accept: "application/vnd.github.v3+json",
-//     },
-//   })
-//     .then((data: any) => data.headers)
-//     .then(
-//       (result) =>
-//         result
-//           .get("link")
-//           .split(",")[1]
-//           .match(/.*page=(?<page_num>\d+)/).groups.page_num
-//     )
-//     .then((numberOfPages) => {
-//       pages = numberOfPages
-//       return fetch(url + `&page=${numberOfPages}`, {
-//         headers: {
-//           Accept: "application/vnd.github.v3+json",
-//         },
-//       }).then((data) => data.json())
-//     })
-//     .then((data) => {
-//       return data.length + (pages - 1) * 100
-//     })
-//     .catch((err) => {
-//       console.log(`ERROR: calling: ${url}`)
-//       console.log("See below for more info:")
-//       console.log(err)
-//     })
-// }
+type Push = {
+  public: boolean
+  size: number
+  repo?: {
+    id: number
+    name: string
+    url: string
+  } | null
+  commits?: Commit[] | null
+}
 
 export const getRepoData = (
   user: string,
@@ -170,16 +146,18 @@ export const getRepoData = (
   return fetch(url).then((res) => res.json())
 }
 
-export async function getRecentCommitCount(username: string, email: string, days: number = 30) {
-  let totalCommits = 0
+export async function fetchUserEvents(username: string, email: string, days: number = 30) {
+  let events: any[] = []
   let page = 1
   const perPage = 100
   const timeFrame = new Date()
   timeFrame.setDate(timeFrame.getDate() - days)
   let stop = false
 
+  // Loop through pages until we find a commit outside of our timeframe
   while (!stop) {
     // Fetch last 100 events from GitHub API for User
+    // retrieves private events if you are authenticated and fetching your own events
     const response = await fetch(
       `https://api.github.com/users/${username}/events?page=${page}&per_page=${perPage}`,
       {
@@ -193,8 +171,8 @@ export async function getRecentCommitCount(username: string, email: string, days
     const data = await response.json()
 
     if (data.length) {
-      // filter out non-commit events and events older than {days} days and events that are not by me
-      const recentCommitEvents = data.filter((event) => {
+      // filter out push events that do not contain commits and events older than {days} days and events not created by {email}
+      const recentPushEvents = data.filter((event) => {
         return (
           event.type === "PushEvent" &&
           new Date(event.created_at) >= timeFrame &&
@@ -202,12 +180,7 @@ export async function getRecentCommitCount(username: string, email: string, days
         )
       })
 
-      totalCommits += recentCommitEvents?.reduce((acc, event) => {
-        const userCommits = event.payload?.commits?.filter(
-          (commit) => commit.author?.email.includes(email)
-        )
-        return (acc += userCommits?.length)
-      }, 0)
+      events = [...events, ...recentPushEvents]
       
       // check if the last event is older than {days} days, if true, stop the loop
       if (new Date(data[data.length - 1].created_at) < timeFrame) {
@@ -219,6 +192,83 @@ export async function getRecentCommitCount(username: string, email: string, days
     
     page++
   }
+
+  return events
+}
+
+export async function getRecentCommits(username: string, email: string, days: number = 30) {
+  let pushEvents: Push[] = []
+  let totalCommits = 0
+  const timeFrame = new Date()
+  timeFrame.setDate(timeFrame.getDate() - days)
+
+  const events = await fetchUserEvents(username, email, days)
+
+  // filter out push events that do not contain commits and events older than {days} days and events not created by {email}
+  const recentPushEvents = events.filter((event) => {
+    return (
+      event.type === "PushEvent" &&
+      new Date(event.created_at) >= timeFrame &&
+      event.payload?.commits?.some((commit) => commit.author?.email.includes(email))
+    )
+  })
+
+  const userEvents: Push[] = recentPushEvents?.map((event) => {
+    return {
+      public: event.public,
+      size: event.payload?.size,
+      url: event.public ? event.payload?.url : null,
+      repo: event.public ? {
+        id: event.repo?.id,
+        name: event.repo?.name,
+        url: event.repo?.url,
+      } : null,
+      commits: event.public ? event.payload?.commits?.filter(
+        (commit) => commit.author?.email.includes(email)
+      ) : null
+    }
+  })
+
+  pushEvents = [...pushEvents, ...userEvents]
+
+  // count commits in each event authored by {email}
+  totalCommits += recentPushEvents?.reduce((acc, event) => {
+    const userCommits = event.payload?.commits?.filter(
+      (commit) => commit.author?.email.includes(email)
+    )
+
+    return (acc += userCommits?.length)
+  }, 0)
+  
+  return {
+    totalCommits,
+    pushEvents
+  }
+}
+
+export async function getRecentCommitCount(username: string, email: string, days: number = 30) {
+  let totalCommits = 0
+  const timeFrame = new Date()
+  timeFrame.setDate(timeFrame.getDate() - days)
+
+  const events = await fetchUserEvents(username, email, days)
+  // filter out push events that do not contain commits and events older than {days} days and events not created by {email}
+  const recentPushEvents = events.filter((event) => {
+    return (
+      event.type === "PushEvent" &&
+      new Date(event.created_at) >= timeFrame &&
+      event.payload?.commits?.some((commit) => commit.author?.email.includes(email))
+    )
+  })
+  
+  // count commits in each event authored by {email}
+  totalCommits += recentPushEvents?.reduce((acc, event) => {
+    const userCommits = event.payload?.commits?.filter(
+      (commit) => commit.author?.email.includes(email)
+    )
+
+    return (acc += userCommits?.length)
+  }, 0)
 
   return totalCommits
 }
