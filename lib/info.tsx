@@ -1,4 +1,4 @@
-import me from "../app/avatar.png"
+import me from '../app/avatar.png'
 
 export const name = "Herman White"
 export const descpription = "Developer, creator, and skater."

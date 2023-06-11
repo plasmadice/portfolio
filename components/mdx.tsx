@@ -1,6 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
-import Image, { type ImageProps } from "next/image"
+import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"
 
 const CustomLink = (props) => {
@@ -45,7 +45,10 @@ function GIF({ className, size, ...otherProps }: ExtendedImageProps) {
   let dimensions: number
 
   // Prevents overwriting margin and corner rounding
-  const margin = className && ['m-','mx-','my-'].includes(className) ? className : `mx-auto ${className}`
+  const margin =
+    className && ["m-", "mx-", "my-"].includes(className)
+      ? className
+      : `mx-auto ${className}`
   const rounded = margin?.includes("rounded") ? margin : `rounded-lg ${margin}`
 
   switch (size) {
@@ -155,14 +158,13 @@ function Caption(props) {
 
 function Box(props) {
   // Prevents overwriting margin and width values
-  const margin = props.className && ['m-','mx-','my-'].includes(props.className) ? props.className : `mx-auto ${props.className}`
-  const width = margin && ['w-'].includes(margin) ? margin : `w-fit ${margin}`
+  const margin =
+    props.className && ["m-", "mx-", "my-"].includes(props.className)
+      ? props.className
+      : `mx-auto ${props.className}`
+  const width = margin && ["w-"].includes(margin) ? margin : `w-fit ${margin}`
 
-  return (
-    <div className={width}>
-      {props.children}
-    </div>
-  )
+  return <div className={width}>{props.children}</div>
 }
 
 function Flex(props) {

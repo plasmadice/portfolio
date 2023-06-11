@@ -1,16 +1,15 @@
 import Link from "next/link"
 import Image from "next/image"
-import { getBlogViews, getRepoData } from "lib/metrics"
+import { getBlogViews, getRepoData, getRecentCommitCount } from "lib/metrics"
 import { ArrowIcon, GitHubIcon, ViewsIcon } from "components/icons"
 import { name, about, bio, avatar } from "lib/info"
 
 export const revalidate = 60
-export const runtime = 'edge'
+export const runtime = "edge"
 
 export default async function HomePage() {
-  let [{stargazers_count: starCount}, {stargazers_count: originalStarCount}, views] = await Promise.all([
-    getRepoData('plasmadice', 'portfolio'),
-    getRepoData('leerob', 'leerob.io'),
+  let [recentCommits, views] = await Promise.all([
+    getRecentCommitCount("plasmadice", process.env.GITHUB_EMAIL as string),
     getBlogViews(),
   ])
 
@@ -33,22 +32,13 @@ export default async function HomePage() {
           <a
             rel="noopener noreferrer"
             target="_blank"
-            href="https://github.com/plasmadice/portfolio"
+            href="https://github.com/plasmadice"
             className="flex items-center gap-2"
           >
             <GitHubIcon />
-            {`${starCount.toLocaleString()} stars on this repo`}
+            {`${recentCommits} commits in last 30 days`}
           </a>
-          <a
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://github.com/leerob/leerob.io"
-            className="flex items-center gap-2"
-          >
-            <GitHubIcon />
-            {`${originalStarCount.toLocaleString()} stars on the repo this is based on`}
-          </a>
-
+          
           <Link href="/blog" className="flex items-center">
             <ViewsIcon />
             {`${views.toLocaleString()} blog views all time`}
