@@ -19,6 +19,9 @@ const navItems = {
   "/portfolio": {
     name: "portfolio",
   },
+  "/activity": {
+    name: "activity",
+  },
   "/gear": {
     name: "gear",
   },

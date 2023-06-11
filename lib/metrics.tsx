@@ -123,13 +123,21 @@ type Repository = {
 }
 
 type Commit = {
-  url?: string | null
-  sha?: string | null
+  author: {
+    name: string
+    email: string
+    username: string
+  }
+  message: string
+  url: string
+  sha: string 
+  distinct: boolean
 }
 
-type Push = {
+export type Push = {
   public: boolean
   size: number
+  created_at?: string | null
   repo?: {
     id: number
     name: string
@@ -217,17 +225,24 @@ export async function getRecentCommits(username: string, email: string, days: nu
     return {
       public: event.public,
       size: event.payload?.size,
-      url: event.public ? event.payload?.url : null,
+      created_at: event.public ? event.created_at : null,
       repo: event.public ? {
         id: event.repo?.id,
         name: event.repo?.name,
-        url: event.repo?.url,
+        url: `https://github.com/${event.repo?.name}`,
       } : null,
       commits: event.public ? event.payload?.commits?.filter(
-        (commit) => commit.author?.email.includes(email)
-      ) : null
+        (commit: Commit) => commit.author?.email.includes(email)
+      ).map((commit: Commit) => {
+        return {
+          message: commit.message,
+          url: `https://github.com/${event.repo?.name}/commit/${commit.sha}`,
+          sha: commit.sha
+        }
+      }) : null
     }
   })
+  // console.log('userEvents[1]', userEvents[1])
 
   pushEvents = [...pushEvents, ...userEvents]
 
