@@ -29,15 +29,13 @@ export default async function HomePage() {
           priority
         />
         <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-2 text-neutral-500 dark:text-neutral-400">
-          <a
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://github.com/plasmadice"
+          <Link
+            href="/activity"
             className="flex items-center gap-2"
           >
             <GitHubIcon />
             {`${recentCommits} commits in last 30 days`}
-          </a>
+          </Link>
 
           <Link href="/blog" className="flex items-center">
             <ViewsIcon />

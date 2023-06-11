@@ -242,7 +242,6 @@ export async function getRecentCommits(username: string, email: string, days: nu
       }) : null
     }
   })
-  // console.log('userEvents[1]', userEvents[1])
 
   pushEvents = [...pushEvents, ...userEvents]
 
