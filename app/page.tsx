@@ -9,7 +9,7 @@ export const runtime = "edge"
 
 export default async function HomePage() {
   let [recentCommits, views] = await Promise.all([
-    getRecentCommitCount("plasmadice", process.env.GITHUB_EMAIL as string),
+    getRecentCommitCount("plasmadice", process.env.GITHUB_EMAIL as string, 30),
     getBlogViews(),
   ])
 
@@ -38,7 +38,7 @@ export default async function HomePage() {
             <GitHubIcon />
             {`${recentCommits} commits in last 30 days`}
           </a>
-          
+
           <Link href="/blog" className="flex items-center">
             <ViewsIcon />
             {`${views.toLocaleString()} blog views all time`}

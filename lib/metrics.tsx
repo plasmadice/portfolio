@@ -170,12 +170,12 @@ export const getRepoData = (
   return fetch(url).then((res) => res.json())
 }
 
-export async function getRecentCommitCount(username: string, email: string) {
+export async function getRecentCommitCount(username: string, email: string, days: number = 30) {
   let totalCommits = 0
   let page = 1
   const perPage = 100
   const oneMonthAgo = new Date()
-  oneMonthAgo.setDate(oneMonthAgo.getDate() - 30)
+  oneMonthAgo.setDate(oneMonthAgo.getDate() - days)
   let stop = false
 
   while (!stop) {
