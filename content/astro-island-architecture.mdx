@@ -1,0 +1,105 @@
+---
+title: "Astro's Island Architecture: Pioneering the Future of Web Development"
+publishedAt: "2023-06-12"
+summary: "Uncover the potential of Astro's Island Architecture in creating swift, content-centric websites."
+---
+
+[Astro](https://astro.build/) is an innovative all-in-one web framework engineered for speed. It empowers you to extract content from any source and deploy it universally, all while leveraging your preferred UI components and libraries. This article delves into Astro's key features, with a special emphasis on its groundbreaking Island Architecture.
+
+<Image
+alt={`Astro logo`}
+src={`/images/blog/astro-logo.svg`}
+width={500}
+height={200}
+className="mx-auto"
+/>
+
+The term "Island Architecture" was first introduced by Etsy's frontend architect [Katie Sylor-Miller](https://mastodon.social/@ksylor) in 2019 during a discussion with [Jason Miller](https://twitter.com/_developit), the brain behind Preact. You can learn more about this in [his blog post](https://jasonformat.com/islands-architecture/).
+
+## Key Features
+
+Astro is loaded with features that place it near the front of the pack in web development:
+
+- **Component Islands**: Faster websites with less JavaScript. Write as much JavaScript as you want, but only load what you need.
+- **FAST by default**: Astro lazy loads AND server renders every component by default. You must specify client-side hydration.
+- **Edge-ready**: Provides the ability to host your site on various platforms.
+- **Customizable**: You can pick from numerous add-ons, such as Tailwind or MDX.
+- **UI-agnostic**: Plays nicely with different UI libraries and frameworks, including React, Preact, Svelte, Vue, Solid, Lit, and more.
+- **Nostalgic**: Astro is reminiscent of the good old days of HTML, CSS, and JavaScript.
+
+## Astro Islands
+
+<Caption value="Don't worry if it doesn't stick immediately">
+> The term “Astro Island” refers to an interactive UI component on an otherwise static page of HTML. Multiple islands can exist on a page, and an island always renders in isolation. Think of them as islands in a sea of static, non-interactive HTML. -*[Astro docs](https://docs.astro.build/en/concepts/islands/)*
+</Caption>
+
+Islands are basically a fancy term for "component with javascript". Because there are frameworks shifting towards "zero-js", a term is needed to describe the components that *do* use JavaScript. 
+
+- **Non-islands** are rendered on the server and sent to the client as HTML. They should load instantly (or nearly).
+
+- **Islands** are interactive, so there's a need for some client-side rendering. Astro has interesting tools to control how and when an island is rendered.
+
+<Caption value={<p>Source: <a target="_blank" rel="noopener noreferrer" href='https://docs.astro.build/en/concepts/islands/#what-is-an-astro-island' >Astro Docs</a></p>}>
+<Image
+alt={`Astro Islands`}
+src={`/images/blog/astro-islands.png`}
+width={1000}
+height={500}
+className="-auto"
+/>
+</Caption>
+
+## How Do Islands Work in Astro?
+
+By default, Astro generates every website with zero client-side JavaScript. However, there are instances where client-side JavaScript is necessary for creating interactive UI. In such cases, Astro prompts you to create an island. With Astro Islands, the bulk of your site remains pure, lightweight HTML and CSS.
+
+```tsx {7} title="src/pages/index.astro"
+---
+// Example: Use a dynamic React component on the page.
+import MyReactComponent from '../components/MyReactComponent.jsx';
+---
+//  This component is now interactive on the page! 
+//  The rest of your website remains static and zero JS.
+<MyReactComponent client:load />
+```
+
+When you need interactivity, you have options. Astro also uses `.astro` files that are capable of handling more things than can be listed. Notably, Astro utilizes a seemingly basic `<script>` tag that is capable of importing packages, files, and even using TypeScript. Astro is powerful and does not lack features.
+
+The use of the `<script>` tag almost feels like common sense. It is a simple, familiar, and intuitive way to employ JavaScript. `.astro` files reap the benefits of being able to import packages while also enjoying the simplicity of being able to use functions like `document.querySelectorAll`. Features that are frowned upon in React are common practice in Astro. ***And this is a good thing***.
+
+```tsx title="src/components/AlertButton.astro"
+<button class="alert">Click me!</button>
+
+<script>
+  // Find all buttons with the `alert` class on the page.
+  const buttons = document.querySelectorAll('button.alert');
+
+  // Handle clicks on each button.
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      alert('Button was clicked!');
+    });
+  });
+</script>
+```
+## Benefits of Islands
+
+The main benefit of developing with Astro Islands relates to **performance**. JavaScript, notorious for its slower loading speed in browsers, is heavily utilized by modern websites. Astro Islands mitigate this issue. An additional advantage is **parallel loading**. Components can load and hydrate concurrently, so interactive elements do not interfere with each other's rendering. 
+
+You have the ability to precisely control how much JavaScript is being sent to the client. With Astro, you can deliver the best user experience with blazingly fast websites. You actually have to go out of your way to slow things down. I am **all for** idiot-proofing (I break a lot of glass 😔).
+
+## Conclusion
+
+The only downside I can find is that Astro and Next.js are almost at odds. They can work together, but they both do many of the same things. Even though Astro can work with Next.js I would rather use Astro separately as their features have a lot of overlap. Astro clearly wins in the end when it comes to user experience.
+
+If you are not using Next.js then Astro is obviously what you should start with. I would recommend people try Astro today. It could be the future!
+
+Astro's Island Architecture is a potent tool for web developers, offering a new level of performance and customization. Give it a try and experience the difference for yourself!
+
+## Resources
+
+- [Astro](https://astro.build/)
+- [Astro Docs](https://docs.astro.build/)
+- [Astro Islands](https://docs.astro.build/concepts/islands/)
+- [Astro Island Architecture](https://docs.astro.build/concepts/islands/)
+- [Jason Miller's post on Islands Architecture](https://jasonformat.com/islands-architecture/)
