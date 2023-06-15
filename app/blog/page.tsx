@@ -1,3 +1,4 @@
+import { formatDistanceToNow, parseISO } from "date-fns"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { allBlogs } from "contentlayer/generated"
@@ -27,7 +28,12 @@ export default async function BlogPage() {
           >
             <div className="w-full flex flex-col">
               <p>{post.title}</p>
-              <ViewCounter slug={post.slug} trackView={false} />
+              <div className="w-full grid grid-cols-2">
+                <ViewCounter slug={post.slug} trackView={false} />
+                <p className="text-sm text-neutral-500 tracking-tighter">
+                  {formatDistanceToNow(parseISO(String(post.publishedAt)))} ago
+                </p>
+              </div>
             </div>
           </Link>
         ))}
