@@ -1,4 +1,4 @@
-import { formatDistanceToNowStrict, parseISO } from "date-fns"
+import { formatDistanceToNowStrict, parseISO, differenceInDays, differenceInYears, differenceInMonths } from "date-fns"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { allBlogs } from "contentlayer/generated"
@@ -20,23 +20,40 @@ export default async function BlogPage() {
           }
           return 1
         })
-        .map((post) => (
-          <Link
-            key={post.slug}
-            className="flex flex-col space-y-1 mb-4"
-            href={`/blog/${post.slug}`}
-          >
-            <div className="w-full flex flex-col">
-              <p>{post.title}</p>
-              <div className="w-full grid grid-cols-2">
-                <ViewCounter slug={post.slug} trackView={false} />
-                <p className="text-sm text-neutral-500 tracking-tighter">
-                  {formatDistanceToNowStrict(parseISO(String(post.publishedAt)), {unit: 'day'})} ago
-                </p>
+        .map((post) => {
+          const parsedDate = parseISO(String(post.publishedAt));
+          const dateDiffInDays = differenceInDays(new Date(), parsedDate);
+          const dateDiffInYears = differenceInYears(new Date(), parsedDate);
+          const dateDiffInMonths = differenceInMonths(new Date(), parsedDate) % 12;
+          
+          let displayDate = "";
+          
+          if (dateDiffInDays < 1) {
+            displayDate = "Less than 1 day ago";
+          } else if (dateDiffInYears >= 1 && dateDiffInMonths >= 6) {
+            displayDate = `Less than ${dateDiffInYears + 1} years ago`;
+          } else {
+            displayDate = `${formatDistanceToNowStrict(parsedDate)} ago`;
+          }
+
+          return (
+            <Link
+              key={post.slug}
+              className="flex flex-col space-y-1 mb-4"
+              href={`/blog/${post.slug}`}
+            >
+              <div className="w-full flex flex-col">
+                <p>{post.title}</p>
+                <div className="w-full grid grid-cols-2">
+                  <ViewCounter slug={post.slug} trackView={false} />
+                  <p className="text-sm text-neutral-500 tracking-tighter">
+                    {displayDate}
+                  </p>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          );
+        })}
     </section>
   )
 }
