@@ -1,0 +1,105 @@
+---
+title: "From Capslock to Hyper Key to Vim"
+publishedAt: "2023-06-19"
+summary: "Trade the Capslock key in for the Hyper key to maximize your keyboard's potential."
+---
+
+<Caption 
+className="mx-auto"
+value={<p>Source: <a target="_blank" rel="noopener noreferrer" href='https://hyperkey.app/' >hyperkey.app</a></p>}>
+<Image
+alt={`hyperkey app logo`}
+src={`/images/blog/hyperkey-logo.png`}
+width={500}
+height={200}
+className="mx-auto dark:invert-[.85]"
+priority
+/>
+</Caption>
+
+Recently, I ran into an old friend while picking up groceries. After catching up, we began to discuss keyboards like normal human beings do 😂. He sold me on a new keyboard and suggested I try the Hyper key. Whatever that is.
+
+## Hyper What Now?
+
+The Hyper Key is the spiritual successor of the [Super Key](https://en.wikipedia.org/wiki/Super_key_(keyboard_button)). It's the ultimate modifier; being a combination of all of your system's modifiers (ex: `⌘` + `⌃` + `⌥` + `⇧`).
+
+A natural consequence of being a keyboard nerd is that you eventually begin to see conflicting keybinds as you add more of them. For example, it would be very unsafe to rebind CTRL + F (⌃F) to anything else. You would lose the ability to search for text in most applications.
+
+Hyper keys are not bound to anything by default. Allowing you to press Capslock + [any key], and rest easy knowing that there will not be any conflicts with other keybindings. To achieve this, I grabbed [Karabiner-Elements](https://karabiner-elements.pqrs.org/) to pull it off, but there are other options like [hyperkey.app](https://hyperkey.app/) and [AutoHotkey](https://www.autohotkey.com/). After setting my Capslock to Hyper, I started to think about what I could do with "infinite keybinds".
+
+## That Makes Too Much Sense
+
+I bound a lot of custom keybinds using the Hyper key and grabbed [Keyboard Maestro](https://www.keyboardmaestro.com/main/) to be able to perform complex actions with a single keypress. Soon enough, I had keybinds that covered everything I could think of—from Chrome navigation to toggling my system light/dark mode to test websites. However, as time went on, I felt like I was missing something.
+
+Most of my keyboard time is spent on the MacBook Pro's built-in keyboard. I needed easily accessible arrow keys, so I bound those as well. `h`, `j`, `k`, `l` seemed like good candidates (these are the Vim defaults). This gave me 2D movement in text editors. Yet, I still felt like there was so much untapped potential.
+
+<Image
+alt={`keyboard maestro hyperkeys`}
+src={`/images/blog/keyboard-maestro-hyperkeys.png`}
+width={500}
+height={200}
+className="mx-auto"
+/>
+
+## Taking Capslock to the Next Level
+
+I thought to myself, there must be a standard or optimal way to bind these keys. So, I did some research and found [Capslock](https://github.com/Vonng/Capslock). It's a custom profile for Karabiner that adds Capslock keybindings for every key on the keyboard. At the start, it was overwhelming, but I quickly got the hang of it. It already included a lot of the keybinds I had made (including the arrow keys), but added hundreds more that I had never thought of.
+
+<Caption value="This is 1 of 16 layers 😱">
+<Image
+alt={`default capslock keyboard layout`}
+src={`/images/blog/capslock-keyboard.jpg`}
+width={1000}
+height={500}
+className="mx-auto"
+/>
+</Caption>
+
+### Hyper Key With Additional Modifiers
+
+Capslock takes it a step further by allowing you to combine your left-side modifiers with the hyper key. Meaning you are encouraged to press Capslock with your other modifiers(`⌘`, `⌃`, `⌥`, `⇧`) to trigger actions. Capslock splits the keyboard into different zones to help you remember what the keys do when you press different modifiers with the Hyper key. There's a lot of logic to the layout, but it's customizable if you are comfortable modifying `.yml` or `.json` files.
+
+- Hyper + S = <kbd>✱s</kbd> (Next tab in Chrome)
+- Hyper + Command + S = <kbd>✱⌘s</kbd>(Previous Tab Chrome)
+
+- Hyper + L = <kbd>✱l</kbd> (Arrow Right)
+- Hyper + Command + L = <kbd>✱⌘l</kbd> (Move and select text to Right)
+- Hyper + Option + L = <kbd>✱⌥l</kbd> (Move mouse cursor to Right)
+
+## Trying Vim
+
+<Image
+alt={`vim logo`}
+src={`/images/blog/vim-logo.png`}
+width={150}
+height={150}
+className="mx-auto"
+/>
+
+One section of Capslock curiously stood out. There are Vim-specific keybindings taking up some prime real estate. I had heard of Vim, but never actually purposefully used it (you know what I mean 🙄). Having navigated around with arrow keys for some weeks, I thought I should give it a fair shot.
+
+Following a few suggestions, I started with [NeoVim](https://neovim.io/) and did some tutorials. My biggest takeaway was that Vim motions were **ridiculous**. Navigating around was painful at first, but I saw so much potential. After just a day of NeoVim, I decided to stop using my dedicated mouse for a bit so that I could focus on adopting Vim.
+
+<Callout emoji='🎮'>Typing `gg` in Vim takes you to the top of your document. Typing `gg` in a game may enrage your opponent.</Callout>
+
+### Vim Everywhere
+
+Ultimately, I am typing this from VS Code using the [Vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim) plugin combined with Capslock's navigation capabilities. Vim is amazing by itself, but Capslock really makes you feel as if you have Vim everywhere. Productivity potential is peaking.
+
+I've been using this setup for a couple of months now and even [forked the Capslock repo](https://github.com/plasmadice/Capslock) to add some of my own keybindings. The original has definitely had contributions from programmers, as there are a decent number of programmer-specific keybindings available in the base version.
+
+## Conclusion 
+
+Capslock adds many options for navigation and text editing. The mouse is now completely optional in my workflow, and I have many of Vim's text editing features within every editor I use thanks to Capslock. I'm still learning Vim's keybinds and features, but the benefits have already been massive. 
+
+Do yourself a favor and try some productivity gains for breakfast.
+
+## Resources
+
+- [Hyper Key](https://hyperkey.app/)(MacOS app)
+- [Super Key](https://en.wikipedia.org/wiki/Super_key_(keyboard_button))
+- [Capslock](https://github.com/plasmadice/Capslock)
+- [Karabiner-Elements](https://karabiner-elements.pqrs.org/)
+- [Keyboard Maestro](https://www.keyboardmaestro.com/main/)
+- [NeoVim](https://neovim.io/)
+- [Vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim) (VS Code plugin)
