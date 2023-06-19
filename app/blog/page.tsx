@@ -27,9 +27,10 @@ export default async function BlogPage() {
           const dateDiffInMonths = differenceInMonths(new Date(), parsedDate) % 12;
           
           let displayDate = "";
-          
-          if (dateDiffInDays < 1) {
-            displayDate = "Less than 1 day ago";
+          if (dateDiffInDays < 0) {
+            displayDate = "draft";
+          } else if (dateDiffInDays < 1) {
+            displayDate = "Less than 1 day ago"
           } else if (dateDiffInYears >= 1 && dateDiffInMonths >= 6) {
             displayDate = `Less than ${dateDiffInYears + 1} years ago`;
           } else {
