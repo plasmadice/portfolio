@@ -2,6 +2,7 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"
+import * as ReactKawaii from "react-kawaii"
 
 const CustomLink = (props) => {
   const href = props.href
@@ -191,6 +192,24 @@ function Grid(props) {
   )
 }
 
+interface ExtendedKawaiiProps extends ReactKawaii.KawaiiProps {
+  className?: string | undefined,
+  character?: string | undefined,
+  centered?: boolean | undefined,
+}
+
+function Kawaii({ character = "Cat", size, mood = "blissful", color, className = "", centered = false }: ExtendedKawaiiProps) {
+  // Adds className to Character component
+
+  // Centers character with 'mx-auto' class or centered prop
+  className = className.includes("mx-auto") || centered ? `${className} flex place-content-center` : className
+  const Character: React.ComponentType<ExtendedKawaiiProps> = ReactKawaii[character]
+
+  return (
+    <Character size={size} mood={mood} color={color} className={className} />
+  )
+}
+
 const components = {
   Image: CustomImage,
   a: CustomLink,
@@ -202,6 +221,7 @@ const components = {
   Grid,
   GIF,
   Box,
+  Kawaii,
 }
 
 interface MdxProps {
