@@ -182,7 +182,7 @@ export function Logo() {
         return (prevItem + 1) % logoList.length
       })
       setItems([])
-    }, 5000) // changes every 10 seconds
+    }, 5000) // changes every 5 seconds
 
     // clear interval on component unmount
     return () => {

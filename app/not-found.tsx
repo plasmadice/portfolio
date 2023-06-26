@@ -6,6 +6,8 @@ interface ExtendedKawaiiProps extends KawaiiProps {
   className?: string
 }
 
+export const revalidate = 0
+
 export default function notFound() {
   // Randomly choose a Kawaii character
   const characters = [Mug, Browser, Ghost, File, Backpack, Planet, Folder]
