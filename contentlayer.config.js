@@ -66,18 +66,13 @@ export default makeSource({
         rehypePrettyCode,
         {
           theme: "one-dark-pro",
-          onVisitLine(node) {
-            // Prevent lines from collapsing in `display: grid` mode, and allow empty
-            // lines to be copy/pasted
-            if (node.children.length === 0) {
-              node.children = [{ type: "text", value: " " }]
-            }
-          },
+          keepBackground: false,
           onVisitHighlightedLine(node) {
-            node.properties.className.push("line--highlighted")
+            node.properties.className = node.properties.className === undefined ? [] : node.properties.className
+            node.properties.className?.push("data-highlighted-line")
           },
-          onVisitHighlightedWord(node) {
-            node.properties.className = ["word--highlighted"]
+          onVisitHighlightedChars(node) {
+            node.properties.className = ["data-highlighted-chars"]
           },
         },
       ],
