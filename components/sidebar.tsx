@@ -62,7 +62,7 @@ export default function Navbar() {
                       {name}
                       {path === pathname ? (
                         <motion.div
-                          className="absolute inset-0 bg-neutral-200 dark:bg-neutral-800 rounded-md z-[-1]"
+                          className="absolute inset-0 bg-neutral-200 dark:bg-space-400 rounded-md z-[-1]"
                           layoutId="sidebar"
                           transition={{
                             type: "spring",

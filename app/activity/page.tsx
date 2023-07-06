@@ -11,6 +11,7 @@ export default async function page() {
     process.env.GITHUB_EMAIL as string,
     30
   )
+
   const totalCount = pushEvents.length
   const totalRepos = new Set(pushEvents.map((event: Push) => event?.repo?.id))
     .size
@@ -20,7 +21,7 @@ export default async function page() {
 
   const last15PublicPushEvents = pushEvents
     .filter((event) => event.public)
-    .slice(0, 15)
+    .slice(0, 30)
 
   return (
     <div className="mx-auto max-w-7xl p-6 text-neutral-900 dark:text-neutral-300">
@@ -32,11 +33,11 @@ export default async function page() {
           privateCommits > 1 ? "s" : ""
         }`}
       </p>
-      <h2 className="text-2xl font-bold mb-4">Last 15 public push events:</h2>
+      <h2 className="text-2xl font-bold mb-4">Last 30 public push events:</h2>
       {last15PublicPushEvents.map((pushEvent, index) => (
         <div
           key={index}
-          className="bg-neutral-100 dark:bg-neutral-900 shadow rounded p-4 mb-4 prose"
+          className="bg-neutral-100 dark:bg-neutral-900 shadow rounded px-4 pt-1 pb-4 mb-6 prose"
         >
           <h3 className="font-semibold mb-2 text-lg">
             <Link
@@ -59,7 +60,7 @@ export default async function page() {
           </h3>
           <ul className='list-decimal'>
             {pushEvent.commits?.map((commit, index) => (
-              <li key={index} className="border-b border-gray-200 pb-2 mb-2 mr-6">
+              <li key={index} className="border-b border-imperial-700 pb-2 mb-2 mr-4">
                 <Link
                   prefetch={false}
                   href={String(commit?.url)}
@@ -67,9 +68,9 @@ export default async function page() {
                   rel="noopener noreferrer"
                   className="text-blue-600 hover:underline"
                 >
-                  {commit?.sha}
+                  <p className="inline-block pr-4">{commit?.sha?.slice(0, 7)}</p>
                 </Link>
-                <p>"{commit?.message}"</p>
+                <p className="inline">- "{commit?.message}"</p>
               </li>
             ))}
           </ul>

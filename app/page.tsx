@@ -22,7 +22,7 @@ export default async function HomePage() {
       <div className="flex items-start md:items-center my-8 flex-col md:flex-row">
         <Image
           alt={name}
-          className="rounded-full grayscale"
+          className="rounded-full"
           src={avatar}
           placeholder="blur"
           width={100}
@@ -33,12 +33,12 @@ export default async function HomePage() {
             href="/activity"
             className="flex items-center gap-2"
           >
-            <GitHubIcon />
+            <GitHubIcon color="#BD0009"/>
             {`${recentCommits} commits in last 30 days`}
           </Link>
 
           <Link href="/blog" className="flex items-center">
-            <ViewsIcon />
+            <ViewsIcon color="#BD0009"/>
             {`${views.toLocaleString()} blog views all time`}
           </Link>
         </div>
@@ -54,7 +54,7 @@ export default async function HomePage() {
             target="_blank"
             href="https://github.com/plasmadice"
           >
-            <ArrowIcon />
+            <ArrowIcon color="#BD0009"/>
             <p className="h-7">My Github</p>
           </a>
         </li>
@@ -65,7 +65,7 @@ export default async function HomePage() {
             target="_blank"
             href="https://github.com/dashboard"
           >
-            <ArrowIcon />
+            <ArrowIcon color="#BD0009"/>
             <p className="h-7">Your Github</p>
           </a>
         </li>
