@@ -2,8 +2,8 @@ import { formatDistanceToNow, parseISO } from "date-fns"
 import { getRecentCommits, type Push } from "lib/metrics"
 import Link from "next/link"
 
-export const revalidate = 60
-export const runtime = "edge"
+// export const revalidate = 60
+// export const runtime = "edge"
 
 export default async function page() {
   const { totalCommits, pushEvents } = await getRecentCommits(
