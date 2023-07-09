@@ -1,6 +1,10 @@
 import Link from "next/link"
 import Image from "next/image"
-import { getBlogViews, getRecentCommitCount } from "lib/metrics"
+import {
+  getBlogViews,
+  getRecentCommitCount,
+  increaseProjectViews,
+} from "lib/metrics"
 import { ArrowIcon, GitHubIcon, ViewsIcon } from "components/icons"
 import { name, about, bio, avatar } from "lib/info"
 
@@ -11,6 +15,7 @@ export default async function HomePage() {
   let [recentCommits, views] = await Promise.all([
     getRecentCommitCount("plasmadice", process.env.GITHUB_EMAIL as string, 30),
     getBlogViews(),
+    increaseProjectViews("portfolio"),
   ])
 
   return (
@@ -29,16 +34,13 @@ export default async function HomePage() {
           priority
         />
         <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-2 text-neutral-500 dark:text-neutral-400">
-          <Link
-            href="/activity"
-            className="flex items-center gap-2"
-          >
-            <GitHubIcon color="#BD0009"/>
+          <Link href="/activity" className="flex items-center gap-2">
+            <GitHubIcon color="#BD0009" />
             {`${recentCommits} commits in last 30 days`}
           </Link>
 
           <Link href="/blog" className="flex items-center">
-            <ViewsIcon color="#BD0009"/>
+            <ViewsIcon color="#BD0009" />
             {`${views.toLocaleString()} blog views all time`}
           </Link>
         </div>
@@ -54,7 +56,7 @@ export default async function HomePage() {
             target="_blank"
             href="https://github.com/plasmadice"
           >
-            <ArrowIcon color="#BD0009"/>
+            <ArrowIcon color="#BD0009" />
             <p className="h-7">My Github</p>
           </a>
         </li>
@@ -65,7 +67,7 @@ export default async function HomePage() {
             target="_blank"
             href="https://github.com/dashboard"
           >
-            <ArrowIcon color="#BD0009"/>
+            <ArrowIcon color="#BD0009" />
             <p className="h-7">Your Github</p>
           </a>
         </li>

@@ -2,12 +2,9 @@
 import { Generated, Kysely } from 'kysely';
 import { PlanetScaleDialect } from 'kysely-planetscale';
 
-interface GuestbookTable {
-  id: Generated<number>;
-  email: string;
-  body: string;
-  created_by: string;
-  updated_at?: string;
+interface MetricsTable {
+  project_id: string;
+  views: number;
 }
 
 interface ViewsTable {
@@ -16,8 +13,8 @@ interface ViewsTable {
 }
 
 interface Database {
-  guestbook: GuestbookTable;
   views: ViewsTable;
+  metrics: MetricsTable;
 }
 
 export const queryBuilder = new Kysely<Database>({

@@ -12,6 +12,27 @@ export const getBlogViews = cache(async () => {
   return data.reduce((acc, curr) => acc + Number(curr.count), 0)
 })
 
+const getProjectViews = cache(async (id: string) => {
+  const data = await queryBuilder
+    .selectFrom("metrics")
+    .where("project_id", "=", id)
+    .select(["views"])
+    .execute()
+
+    console.log('data', data)
+
+  return data.reduce((acc, curr) => acc + Number(curr.views), 0)
+})
+
+export const increaseProjectViews = async (id: string) => {
+  let views = await getProjectViews(id)
+  await queryBuilder
+    .insertInto("metrics")
+    .values({ project_id: id, views : 1 })
+    .onDuplicateKeyUpdate({ views: views + 1 })
+    .execute()
+}
+
 type Repository = {
   id: number
   node_id: string
