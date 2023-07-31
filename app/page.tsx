@@ -8,7 +8,7 @@ import {
 import { ArrowIcon, GitHubIcon, ViewsIcon } from "components/icons"
 import { name, about, bio, avatar } from "lib/info"
 
-export const revalidate = 60
+export const revalidate = 0
 export const runtime = "edge"
 
 export default async function HomePage() {

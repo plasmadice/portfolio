@@ -2,10 +2,10 @@ import { formatDistanceToNow, parseISO } from "date-fns"
 import { getRecentCommits, type Push } from "lib/metrics"
 import Link from "next/link"
 
-// export const revalidate = 60
-// export const runtime = "edge"
+export const revalidate = 0
+export const runtime = "edge"
 
-export default async function page() {
+ async function page() {
   const { totalCommits, pushEvents } = await getRecentCommits(
     "plasmadice",
     process.env.GITHUB_EMAIL as string,
@@ -19,7 +19,7 @@ export default async function page() {
     .filter((event) => !event.public)
     .reduce((acc, curr) => acc + curr.size, 0)
 
-  const last15PublicPushEvents = pushEvents
+  const last30PublicPushEvents = pushEvents
     .filter((event) => event.public)
     .slice(0, 30)
 
@@ -34,7 +34,7 @@ export default async function page() {
         }`}
       </p>
       <h2 className="text-2xl font-bold mb-4">Last 30 public push events:</h2>
-      {last15PublicPushEvents.map((pushEvent, index) => (
+      {last30PublicPushEvents.map((pushEvent, index) => (
         <div
           key={index}
           className="bg-neutral-100 dark:bg-neutral-900 shadow rounded px-4 pt-1 pb-4 mb-6 prose"
