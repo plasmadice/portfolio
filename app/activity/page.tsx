@@ -5,7 +5,7 @@ import Link from "next/link"
 export const revalidate = 0
 export const runtime = "edge"
 
- async function page() {
+export default async function page() {
   const { totalCommits, pushEvents } = await getRecentCommits(
     "plasmadice",
     process.env.GITHUB_EMAIL as string,
