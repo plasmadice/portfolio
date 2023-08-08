@@ -47,6 +47,10 @@ const gear: GearList = {
         link: "https://www.keychron.com/products/keychron-q5-qmk-custom-mechanical-keyboard",
       },
       {
+        name: "HyperX QuadCast S",
+        link: "https://hyperx.com/products/hyperx-quadcast-s-usb-microphone?variant=42438091866269",
+      },
+      {
         name: "IKEA IDÅSEN",
         link: "https://www.ikea.com/us/en/p/idasen-desk-brown-dark-gray-s49281027/#content",
       },
@@ -75,16 +79,16 @@ const gear: GearList = {
     name: "Software",
     items: [
       {
-        name: "Alfred",
-        link: "https://www.alfredapp.com/",
-      },
-      {
-        name: "Keyboard Maestro",
-        link: "https://www.keyboardmaestro.com/main/",
+        name: "Raycast",
+        link: "https://www.raycast.com/",
       },
       {
         name: "Karabiner",
         link: "https://karabiner-elements.pqrs.org/",
+      },
+      {
+        name: "Obsidian",
+        link: "https://obsidian.md/",
       },
       {
         name: "Bartender 4",
