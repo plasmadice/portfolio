@@ -1,0 +1,151 @@
+---
+title: "Vim Everywhere"
+publishedAt: "2023-08-09"
+summary: "Exploring the benefits of Vim, the powerful text editor, and how it can optimize your typing experience."
+---
+
+<Image
+alt={`vim logo`}
+src={`/images/blog/vim-logo.png`}
+width={150}
+height={150}
+className="mx-auto"
+/>
+
+> Recently, the author of Vim, Bram Moolenaar, [passed away](https://arstechnica.com/gadgets/2023/08/bram-moolenaar-creator-of-the-beloved-vim-text-editor-has-passed-away/). This article is a tribute to the man whose spark was able to rekindle my passion for productivity.
+
+### What is Vim and why use it?
+
+Vim is a text editor primarily aimed at developers. It's built into most Unix operating systems and can be added to most text editors as an extension.
+
+Vim is proficient at:
+
+- Rapidly moving around within text editors
+- Editing, copying, pasting, and deleting without a mouse
+- Saving and deleting files and executing terminal commands
+- Utilizing variables and even registers (additional clipboards)
+- Making you look cool in front of non-programmers
+
+<Callout>`insert` mode is the default mode for normal text editors. <br /><br />The mode that lets you type stuff.</Callout>
+
+### What has Vim done for me lately?
+
+I'll focus on the key points that I believe have been most beneficial, which will hopefully illuminate why adopting [Vim](https://www.vim.org/) has been a game-changer for me. 
+
+Vim has made me a better programmer by letting me:
+- Use more keyboard and less mouse - Less context switching!
+- Get more done with less keystrokes - I can do more with less
+- Use Vim for more than just editing code - After learning Vim, I can use it everywhere
+
+
+### More keyboard,  Less mouse
+
+One of the most annoying parts of editing code is using the mouse to move the pointer around. Vim doesn't take this option away from you. Instead, you're given many additional options for navigating around and editing text using the keyboard. 
+
+Eventually, moving the cursor with keystrokes is practically instant. As opposite to reaching for the mouse, finding it on the screen, and moving it to where you want to place it the cursor.
+
+
+### Get more done with less keystrokes
+
+Vim gives you the ability to cut/copy/paste/delete text as easily as it is to move around. You are able to combine movement with action (delete, copy, etc) to accomplish a ton with fewer keystrokes than a word.
+
+<Caption className="center" value="Your potential">
+<Image
+alt={`Anime character typing`}
+src={`/images/blog/anime-keyboard.gif`}
+width={450}
+height={450}
+className="mx-auto"
+/>
+</Caption>
+
+Here are a few of the commands and what they do:
+
+- <kbd>gg</kbd> - navigate to the top of the file
+- <kbd>G</kbd> - navigate to the bottom of the file
+- <kbd>d</kbd> - delete
+
+You can easily combine these to delete the contents of a file:
+
+- <kbd>gg</kbd> - navigate to the top of the file
+- <kbd>dG</kbd> - delete (<kbd>d</kbd>) to the end of the file (<kbd>G</kbd>)
+
+<Callout>Capitalization is pretty important in Vim</Callout>
+
+
+### MMO Experience
+
+Vim takes me back to the MMO experience. Notably, the part where you figure out which buttons control your character. Movement, attacks, menus, and all that. Fast-forward a few weeks and you've learned much more than what came in the tutorial. You know what all (or most) of the important buttons do.
+
+Learning has always been a fun process for me, but leaving knowledge behind when I inevitably change games is soul-crushing. Vim stays with me. In a sense, I'm now controlling my cursor "character" with a keyboard *instead* of a mouse.
+
+
+## Learning Curve
+
+Vim feels **VERY** counterintuitive at first. Suddenly, you don't know what your keyboard does anymore.
+
+This feeling is similar to starting a new character in a game with everything unlocked, but all your buttons scrambled. Before you can begin to glimpse the potential of the character, you must first learn how to control them.
+
+While a good game would gradually introduce you to complexities, Vim doesn't offer this mercy. There is undoubtedly a steep learning curve, but you can mitigate this by turning it into a game.
+
+<Callout>
+Escape Hatch:
+<br />
+
+Hitting <kbd>Escape</kbd> (to clear any current action) and entering `insert` mode with <kbd>i</kbd> returns you to the familiar text edit mode. Don't hesitate to overuse this at the beginning when you're struggling to remember a keybind.
+</Callout> 
+
+## Gamifying Vim
+
+People tend to get hung up on the traditional 4 directions. While they're incredibly important; basic movement shouldn't be something you get stuck on. You can quickly become adapted to the movement keys by playing a Vim-based game.
+
+**Here are a few options for Vim-based games**:
+* [vimtutor](https://vimschool.netlify.app/introduction/vimtutor/)
+* Play [Vim Adventures](https://vim-adventures.com/)
+* Play [Vim Golf](https://www.vimgolf.com/)
+* Play Vim mini-games like [vim-be-good](https://github.com/ThePrimeagen/vim-be-good)
+
+<Caption value="Vim Adventures"
+className="center"
+>
+<Image
+alt={`Vim adventures screenshot`}
+src={`/images/blog/vim-adventures.png`}
+width={450}
+height={450}
+className="mx-auto"
+/>
+</Caption>
+
+Vim Adventures was my favorite, but the free tier is rather short and only covers some basic movement. The content is very restricted, but it's essentially a Pokemon-styled Vim puzzle system where you play as the **cursor**. 
+
+Each level contains a set number of puzzles that you solve by using Vim commands to navigate and edit text.
+
+
+### Vim Everywhere
+
+I use Vim in several places every day.
+
+* [VSCode Vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim) - Extension for VSCode in Vim
+* [Vimium](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb) - Chromium/[Firefox extension](https://addons.mozilla.org/en-US/firefox/addon/vimium-ff/) that adds many of Vim's best features to the browser
+* [Obsidian](https://obsidian.md/) - Note-taking app that has a Vim support
+* Remote management - Vim (or Vi) comes pre-installed on almost all Unix-based systems. Super convenient.
+* Navigating everywhere in the operating system (I use [Capslock](https://github.com/plasmadice/Capslock) on both macOS and Windows for global <kbd>h, j, k, l</kbd> navigation)
+
+Editing code is like playing a game now. It's a fun experience that I can get better at by learning new tricks. I find myself wishing that I could use Vim in more ways.
+
+
+
+
+## Conclusion
+
+Vim is a powerful text editor that grants you more control of your editor. It takes time to adapt to Vim's nuances, but once comfortable, you can take advantage of Vim for more than just text editing.
+
+This text editor is so well-loved that you will find integrations in unlikely places.  Vim can be used in nearly every step of the process.
+
+Vim is absolutely worth learning if you are a developer or anyone who spends a LOT of time editing text. It's a game-changer for productivity.
+
+### Sources
+
+* [welcome home : vim online](https://www.vim.org/)
+* [Why I use Vim in 2022 - YouTube](https://youtu.be/D4YTJ2W5q4Y)
