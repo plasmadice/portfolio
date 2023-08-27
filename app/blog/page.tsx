@@ -4,6 +4,8 @@ import Link from "next/link"
 import { allBlogs } from "contentlayer/generated"
 import ViewCounter from "./view-counter"
 
+export const revalidate = 3600 // revalidate once per hour
+
 export const metadata: Metadata = {
   title: "Blog",
   description: "Read my thoughts on software development, design, and more.",
