@@ -1,0 +1,74 @@
+---
+title: "Terminating EC2 Instances with the AWS CLI"
+publishedAt: "2023-08-29"
+summary: "How to find and terminate EC2 instances using the AWS CLI v2"
+---
+
+I've been digging into AWS a LOT lately. The best way to learn something is to get your hands dirty. This is a quick guide on how to find and terminate EC2 instances using the AWS CLI v2.
+
+<Callout>
+This guide assumes that you already have the AWS CLI installed and configured. If you don't, check out [this guide](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
+</Callout>
+
+
+## Finding EC2 Instances
+
+To list all your EC2 instances, you can use the describe-instances command:
+
+```bash
+aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,State.Name,Tags[?Key==`Name`].Value[]]' --output table
+```
+
+<Image
+alt={`AWS instance information formatted as a table`}
+src={`/images/blog/terminate-ec2.png`}
+width={1000}
+height={700}
+className="-auto"
+/>
+
+This command returns a table that lists the Instance IDs, their current states, and their associated Name tags.
+
+## Terminating an EC2 Instance
+
+<Callout emoji="❗">Be advised that terminating an EC2 instance is an irreversible action that cannot be undone. Please be careful when using this command.</Callout>
+
+Once you identify the EC2 instance that you wish to terminate, note down its InstanceId. To terminate an instance, you use the terminate-instances command:
+
+
+```bash
+aws ec2 terminate-instances --instance-ids i-1234567890abcdef0
+```
+
+<Image
+alt={`JSON data returned after sending the termination command`}
+src={`/images/blog/terminate-ec2-2.png`}
+width={1000}
+height={700}
+className="-auto"
+/>
+
+Replace i-1234567890abcdef0 with the actual InstanceId of the EC2 instance you wish to terminate. After you run the command, the instance will start to shut down.
+
+## Check your work
+
+It may take a moment for the instance to fully terminate. You can check the status of the instance by running the describe-instances command again:
+
+```bash
+aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,State.Name,Tags[?Key==`Name`].Value[]]' --output table
+```
+
+<Caption value='Terminated instance 🦾' className="mx-auto">
+<Image
+alt={`View of terminated EC2 instance`}
+src={`/images/blog/terminate-ec2-3.png`}
+width={500}
+height={500}
+className="mx-auto"
+/>
+</Caption>
+
+
+## Conclusion
+
+That's it! You now know how to find and terminate EC2 instances using the AWS CLI v2.
