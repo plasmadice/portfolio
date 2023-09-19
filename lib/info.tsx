@@ -31,7 +31,7 @@ export const projects = [
     img: "/images/lazyftp.png",
     description:
       "The answer to: How to connect to an FTP server through the browser?",
-    technologies: ["React", "Next.js", "TailwindCSS"],
+    technologies: ["React", "Gatsby", "Semantic UI", "Express"],
     links: {
       demo: "https://lazyftp.com/",
       github: "https://github.com/plasmadice/lazyftp",
