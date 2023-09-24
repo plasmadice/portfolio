@@ -19,18 +19,21 @@ const getProjectViews = cache(async (id: string) => {
     .select(["views"])
     .execute()
 
-    console.log('data', data)
-
   return data.reduce((acc, curr) => acc + Number(curr.views), 0)
 })
 
 export const increaseProjectViews = async (id: string) => {
   let views = await getProjectViews(id)
-  await queryBuilder
+
+  if (process.env.NODE_ENV === "production") {
+    await queryBuilder
     .insertInto("metrics")
-    .values({ project_id: id, views : 1 })
+    .values({ project_id: id, views: 1 })
     .onDuplicateKeyUpdate({ views: views + 1 })
     .execute()
+  }
+
+  return views + 1
 }
 
 type Repository = {
@@ -151,7 +154,7 @@ type Commit = {
   }
   message: string
   url: string
-  sha: string 
+  sha: string
   distinct: boolean
 }
 
@@ -175,7 +178,11 @@ export const getRepoData = (
   return fetch(url).then((res) => res.json())
 }
 
-export async function fetchUserEvents(username: string, email: string, days: number = 30) {
+export async function fetchUserEvents(
+  username: string,
+  email: string,
+  days: number = 30
+) {
   let events: any[] = []
   let page = 1
   const perPage = 100
@@ -190,10 +197,12 @@ export async function fetchUserEvents(username: string, email: string, days: num
     const response = await fetch(
       `https://api.github.com/users/${username}/events?page=${page}&per_page=${perPage}`,
       {
-        headers : {
+        headers: {
           Accept: "application/vnd.github.v3+json",
-          Authorization: process.env.GITHUB_TOKEN ? `Bearer ${process.env.GITHUB_TOKEN}` : '',
-        }
+          Authorization: process.env.GITHUB_TOKEN
+            ? `Bearer ${process.env.GITHUB_TOKEN}`
+            : "",
+        },
       }
     )
 
@@ -205,12 +214,14 @@ export async function fetchUserEvents(username: string, email: string, days: num
         return (
           event.type === "PushEvent" &&
           new Date(event.created_at) >= timeFrame &&
-          event.payload?.commits?.some((commit) => commit.author?.email.includes(email))
+          event.payload?.commits?.some((commit) =>
+            commit.author?.email.includes(email)
+          )
         )
       })
 
       events = [...events, ...recentPushEvents]
-      
+
       // check if the last event is older than {days} days, if true, stop the loop
       if (new Date(data[data.length - 1].created_at) < timeFrame) {
         stop = true
@@ -218,14 +229,18 @@ export async function fetchUserEvents(username: string, email: string, days: num
     } else {
       stop = true
     }
-    
+
     page++
   }
 
   return events
 }
 
-export async function getRecentCommits(username: string, email: string, days: number = 30) {
+export async function getRecentCommits(
+  username: string,
+  email: string,
+  days: number = 30
+) {
   let pushEvents: Push[] = []
   let totalCommits = 0
   const timeFrame = new Date()
@@ -238,7 +253,9 @@ export async function getRecentCommits(username: string, email: string, days: nu
     return (
       event.type === "PushEvent" &&
       new Date(event.created_at) >= timeFrame &&
-      event.payload?.commits?.some((commit) => commit.author?.email.includes(email))
+      event.payload?.commits?.some((commit) =>
+        commit.author?.email.includes(email)
+      )
     )
   })
 
@@ -247,20 +264,24 @@ export async function getRecentCommits(username: string, email: string, days: nu
       public: event.public,
       size: event.payload?.size,
       created_at: event.public ? event.created_at : null,
-      repo: event.public ? {
-        id: event.repo?.id,
-        name: event.repo?.name,
-        url: `https://github.com/${event.repo?.name}`,
-      } : null,
-      commits: event.public ? event.payload?.commits?.filter(
-        (commit: Commit) => commit.author?.email.includes(email)
-      ).map((commit: Commit) => {
-        return {
-          message: commit.message,
-          url: `https://github.com/${event.repo?.name}/commit/${commit.sha}`,
-          sha: commit.sha
-        }
-      }) : null
+      repo: event.public
+        ? {
+            id: event.repo?.id,
+            name: event.repo?.name,
+            url: `https://github.com/${event.repo?.name}`,
+          }
+        : null,
+      commits: event.public
+        ? event.payload?.commits
+            ?.filter((commit: Commit) => commit.author?.email.includes(email))
+            .map((commit: Commit) => {
+              return {
+                message: commit.message,
+                url: `https://github.com/${event.repo?.name}/commit/${commit.sha}`,
+                sha: commit.sha,
+              }
+            })
+        : null,
     }
   })
 
@@ -268,20 +289,24 @@ export async function getRecentCommits(username: string, email: string, days: nu
 
   // count commits in each event authored by {email}
   totalCommits += recentPushEvents?.reduce((acc, event) => {
-    const userCommits = event.payload?.commits?.filter(
-      (commit) => commit.author?.email.includes(email)
+    const userCommits = event.payload?.commits?.filter((commit) =>
+      commit.author?.email.includes(email)
     )
 
     return (acc += userCommits?.length)
   }, 0)
-  
+
   return {
     totalCommits,
-    pushEvents
+    pushEvents,
   }
 }
 
-export async function getRecentCommitCount(username: string, email: string, days: number = 30) {
+export async function getRecentCommitCount(
+  username: string,
+  email: string,
+  days: number = 30
+) {
   let totalCommits = 0
   const timeFrame = new Date()
   timeFrame.setDate(timeFrame.getDate() - days)
@@ -292,14 +317,16 @@ export async function getRecentCommitCount(username: string, email: string, days
     return (
       event.type === "PushEvent" &&
       new Date(event.created_at) >= timeFrame &&
-      event.payload?.commits?.some((commit) => commit.author?.email.includes(email))
+      event.payload?.commits?.some((commit) =>
+        commit.author?.email.includes(email)
+      )
     )
   })
-  
+
   // count commits in each event authored by {email}
   totalCommits += recentPushEvents?.reduce((acc, event) => {
-    const userCommits = event.payload?.commits?.filter(
-      (commit) => commit.author?.email.includes(email)
+    const userCommits = event.payload?.commits?.filter((commit) =>
+      commit.author?.email.includes(email)
     )
 
     return (acc += userCommits?.length)

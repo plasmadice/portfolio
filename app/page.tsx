@@ -12,7 +12,7 @@ export const revalidate = 0
 export const runtime = "edge"
 
 export default async function HomePage() {
-  let [recentCommits, views] = await Promise.all([
+  let [recentCommits, views, projectViews] = await Promise.all([
     getRecentCommitCount("plasmadice", process.env.GITHUB_EMAIL as string, 30),
     getBlogViews(),
     increaseProjectViews("portfolio"),
@@ -25,14 +25,16 @@ export default async function HomePage() {
         {about()}
       </p>
       <div className="flex items-start md:items-center my-8 flex-col md:flex-row">
-        <Image
-          alt={name}
-          className="rounded-full"
-          src={avatar}
-          placeholder="blur"
-          width={100}
-          priority
-        />
+        <div className="tooltip tooltip-bottom" data-tip={`${projectViews} page views 😉`}>
+          <Image
+            alt={name}
+            className="rounded-full"
+            src={avatar}
+            placeholder="blur"
+            width={100}
+            priority
+          />
+        </div>
         <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-2 text-neutral-500 dark:text-neutral-400">
           <Link href="/activity" className="flex items-center gap-2">
             <GitHubIcon color="#BD0009" />
