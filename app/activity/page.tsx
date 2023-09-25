@@ -36,7 +36,7 @@ export default async function page() {
       {last30PublicPushEvents.map((pushEvent, index) => (
         <div
           key={index}
-          className="bg-neutral-100 dark:bg-neutral-900 shadow rounded px-4 pt-1 pb-4 mb-6 prose"
+          className="bg-base-100 shadow rounded px-4 pt-1 pb-4 mb-6 prose"
         >
           <h3 className="font-semibold mb-2 text-lg">
             <Link
@@ -44,7 +44,7 @@ export default async function page() {
               href={String(pushEvent.repo?.url)}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 no-underline hover:underline"
+              className="text-primary no-underline hover:underline"
             >
               {pushEvent.repo?.name}
             </Link>
@@ -59,13 +59,13 @@ export default async function page() {
           </h3>
           <ul className='list-decimal'>
             {pushEvent.commits?.map((commit, index) => (
-              <li key={index} className="border-b border-imperial-700 pb-2 mb-2 mr-4">
+              <li key={index} className="border-b border-primary pb-2 mb-2 mr-4">
                 <Link
                   prefetch={false}
                   href={String(commit?.url)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
+                  className="text-secondary hover:underline"
                 >
                   <p className="inline-block pr-4">{commit?.sha?.slice(0, 7)}</p>
                 </Link>

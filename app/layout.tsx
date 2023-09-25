@@ -67,7 +67,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={clsx(
-        "text-black bg-white dark:text-white dark:bg-space-600",
+        "bg-base-300 text-base-content",
         kaisei.variable
       )}
     >

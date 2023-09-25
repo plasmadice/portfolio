@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
-import { GitHubIcon, ArrowIcon } from "components/icons"
 import { name } from "lib/info"
+import { BsGithub } from "react-icons/bs"
 
 export const metadata: Metadata = {
   title: "About",
@@ -24,7 +24,7 @@ export default function AboutPage() {
           automation of tasks within the healthcare sector and the enhancement
           of its overall efficiency.
         </p>
-        <hr className="bg-imperial-700"/>
+        <hr className="bg-primary" />
         <p>
           My passion lies in coding, especially in TypeScript and JavaScript.
           Recently, I have been focusing on learning and mastering modern web
@@ -50,13 +50,13 @@ export default function AboutPage() {
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/plasmadice"
-            className="flex w-full border border-neutral-200 dark:border-imperial-700 rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
+            className="flex w-full border border-neutral-200 dark:border-primary rounded-lg p-4 no-underline items-center text-neutral-800 dark:text-neutral-200 hover:dark:bg-neutral-900 hover:bg-neutral-100 transition-all justify-between"
           >
             <div className="flex items-center">
-              <GitHubIcon color="#BD0009"/>
+              <BsGithub className="text-primary" size="1.5em" />
               <div className="ml-3">GitHub</div>
             </div>
-            <ArrowIcon color="#BD0009"/>
+            {/* <ArrowIcon color="#BD0009" /> */}
           </a>
         </div>
       </div>

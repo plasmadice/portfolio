@@ -130,7 +130,7 @@ const Category = ({ id, name, items }: GearCategory) => (
     <ul>
       {items.map((item) => (
         <li key={item.name}>
-          <Link href={item.link} target="_blank" className="no-underline">
+          <Link href={item.link} target="_blank" className="link link-hover">
             {item.name}
           </Link>
         </li>

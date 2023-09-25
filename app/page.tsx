@@ -5,7 +5,8 @@ import {
   getRecentCommitCount,
   increaseProjectViews,
 } from "lib/metrics"
-import { ArrowIcon, GitHubIcon, ViewsIcon } from "components/icons"
+
+import { BsGithub, BsGraphUpArrow } from "react-icons/bs"
 import { name, about, bio, avatar } from "lib/info"
 
 export const revalidate = 0
@@ -21,7 +22,7 @@ export default async function HomePage() {
   return (
     <section>
       <h1 className="font-bold text-3xl font-serif">{name}</h1>
-      <p className="my-5 max-w-[460px] text-neutral-800 dark:text-neutral-200">
+      <p className="my-5 max-w-[460px] ">
         {about()}
       </p>
       <div className="flex items-start md:items-center my-8 flex-col md:flex-row">
@@ -35,42 +36,31 @@ export default async function HomePage() {
             priority
           />
         </div>
-        <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-2 text-neutral-500 dark:text-neutral-400">
-          <Link href="/activity" className="flex items-center gap-2">
-            <GitHubIcon color="#BD0009" />
+        <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-2 text-base-content">
+          <Link href="/activity" className="flex items-center gap-2 hover:text-neutral-900 dark:hover:text-neutral-400 transition-all">
+            <BsGithub className="text-primary" size="1.5em" />
             {`${recentCommits} commits in last 30 days`}
           </Link>
 
-          <Link href="/blog" className="flex items-center">
-            <ViewsIcon color="#BD0009" />
+          <Link href="/blog" className="flex items-center hover:text-neutral-900 dark:hover:text-neutral-400 transition-all">
+            <BsGraphUpArrow className="text-primary mr-2" size="1.5em" />
             {`${views.toLocaleString()} blog views all time`}
           </Link>
         </div>
       </div>
-      <p className="my-5 max-w-[600px] text-neutral-800 dark:text-neutral-200">
+      <p className="my-5 max-w-[600px]">
         {bio()}
       </p>
-      <ul className="flex flex-col md:flex-row mt-8 space-x-0 md:space-x-4 space-y-2 md:space-y-0 font-sm text-neutral-500 dark:text-neutral-400">
+      <ul className="flex flex-col md:flex-row mt-8 space-x-0 md:space-x-4 space-y-2 md:space-y-0 font-sm">
         <li>
           <a
-            className="flex items-center hover:text-neutral-700 dark:hover:text-neutral-200 transition-all"
+            className="flex items-center btn btn-ghost hover:text-neutral-900 dark:hover:text-neutral-400"
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/plasmadice"
           >
-            <ArrowIcon color="#BD0009" />
-            <p className="h-7">My Github</p>
-          </a>
-        </li>
-        <li>
-          <a
-            className="flex items-center hover:text-neutral-700 dark:hover:text-neutral-200 transition-all"
-            rel="noopener noreferrer"
-            target="_blank"
-            href="https://github.com/dashboard"
-          >
-            <ArrowIcon color="#BD0009" />
-            <p className="h-7">Your Github</p>
+            <BsGithub className="text-primary" size="1.5em" />
+            <p className="h-4">My Github</p>
           </a>
         </li>
       </ul>

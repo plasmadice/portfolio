@@ -54,11 +54,15 @@ html {
 /* Blog CSS */
 /* <Caption></Caption> element MDX */
 .blog-figcaption {
-  @apply text-center text-sm text-neutral-500 dark:text-neutral-400;
+  @apply text-center text-sm text-base-content;
 }
 
-.project-button {
-  @apply btn btn-outline bg-[white] dark:bg-[#111010] text-neutral-900 dark:text-neutral-300 hover:bg-neutral-900 hover:text-neutral-300 dark:hover:text-neutral-800 dark:hover:bg-neutral-300
+.project-button-primary {
+  @apply btn btn-primary btn-sm text-neutral-900 dark:text-primary-content hover:bg-neutral-900 hover:text-neutral-300 dark:hover:text-neutral-800 dark:hover:bg-neutral-300
+}
+
+.project-button-secondary {
+  @apply btn btn-secondary btn-sm text-neutral-900 dark:text-primary-content hover:bg-neutral-900 hover:text-neutral-300 dark:hover:text-neutral-800 dark:hover:bg-neutral-300
 }
 
 .prose *:hover > .anchor {

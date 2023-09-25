@@ -22,7 +22,7 @@ const Project = ({
   links,
 }: ProjectProps) => (
   <li key={title}>
-    <div className="antialiased card glass compact w-80 bg-white text-neutral-800 dark:text-neutral-200 dark:bg-neutral-900 shadow-xl">
+    <div className="antialiased card glass compact w-80 bg-base-300 text-base-content shadow-xl">
       <figure>
         <Image
           src={img}
@@ -48,17 +48,17 @@ const Project = ({
           {links.demo.length ? (
             <a
               href={links.demo}
-              className="project-button"
+              className="project-button-primary"
               target="_blank"
               rel="noopener noreferrer"
             >
-              Demo
+              Visit
             </a>
           ) : null}
           {links.github.length ? (
             <a
               href={links.github}
-              className="project-button"
+              className="project-button-primary"
               target="_blank"
               rel="noopener noreferrer"
             >
