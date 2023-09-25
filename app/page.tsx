@@ -38,12 +38,12 @@ export default async function HomePage() {
         </div>
         <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-2 text-base-content">
           <Link href="/activity" className="flex items-center gap-2 hover:text-neutral-900 dark:hover:text-neutral-400 transition-all">
-            <BsGithub className="text-primary" size="1.5em" />
+            <BsGithub className="text-secondary" size="1.5em" />
             {`${recentCommits} commits in last 30 days`}
           </Link>
 
           <Link href="/blog" className="flex items-center hover:text-neutral-900 dark:hover:text-neutral-400 transition-all">
-            <BsGraphUpArrow className="text-primary mr-2" size="1.5em" />
+            <BsGraphUpArrow className="text-secondary mr-2" size="1.5em" />
             {`${views.toLocaleString()} blog views all time`}
           </Link>
         </div>
@@ -59,7 +59,7 @@ export default async function HomePage() {
             target="_blank"
             href="https://github.com/plasmadice"
           >
-            <BsGithub className="text-primary" size="1.5em" />
+            <BsGithub className="text-secondary" size="1.5em" />
             <p className="h-4">My Github</p>
           </a>
         </li>

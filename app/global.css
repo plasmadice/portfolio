@@ -58,11 +58,11 @@ html {
 }
 
 .project-button-primary {
-  @apply btn btn-primary btn-sm text-neutral-900 dark:text-primary-content hover:bg-neutral-900 hover:text-neutral-300 dark:hover:text-neutral-800 dark:hover:bg-neutral-300
+  @apply btn btn-primary btn-sm text-primary-content hover:bg-neutral-900 hover:text-neutral-300 dark:hover:text-neutral-800 dark:hover:bg-neutral-300
 }
 
 .project-button-secondary {
-  @apply btn btn-secondary btn-sm text-neutral-900 dark:text-primary-content hover:bg-neutral-900 hover:text-neutral-300 dark:hover:text-neutral-800 dark:hover:bg-neutral-300
+  @apply btn btn-secondary btn-sm text-secondary-content hover:bg-neutral-900 hover:text-neutral-300 dark:hover:text-neutral-800 dark:hover:bg-neutral-300
 }
 
 .prose *:hover > .anchor {

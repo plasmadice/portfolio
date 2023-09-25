@@ -58,7 +58,7 @@ const Project = ({
           {links.github.length ? (
             <a
               href={links.github}
-              className="project-button-primary"
+              className="project-button-secondary"
               target="_blank"
               rel="noopener noreferrer"
             >
