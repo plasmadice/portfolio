@@ -44,7 +44,7 @@ export default async function page() {
               href={String(pushEvent.repo?.url)}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary no-underline hover:underline"
+              className="text-secondary no-underline hover:underline"
             >
               {pushEvent.repo?.name}
             </Link>
@@ -59,13 +59,13 @@ export default async function page() {
           </h3>
           <ul className='list-decimal'>
             {pushEvent.commits?.map((commit, index) => (
-              <li key={index} className="border-b border-primary pb-2 mb-2 mr-4">
+              <li key={index} className="border-b border-secondary pb-2 mb-2 mr-4">
                 <Link
                   prefetch={false}
                   href={String(commit?.url)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-secondary hover:underline"
+                  className="link link-primary"
                 >
                   <p className="inline-block pr-4">{commit?.sha?.slice(0, 7)}</p>
                 </Link>

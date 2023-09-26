@@ -37,7 +37,7 @@ export default function ViewCounter({
   const viewsForSlug = data && data.find((view: PostView) => view.slug === slug)
   const viewCount = new Number(viewsForSlug?.count || 0)
   return (
-    <p className="font-mono text-sm text-neutral-500 tracking-tighter">
+    <p className="font-mono text-sm text-base-content tracking-tighter">
       {data ? `${viewCount.toLocaleString()} views` : "​"}
     </p>
   )

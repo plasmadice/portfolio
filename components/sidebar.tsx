@@ -53,7 +53,7 @@ export default function Navbar() {
                     className={clsx(
                       "transition-all hover:text-neutral-900 dark:hover:text-neutral-400 flex align-middle",
                       {
-                        "text-primary-content hover:animate-pulse": isActive,
+                        "text-primary-content hover:text-neutral-800 dark:hover:text-neutral-300": isActive,
                         "font-bold": isActive,
                       }
                     )}
