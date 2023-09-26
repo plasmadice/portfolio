@@ -63,8 +63,8 @@ export const bio = () => {
   return (
     <>
       Apart from coding, I have a keen interest in exploring emerging
-      technologies, engaging in thought-provoking books, and jogging to keep my
-      creative juices flowing. I'm always up for a good tech discussion or an
+      technologies, engaging in thought-provoking books, and skating to keep my
+      creative juices flowing. I'm always up for a tech discussion or an
       impromptu brainstorming session.
     </>
   )
