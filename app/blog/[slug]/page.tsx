@@ -4,6 +4,7 @@ import { Mdx } from "components/mdx"
 import { allBlogs } from "contentlayer/generated"
 import Balancer from "react-wrap-balancer"
 import ViewCounter from "../view-counter"
+import Link from "next/link"
 
 export async function generateStaticParams() {
   return allBlogs.map((post) => ({
@@ -72,6 +73,15 @@ export default async function Blog({ params }) {
         </div>
         <div className="h-[0.2em] bg-secondary mx-2" />
         <ViewCounter slug={post.slug} trackView />
+        {process.env.NODE_ENV === "development" && (
+          <Link 
+            prefetch={false}
+            href={`${process.env.NEXT_PUBLIC_URL}/api/og?title=${post.title}`}
+            target="_blank"
+            className="btn btn-secondary absolute top-24 right-24">
+              OG Image
+          </Link>
+        )}
       </div>
       <Mdx code={post.body.code} />
     </section>
