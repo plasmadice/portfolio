@@ -2,7 +2,7 @@ import { formatDistanceToNow, parseISO } from "date-fns"
 import { getRecentCommits, type Push } from "lib/metrics"
 import Link from "next/link"
 
-export const revalidate = 3600 // revalidate once per hour
+export const revalidate = 300 // revalidate every 5 minutes
 
 export default async function page() {
   const { totalCommits, pushEvents } = await getRecentCommits(
