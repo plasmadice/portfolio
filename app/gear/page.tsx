@@ -36,6 +36,10 @@ const gear: GearList = {
         link: "https://www.lg.com/us/monitors/lg-27gl83a-b-gaming-monitor",
       },
       {
+        name: '27” Samsung ViewFinity S80A',
+        link: "https://www.samsung.com/us/computing/monitors/uhd-and-wqhd/27--s804a-uhd-monitor-ls27a804nmnxgo/"
+      },
+      {
         name: "CalDigit TS3+",
         link: "https://www.caldigit.com/ts3-plus/",
       },
@@ -70,8 +74,8 @@ const gear: GearList = {
         link: "https://code.visualstudio.com/",
       },
       {
-        name: "Terminal: zsh",
-        link: "https://ohmyz.sh/",
+        name: "Terminal: warp",
+        link: "https://www.warp.dev/",
       },
     ],
   },
@@ -92,8 +96,8 @@ const gear: GearList = {
         link: "https://obsidian.md/",
       },
       {
-        name: "Bartender 4",
-        link: "https://www.macbartender.com/Bartender4/",
+        name: "Bartender 5",
+        link: "https://www.macbartender.com/Bartender5/",
       },
       {
         name: "Moom",
@@ -121,6 +125,10 @@ const gear: GearList = {
         name: "Logitech Pro Wireless",
         link: "https://www.logitechg.com/en-us/products/gaming-mice/pro-wireless-mouse.html",
       },
+      {
+        name: "Duramont Ergonomic Office Chair",
+        link: "https://duramontchairs.com/products/duramont-ergonomic-office-chair",
+      }
     ],
   },
 }
