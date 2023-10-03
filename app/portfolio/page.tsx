@@ -1,5 +1,5 @@
 import { projects } from "lib/info"
-import { GitHubIcon } from "components/icons"
+import { BsGithub } from "react-icons/bs"
 import Image from "next/image"
 
 type ProjectProps = {
@@ -58,13 +58,14 @@ const Project = ({
           {links.github.length ? (
             <a
               href={links.github}
-              className="project-button-secondary"
+              className="project-button-secondary text-secondary-content hover:text-neutral-300 dark:hover:text-neutral-800"
               target="_blank"
               rel="noopener noreferrer"
             >
               Github{" "}
               <div className="pl-2">
-                <GitHubIcon />
+                {/* <GitHubIcon /> */}
+                <BsGithub size="1.5em" />
               </div>
             </a>
           ) : null}
