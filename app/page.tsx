@@ -10,7 +10,7 @@ import { BsGithub, BsGraphUpArrow } from "react-icons/bs"
 import { name, about, bio, avatar } from "lib/info"
 
 export const revalidate = 0
-export const runtime = "edge"
+// export const runtime = "edge"
 
 export default async function HomePage() {
   let [recentCommits, views, projectViews] = await Promise.all([
