@@ -52,8 +52,7 @@ export const projects = [
 export const about = () => {
   return (
     <>
-      Hello, I'm a <strong>Software Engineer</strong> with experience in modern
-      web technologies. In previous roles, I automated healthcare tasks as a
+      Hello, I'm a <strong>Software Engineer</strong> with frontend and backend experience. In previous roles, I automated healthcare tasks as a
       Software Engineer and lead a team in my role as Courseware Developer under
       a DoD (Department of Defense) contractor.
     </>
@@ -62,9 +61,8 @@ export const about = () => {
 export const bio = () => {
   return (
     <>
-      Apart from coding, I have a keen interest in exploring emerging
-      technologies, engaging in thought-provoking books, and skating to keep my
-      creative juices flowing. I'm always up for a tech discussion or an
+      Apart from coding, I enjoy exploring new
+      tech, interesting books, and skating. I'm always up for a tech discussion or an
       impromptu brainstorming session.
     </>
   )
