@@ -73,10 +73,6 @@ const gear: GearList = {
         name: "Editor: VSCode - Theme: Dark Modern",
         link: "https://code.visualstudio.com/",
       },
-      {
-        name: "Terminal: warp",
-        link: "https://www.warp.dev/",
-      },
     ],
   },
   software: {

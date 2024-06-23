@@ -3,7 +3,7 @@ import { notFound } from "next/navigation"
 import { Mdx } from "components/mdx"
 import { allBlogs } from "contentlayer/generated"
 import Balancer from "react-wrap-balancer"
-import ViewCounter from "../view-counter"
+// import ViewCounter from "../view-counter"
 import Link from "next/link"
 
 export async function generateStaticParams() {
@@ -72,7 +72,7 @@ export default async function Blog({ params }) {
           {post.publishedAt}
         </div>
         <div className="h-[0.2em] bg-secondary mx-2" />
-        <ViewCounter slug={post.slug} trackView />
+        {/* <ViewCounter slug={post.slug} trackView /> */}
         {process.env.NODE_ENV === "development" && (
           <Link 
             prefetch={false}

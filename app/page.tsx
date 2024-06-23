@@ -1,9 +1,9 @@
 import Link from "next/link"
 import Image from "next/image"
 import {
-  getBlogViews,
+//   getBlogViews,
   getRecentCommitCount,
-  increaseProjectViews,
+//   increaseProjectViews,
 } from "lib/metrics"
 
 import { BsGithub, BsGraphUpArrow } from "react-icons/bs"
@@ -13,10 +13,10 @@ export const revalidate = 0
 export const runtime = "edge"
 
 export default async function HomePage() {
-  let [recentCommits, views, projectViews] = await Promise.all([
+  let [recentCommits] = await Promise.all([
     getRecentCommitCount("plasmadice", process.env.GITHUB_EMAIL as string, 30),
-    getBlogViews(),
-    increaseProjectViews("portfolio"),
+    // getBlogViews(),
+    // increaseProjectViews("portfolio"),
   ])
 
   return (
@@ -26,7 +26,7 @@ export default async function HomePage() {
         {about()}
       </p>
       <div className="flex items-start md:items-center my-8 flex-col md:flex-row">
-        <div className="tooltip tooltip-bottom" data-tip={`${projectViews} page views 😉`}>
+        <div className="tooltip tooltip-bottom">
           <Image
             alt={name}
             className="rounded-full"
@@ -42,10 +42,10 @@ export default async function HomePage() {
             {`${recentCommits} commits in last 30 days`}
           </Link>
 
-          <Link href="/blog" className="flex items-center hover:text-neutral-900 dark:hover:text-neutral-400 transition-all">
+          {/* <Link href="/blog" className="flex items-center hover:text-neutral-900 dark:hover:text-neutral-400 transition-all">
             <BsGraphUpArrow className="text-secondary mr-2" size="1.5em" />
             {`${views.toLocaleString()} blog views all time`}
-          </Link>
+          </Link> */}
         </div>
       </div>
       <p className="my-5 max-w-[600px]">

@@ -38,6 +38,20 @@ function CustomImage({
   )
 }
 
+function CustomVideo({className, children, ...otherProps}) {
+  return (
+    <video
+      className={
+        className?.includes("rounded")
+          ? className
+          : `rounded-lg${className ? ` ${className}` : ""}`
+      }
+      {...otherProps}>
+        {children}
+      </video>
+  )
+}
+
 interface ExtendedImageProps extends React.ComponentProps<typeof Image> {
   size?: string
 }
@@ -212,6 +226,7 @@ function Kawaii({ character = "Cat", size, mood = "blissful", color, className =
 
 const components = {
   Image: CustomImage,
+  Video: CustomVideo,
   a: CustomLink,
   Callout,
   ProsCard,
