@@ -22,7 +22,7 @@ const Project = ({
   links,
 }: ProjectProps) => (
   <li key={title}>
-    <div className="antialiased card glass compact w-80 bg-base-300 text-base-content shadow-xl">
+    <div className="antialiased card bg-neutral-content/5 ring ring-indigo-500/10 hover:ring-indigo-500/20 dark:ring-white/10 dark:hover:ring-white/20 compact w-80 h-full text-base-content shadow-xl transition-all">
       <figure>
         <Image
           src={img}
@@ -35,7 +35,7 @@ const Project = ({
       <div className="card-body text-inherit">
         <a
           href={links.demo ? links.demo : links.github ? links.github : "/"}
-          className="card-title w-fit"
+          className="card-title w-fit text-primary-content underline"
         >
           {title}
         </a>
