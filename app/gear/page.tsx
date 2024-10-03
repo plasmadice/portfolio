@@ -110,16 +110,16 @@ const gear: GearList = {
     name: "Other Stuff",
     items: [
       {
-        name: "Lenovo Legion 7 w/ 2060",
-        link: "https://pcsupport.lenovo.com/us/en/products/laptops-and-netbooks/legion-series/legion-7-15imh05/81yt/81yt0000us",
+        name: "ROG Ally X",
+        link: "https://rog.asus.com/us/gaming-handhelds/rog-ally/rog-ally-x-2024/",
       },
       {
         name: "Logitech MX Keys Mini",
         link: "https://www.logitech.com/en-us/products/keyboards/mx-keys-mini.920-010388.html",
       },
       {
-        name: "Logitech Pro Wireless",
-        link: "https://www.logitechg.com/en-us/products/gaming-mice/pro-wireless-mouse.html",
+        name: "Logitech M720 Triathlon",
+        link: "https://www.logitech.com/en-us/products/mice/m720-triathlon.910-004790.html",
       },
       {
         name: "16-inch 1440p 120hz portable monitor",
