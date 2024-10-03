@@ -96,8 +96,8 @@ const gear: GearList = {
         link: "https://www.macbartender.com/Bartender5/",
       },
       {
-        name: "Moom",
-        link: "https://manytricks.com/moom/e",
+        name: "Moom 3",
+        link: "https://manytricks.com/moom/",
       },
       {
         name: "Capslock",
@@ -122,9 +122,13 @@ const gear: GearList = {
         link: "https://www.logitechg.com/en-us/products/gaming-mice/pro-wireless-mouse.html",
       },
       {
+        name: "16-inch 1440p 120hz portable monitor",
+        link: "https://www.uperfectmonitor.com/products/120hz-gaming-monitor",
+      }, 
+      {
         name: "Duramont Ergonomic Office Chair",
         link: "https://duramontchairs.com/products/duramont-ergonomic-office-chair",
-      }
+      },
     ],
   },
 }
