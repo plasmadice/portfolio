@@ -49,21 +49,18 @@ export const projects = [
     },
   },
 ]
+
 export const about = () => {
   return (
     <>
-      Hello, I'm a <strong>Software Engineer</strong> with frontend and backend experience. In previous roles, I automated healthcare tasks as a
-      Software Engineer and lead a team in my role as Courseware Developer under
-      a DoD (Department of Defense) contractor.
+      I'm a <strong>Software Engineer</strong> with extensive experience in JavaScript, TypeScript, React, and API development. Notable achievements include automating healthcare processes at Olive AI, reducing manual work by over 100 hours monthly, and accelerating a Flash conversion project at Carley Corporation by six months. Recently, I successfully implemented the new version (V2) of Glossi’s app, leading to a full-time position as a full-stack developer.
     </>
-  )
-}
+  );
+};
 export const bio = () => {
   return (
     <>
-      Apart from coding, I enjoy exploring new
-      tech, interesting books, and skating. I'm always up for a tech discussion or an
-      impromptu brainstorming session.
+      Beyond coding, I enjoy exploring new technologies, reading interesting books, and skating. I'm always up for a tech discussion or an impromptu brainstorming session. Let's connect and see how we can collaborate!
     </>
-  )
-}
+  );
+};
