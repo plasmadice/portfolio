@@ -206,7 +206,7 @@ export function Logo() {
         <motion.svg
           key={index}
           id="logo"
-          className="text-primary w-[25px] md:w-auto h-[40px] md:h-[70px]"
+          className="text-secondary w-[25px] md:w-auto h-[40px] md:h-[70px]"
           width="50"
           height="70"
           viewBox="0 0 50 70"

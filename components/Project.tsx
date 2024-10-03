@@ -35,7 +35,7 @@ export default function Project({
             {links.demo.length ? (
               <a
                 href={links.demo}
-                className="project-button-primary !bg-accent !rounded-md"
+                className="project-button-primary !bg-secondary !rounded-md"
                 target="_blank"
                 rel="noopener noreferrer"
               >

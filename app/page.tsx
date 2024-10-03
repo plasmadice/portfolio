@@ -60,7 +60,7 @@ export default async function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <BsGithub className="text-secondary" size="1.5em" />
+              <BsGithub className="text-primary" size="1.5em" />
               {`${recentCommits} commits in the last 30 days`}
             </a>
 
@@ -70,7 +70,7 @@ export default async function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <BsLinkedin className="text-secondary" size="1.5em" />
+              <BsLinkedin className="text-primary" size="1.5em" />
               LinkedIn Profile
             </a>
 
@@ -78,7 +78,7 @@ export default async function HomePage() {
               href="mailto:herman.white.third@gmail.com"
               className="flex items-center gap-2 hover:text-neutral-900 dark:hover:text-neutral-400 transition-all"
             >
-              <BsEnvelope className="text-secondary" size="1.5em" />
+              <BsEnvelope className="text-primary" size="1.5em" />
               herman.white.third@gmail.com
             </a>
           </div>
