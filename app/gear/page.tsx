@@ -134,7 +134,7 @@ const gear: GearList = {
 }
 
 const Category = ({ id, name, items }: GearCategory) => (
-  <>
+  <div className="prose prose-quoteless dark:prose-invert gear-list">
     <h3 id={id}>{name}</h3>
     <ul>
       {items.map((item) => (
@@ -145,18 +145,20 @@ const Category = ({ id, name, items }: GearCategory) => (
         </li>
       ))}
     </ul>
-  </>
+  </div>
 )
 
 export default function UsesPage() {
   return (
-    <section className="prose prose-quoteless gear-list dark:prose-invert">
-      <h1 className="font-bold text-3xl font-serif mb-8 !mt-0">Gear</h1>
-      {Object.values(gear).map((category) => (
-        <Category key={category.id} {...category} />
-      ))}
+    <section className="">
+      <h1 className="font-bold text-3xl font-serif !mb-12">Gear</h1>
+      <div className="flex flex-col gap-8">
+        {Object.values(gear).map((category) => (
+          <Category key={category.id} {...category} />
+        ))}
+      </div>
       <div className="fixed bottom-16 right-16 opacity-25">
-        <Backpack size={320} mood="excited" color="#CD622A" />
+        <Backpack size={320} mood="excited" color="#64748b" />
       </div>
     </section>
   )

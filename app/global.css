@@ -84,8 +84,8 @@ html {
 
 .prose > :first-child {
   /* Override removing top margin, causing layout shift */
-  margin-top: 1.25em !important;
-  margin-bottom: 1.25em !important;
+  margin-top: 1 !important;
+  margin-bottom: 1 !important;
 }
 
 code[class*='language-'],
