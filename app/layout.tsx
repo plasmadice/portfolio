@@ -71,7 +71,7 @@ export default function RootLayout({
         kaisei.variable
       )}
     >
-      <body className="antialiased container max-w-5xl px-8 justify-center ml-auto mb-36 flex flex-col md:flex-row mt-8 md:mt-20 lg:mt-32 mx-auto overflow-x-hidden overflow-y-auto">
+      <body className="antialiased max-w-5xl justify-center mb-36 flex flex-col md:flex-row mt-8 md:mt-20 lg:mt-32 mx-8 overflow-x-hidden overflow-y-auto">
         <Sidebar />
         <main className="flex-auto min-w-0 mt-6 md:mt-0 flex flex-col px-2 md:px-0">
           {children}

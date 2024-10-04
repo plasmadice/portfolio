@@ -35,12 +35,12 @@ export default async function HomePage() {
         <h1 className="font-bold text-4xl font-serif">{name}</h1>
 
         {/* About Section */}
-        <p className="my-5 max-w-[600px] ">{about()}</p>
+        <p className="my-5">{about()}</p>
 
         {/* Profile Image and Contact Info */}
-        <div className="flex items-start md:items-center my-8 flex-col md:flex-row">
+        <div className="h-full flex items-start md:items-center my-8 flex-col md:flex-row">
           {/* Profile Image */}
-          <div className="tooltip tooltip-bottom">
+          <div className="tooltip tooltip-bottom rounded-full">
             <Image
               alt={name}
               className="rounded-full"
@@ -85,7 +85,7 @@ export default async function HomePage() {
         </div>
 
         {/* Bio Section */}
-        <p className="my-5 max-w-[600px]">{bio()}</p>
+        <p className="my-5">{bio()}</p>
       </div>
       <div className="flex flex-col">
         {/* Projects Section */}
