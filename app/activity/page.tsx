@@ -23,7 +23,7 @@ export default async function page() {
     .slice(0, 30)
 
   return (
-    <div className="mx-auto max-w-7xl p-6 text-neutral-900 dark:text-neutral-300">
+    <div className="mx-auto text-neutral-900 dark:text-neutral-300">
       <p className="mb-6 font-bold text-lg mr-8">
         {`${totalCommits} commits in ${totalCount} push events across ${totalRepos} repositories in the last 30 days`}
       </p>
