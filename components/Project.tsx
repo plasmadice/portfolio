@@ -18,7 +18,7 @@ export default function Project({
           alt={`Screenshot of ${title} project`}
           height={320}
           width={320}
-          className={`object-cover overflow-hidden w-full ${variant === 'secondary' ? '!w-48' : ''} ${links.demo.length || links.github.length ? 'cursor-pointer' : ''}`}
+          className={`object-cover overflow-hidden !h-48 !w-full ${links.demo.length || links.github.length ? 'cursor-pointer' : ''}`}
          />
         <div className="card-body">
           <a
