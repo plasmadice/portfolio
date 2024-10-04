@@ -23,8 +23,11 @@ export default async function page() {
     .slice(0, 30)
 
   return (
-    <div className="mx-auto text-neutral-900 dark:text-neutral-300">
-      <p className="mb-6 font-bold text-lg mr-8">
+    <div className="mr-auto text-neutral-900 dark:text-neutral-300">
+      <h1 className="font-bold text-3xl font-serif">
+        Github Activity
+      </h1>
+      <p className="mt-12 mb-6 font-bold text-lg mr-8">
         {`${totalCommits} commits in ${totalCount} push events across ${totalRepos} repositories in the last 30 days`}
       </p>
       <p className="mb-6 font-bold text-md mr-8">

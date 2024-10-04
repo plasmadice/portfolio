@@ -24,22 +24,16 @@ export default async function HomePage() {
       process.env.GITHUB_EMAIL as string,
       30
     ),
-    // getBlogViews(),
-    // increaseProjectViews("portfolio"),
   ]);
 
   return (
     <section className="">
       <div className="flex flex-col">
-        {/* Main Heading */}
         <h1 className="font-bold text-4xl font-serif">{name}</h1>
 
-        {/* About Section */}
-        <p className="my-5">{about()}</p>
+        <p className="mt-12 my-5">{about()}</p>
 
-        {/* Profile Image and Contact Info */}
         <div className="h-full flex items-start md:items-center my-8 flex-col md:flex-row">
-          {/* Profile Image */}
           <div className="tooltip tooltip-bottom rounded-full">
             <Image
               alt={name}
@@ -52,7 +46,6 @@ export default async function HomePage() {
             />
           </div>
 
-          {/* Contact and Activity Links */}
           <div className="mt-8 md:mt-0 ml-0 md:ml-6 space-y-4 text-base-content">
             <a
               href="https://github.com/plasmadice"
@@ -84,7 +77,6 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Bio Section */}
         <p className="my-5">{bio()}</p>
       </div>
       <div className="flex flex-col">

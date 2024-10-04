@@ -14,7 +14,7 @@ export default function AboutPage() {
       <h1 className="font-bold text-neutral-800 dark:text-neutral-200 text-3xl font-serif">
         About Me
       </h1>
-      <p className="my-5 text-neutral-800 dark:text-neutral-200">
+      <p className="mt-12 my-5 text-neutral-800 dark:text-neutral-200">
         Hello, I'm <b>{name.split(" ")[0]}</b>.
       </p>
       <div className="prose prose-neutral dark:prose-invert text-neutral-800 dark:text-neutral-200">

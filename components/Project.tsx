@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import Image from 'next/image';
 import { BsGithub } from 'react-icons/bs';
@@ -13,13 +15,20 @@ export default function Project({
   return (
    <li key={title}>
       <div className={`antialiased card rounded-lg bg-base-100 ring ring-neutral-100/10 hover:ring-neutral-100/20 compact w-full h-full text-base-content shadow-md transition-all overflow-hidden ${variant === 'secondary' ? 'flex flex-row' : ''}`}>
-        <Image
-          src={img}
-          alt={`Screenshot of ${title} project`}
-          height={320}
-          width={320}
-          className={`object-cover overflow-hidden !h-48 !w-full ${links.demo.length || links.github.length ? 'cursor-pointer' : ''}`}
-         />
+        <div>
+          <Image
+            src={img}
+            alt={`Screenshot of ${title} project`}
+            height={320}
+            width={320}
+            className={`object-cover overflow-hidden !h-48 !w-full ${links.demo.length || links.github.length ? 'cursor-pointer' : ''}`}
+            onClick={(e) => {
+              if (links.demo?.length || links.github?.length) {
+                window.open(links.demo?.length ? links.demo : links.github);                
+              }
+            }}
+           />
+        </div>
         <div className="card-body">
           <a
             href={links.demo ? links.demo : links.github ? links.github : '/'}
@@ -32,7 +41,7 @@ export default function Project({
             <strong>Stack: </strong> {technologies.join(', ')}
           </p>
           <div className="card-actions justify-end mt-4">
-            {links.demo.length ? (
+            {links.demo?.length ? (
               <a
                 href={links.demo}
                 className="project-button-primary !bg-secondary !rounded-md"
@@ -42,7 +51,7 @@ export default function Project({
                 Visit
               </a>
             ) : null}
-            {links.github.length ? (
+            {links.github?.length ? (
               <a
                 href={links.github}
                 className="project-button-secondary !rounded-md !bg-neutral-600 !text-neutral-200/90 hover:!text-neutral-900"
