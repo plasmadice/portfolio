@@ -1,3 +1,5 @@
+"use client"
+
 import { formatDistanceToNow, parseISO } from "date-fns"
 import { getRecentCommits, type Push } from "lib/metrics"
 import Link from "next/link"

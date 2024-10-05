@@ -25,8 +25,8 @@ export const projects = [
       "Sentry",
     ],
     links: {
-      demo: "",
-      github: "https://app.glossi.io/", 
+      demo: "https://app.glossi.io/",
+      github: "", 
     },
   },
   {
