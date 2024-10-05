@@ -1,9 +1,8 @@
-"use client"
-
 import { formatDistanceToNow, parseISO } from "date-fns"
 import { getRecentCommits, type Push } from "lib/metrics"
 import Link from "next/link"
 
+export const dynamic = 'force-dynamic';
 export const revalidate = 300 // revalidate every 5 minutes
 
 export default async function page() {
