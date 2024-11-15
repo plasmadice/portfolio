@@ -54,7 +54,7 @@ export default async function HomePage() {
               rel="noopener noreferrer"
             >
               <BsGithub className="text-primary" size="1.5em" />
-              {`${recentCommits} commits in the last 30 days`}
+              {`${recentCommits} public commits in the last 30 days`}
             </a>
 
             <a

@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Backpack, type KawaiiProps } from "react-kawaii"
+import { Backpack } from "react-kawaii"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -67,7 +67,7 @@ const gear: GearList = {
   },
   coding: {
     id: "coding",
-    name: "Coding",
+    name: "Coding Environment",
     items: [
       {
         name: "Editor: VSCode - Theme: Dark Modern",
@@ -77,7 +77,7 @@ const gear: GearList = {
   },
   software: {
     id: "software",
-    name: "Software",
+    name: "Favorite Software",
     items: [
       {
         name: "Raycast",
@@ -92,10 +92,6 @@ const gear: GearList = {
         link: "https://obsidian.md/",
       },
       {
-        name: "Bartender 5",
-        link: "https://www.macbartender.com/Bartender5/",
-      },
-      {
         name: "Moom 3",
         link: "https://manytricks.com/moom/",
       },
@@ -103,6 +99,10 @@ const gear: GearList = {
         name: "Capslock",
         link: "https://github.com/Plasmadice/Capslock",
       },
+      {
+        name: "Synergy",
+        link: "https://symless.com/synergy"
+      }
     ],
   },
   other: {
@@ -129,35 +129,47 @@ const gear: GearList = {
         name: "Duramont Ergonomic Office Chair",
         link: "https://duramontchairs.com/products/duramont-ergonomic-office-chair",
       },
+      {
+        name: "AirPods Pro 2",
+        link: "https://www.apple.com/airpods-pro/"
+      }
     ],
   },
 }
 
 const Category = ({ id, name, items }: GearCategory) => (
-  <div className="prose prose-quoteless dark:prose-invert gear-list">
-    <h3 id={id}>{name}</h3>
-    <ul>
-      {items.map((item) => (
-        <li key={item.name}>
-          <Link href={item.link} target="_blank" className="link link-hover">
-            {item.name}
-          </Link>
-        </li>
-      ))}
-    </ul>
+  <div className="card rounded-lg bg-base-100 shadow-xl">
+    <div className="card-body">
+      <h3 id={id} className="card-title text-xl font-bold">{name}</h3>
+      <ul className="list-disc list-inside">
+        {items.map((item) => (
+          <li key={item.name}>
+            <Link
+              href={item.link}
+              target="_blank"
+              className="link link-hover hover:text-secondary transition-colors duration-200"
+            >
+              {item.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 )
 
 export default function UsesPage() {
   return (
-    <section className="">
-      <h1 className="font-bold text-3xl font-serif !mb-12">Gear</h1>
+    <section className="container mx-auto pb-8">
+      <h1 className="font-bold text-3xl font-serif mb-12">Gear</h1>
       <div className="flex flex-col gap-8">
         {Object.values(gear).map((category) => (
           <Category key={category.id} {...category} />
         ))}
       </div>
-      <div className="fixed bottom-16 right-16 opacity-25">
+      
+      <div className="fixed bottom-16 right-16">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 opacity-30 blur-2xl animate-pulse" />
         <Backpack size={320} mood="excited" color="#64748b" />
       </div>
     </section>
