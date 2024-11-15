@@ -32,7 +32,7 @@ export default function Project({
         <div className="card-body">
           <a
             href={links.demo ? links.demo : links.github ? links.github : '/'}
-            className="card-title w-fit"
+            className="card-title w-fit hover:underline"
           >
             {title}
           </a>

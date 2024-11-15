@@ -24,27 +24,23 @@ export default async function page() {
     .slice(0, 30)
 
   return (
-    <div className="mr-auto text-neutral-900 dark:text-neutral-300">
-      <h1 className="font-bold text-3xl font-serif">
-        Github Activity
-      </h1>
-      <p className="mt-12 mb-6 font-bold text-lg mr-8">
-        {`${totalCommits} commits in ${totalCount} push events across ${totalRepos} repositories in the last 30 days`}
+    <div className="mr-auto pr-4 pb-8 text-neutral-900 dark:text-neutral-300">
+      <h1 className="font-bold text-3xl font-serif mb-6">Github Activity</h1>
+      <p className="mt-12 mb-6 font-semibold text-lg">
+        {`${totalCommits} total commits in ${totalCount} push events across ${totalRepos} repositories in the last 30 days`}
       </p>
-      <p className="mb-6 font-bold text-md mr-8">
-        {`Including ${privateCommits} private commit${
-          privateCommits > 1 ? "s" : ""
+      <p className="mb-6 font-bold text-md">
+        {`Does NOT include ${privateCommits} private commit${
+          privateCommits !== 1 ? "s" : ""
         }`}
       </p>
-      <h2 className="text-2xl font-bold mb-4">Last 30 public push events:</h2>
+      <h2 className="text-2xl font-bold mb-6">Public pushes in last 30 days:</h2>
+      <div className="space-y-6">
       {last30PublicPushEvents.map((pushEvent, index) => (
-        <div
-          key={index}
-          className="bg-base-100 shadow rounded px-4 pt-1 pb-4 mb-6 prose"
-        >
-          <h3 className="font-semibold mb-2 text-lg">
+          <div key={index} className="bg-base-100 shadow rounded px-4 pt-4 pb-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold text-lg">
             <Link
-              prefetch={false}
               href={String(pushEvent.repo?.url)}
               target="_blank"
               rel="noopener noreferrer"
@@ -52,33 +48,34 @@ export default async function page() {
             >
               {pushEvent.repo?.name}
             </Link>
-            <p className="text-sm text-gray-500">
-              {`Created ${pushEvent.commits?.length} commit${
-                pushEvent.commits?.length && pushEvent.commits?.length > 1
-                  ? "s"
-                  : ""
-              }`}{" "}
-              {formatDistanceToNow(parseISO(String(pushEvent.created_at)))} ago
-            </p>
           </h3>
-          <ul className='list-decimal'>
-            {pushEvent.commits?.map((commit, index) => (
-              <li key={index} className="border-b border-secondary pb-2 mb-2 mr-4">
-                <Link
-                  prefetch={false}
-                  href={String(commit?.url)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link link-primary"
-                >
-                  <p className="inline-block pr-4">{commit?.sha?.slice(0, 7)}</p>
-                </Link>
-                <p className="inline">- "{commit?.message}"</p>
-              </li>
-            ))}
-          </ul>
+              <p className="text-sm text-gray-500">
+                {`Created ${pushEvent.commits?.length} commit${
+                  pushEvent.commits?.length && pushEvent.commits?.length > 1
+                    ? "s"
+                    : ""
+                }`}{" "}
+                {formatDistanceToNow(parseISO(String(pushEvent.created_at)))} ago
+              </p>
         </div>
+            <ul className="list-disc space-y-2 pl-4">
+              {pushEvent.commits?.map((commit, index) => (
+                <li key={index} className="border-b border-secondary pb-2">
+                  <Link
+                    href={String(commit?.url)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link link-primary"
+                  >
+                    <span className="inline-block pr-4 font-mono text-sm">{commit?.sha?.slice(0, 7)}</span>
+                  </Link>
+                  <p className="inline">- "{commit?.message}"</p>
+                </li>
       ))}
+            </ul>
+    </div>
+        ))}
+      </div>
     </div>
   )
 }
