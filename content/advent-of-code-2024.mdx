@@ -1,0 +1,95 @@
+---
+title: "Advent of Code and Advent of No Code 2024"
+publishedAt: "2024-12-05"
+summary: "Exploring puzzles and creativity one day at a time."
+---
+
+<Image
+  alt={`Advent of Code and Advent of No Code`}
+  src={`/images/blog/advent2024.png`}
+  width={2000}
+  height={1000}
+  className="mx-auto"
+  priority
+/>
+
+## Advent of Code: Daily Warmups with TypeScript
+
+This year, I’ve been diving into **Advent of Code 2024** as my daily brain warmup. It’s a fantastic way to start the day, solving puzzles that range from “oh, that’s clever” to “why am I doing math at 7 AM?” 
+
+I’ve set up some **basic scaffolding** in TypeScript for each new day, so I can jump straight into the logic without getting bogged down in boilerplate. It’s been smooth sailing so far, and I love how it’s helping me sharpen my problem-solving skills one challenge at a time.
+
+If you’re curious, you can check out my solutions here: [Advent of Code 2024 Solutions](https://github.com/plasmadice/advent-of-code-2024). Here's a preview of my day 1 solution in TypeScript:
+
+```tsx title="src/day01/index.ts"
+import { readInput, quickSort } from '@src/utils';
+
+function solve(input: string[]): any {
+  let total = 0
+  let l: number[] = []
+  let r: number[] = []
+
+  input
+    .forEach((line) => {
+      let [left, right] = line.split('  ')
+      l.push(parseInt(left))
+      r.push(parseInt(right))
+    })
+
+  let sortedL = quickSort(l)
+  let sortedR = quickSort(r)
+
+  for (let i = 0; i < sortedL.length; i++) {
+    if (sortedL[i] && sortedR[i]) {
+      total += Math.abs(sortedL[i] - sortedR[i])
+    }
+  }
+  
+  return total
+}
+
+// Measure performance of the solution
+const start = performance.now()
+let result = solve(readInput(__dirname))
+const end = performance.now()
+console.log(result, `\nOperation took ${(end - start).toFixed(3)} milliseconds`);
+```
+
+## Advent of No Code: Creative Chaos
+
+On the flip side, **Advent of No Code 2024** has been a playground for creativity. Each challenge is an opportunity to explore no-code tools and see what kind of wild, meme-y projects I can whip up. So far, I’ve leaned into the absurd, like making a Tic Tac Toe game where **AMD always wins** and designing a synthwave piano inspired by Gene’s piano from *Bob’s Burgers*.
+
+Here’s a quick rundown of my submissions so far:
+
+### Submissions for Advent of No Code
+
+| #  | Service   | Challenge       | Link                                                                 |
+|----|-----------|-----------------|----------------------------------------------------------------------|
+| 1  | bolt.new  | Tic Tac Toe     | [https://tictactoe.haku.lol/](https://tictactoe.haku.lol/)           |
+| 2  | v0.dev    | Snake           | [https://bl5yozb8wkm6macs2.lite.vusercontent.net/](https://bl5yozb8wkm6macs2.lite.vusercontent.net/) |
+| 3  | val.town  | Pong            | [https://plasmadice-hyperponggame.web.val.run](https://plasmadice-hyperponggame.web.val.run) |
+| 4  | bolt.new  | Piano           | [https://piano.haku.lol/](https://piano.haku.lol/)                   |
+| 5  | Suno      | Christmas Song  | [It's Christmas and It's me](https://suno.com/song/033b255c-c576-4674-b837-886215a73497) |
+
+<Caption value={<p>Source: <a target="_blank" rel="noopener noreferrer" href='https://piano.haku.lol/' >piano.haku.lol</a></p>}>
+<Image
+  alt={`Advent of No Code Example`}
+  src={`/images/blog/advent_no_code_2024.png`}
+  width={500}
+  height={300}
+/>
+</Caption>
+
+Each project has pushed me to think outside the box (and occasionally inside the meme), all while learning how these platforms handle unique challenges.
+
+## Why Both?
+
+Doing both Advent of Code and Advent of No Code has been the perfect balance of technical and creative challenges. **Advent of Code** gets my mind into problem-solving mode for the day, while **Advent of No Code** is a sandbox for experimenting with tools and ideas I wouldn’t usually explore.
+
+If you’re up for it, I highly recommend giving either (or both!) a shot. And if you want to see what I’ve been building, my repository has all the details: [Advent of Code 2024 Solutions](https://github.com/plasmadice/advent-of-code-2024).
+
+## Conclusion
+
+Whether it’s debugging TypeScript at dawn or crafting a synthwave piano masterpiece by dusk, this year’s advent challenges have been a blast. I’m learning, creating, and having way too much fun along the way. 
+
+Let me know if you’re doing any advent challenges too—I’d love to see what you’re building!
