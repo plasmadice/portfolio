@@ -1,0 +1,153 @@
+---
+title: "From Freelance to Fulltime and Back Again"
+publishedAt: "2024-12-15"
+summary: "Lessons from my first frontend gig at Glossi"
+---
+
+<Image
+  alt={`Glossi company logo`}
+  src={`/images/blog/glossi_logo.png`}
+  width={0}
+  height={0}
+  sizes="100vw"
+  className="w-48 h-48"
+/>
+
+## The Opportunity at Glossi
+
+I had been looking for a great job opportunity for a while now. While working on my own projects had been fun, I really missed collaborating with others.
+
+A former coworker reached out about a project she needed help with. The tools they used were very similar to what I already knew, so it seemed like the perfect fit! Of course, I accepted right away when she asked me to join her team.
+
+The focus of the contract was on implementing the v2 design. For the most part, this was just a facelift. There were plenty of instances where new components or functionality had to be added, but I was generally starting off with a solid foundation.
+
+## The app
+
+Glossi allows users to get perfect shots of 3d models. The app uses Unreal's Pixel Streaming to allow users to control a virtual camera in a 3d environment. 
+
+<video className="rounded-md" autoPlay loop playsInline muted aria-label="Video player">
+  <source src={`/images/blog/glossi_v2_timeline.mp4`} type="video/mp4" />
+</video>
+
+You can also customize the lighting, backdrop, and various other settings to make your scene look exactly how you envision it. Adjust the brightness, color temperature, and intensity of the lights to set the perfect mood. 
+
+Choose from a wide range of backgrounds and backdrops. Fine-tune every detail until your creation looks as incredible as you’ve always imagined it could be.
+
+<Caption value="v1 export" className="mx-auto">
+  <Image
+    alt={`v1 studio export page`}
+    src={`/images/blog/glossi_v1_export.png`}
+    width={1000}
+    height={500}
+    className="mx-auto" 
+  />
+</Caption>
+
+<Caption value="Updated export" className="mx-auto">
+  <Image
+    alt={`v2 studio export page`}
+    src={`/images/blog/glossi_v2_export.png`}
+    width={1000}
+    height={500}
+    className="mx-auto" 
+  />
+</Caption>
+
+## Getting Started
+
+Onboarding was quick and painless. Here are the parts of the stack that mattered to me:
+
+- React
+- [React Router](https://reactrouter.com/en/main)
+- [Tailwind CSS](https://tailwindcss.com/)
+- GraphQL
+- Figma (for design)
+- [MongoDB](https://www.mongodb.com/)
+- [Pixel Streaming](https://docs.unrealengine.com/5.3/en-US/pixel-streaming-in-unreal-engine/)
+
+The app was already using a bunch of familiar tools with the exception of Pixel Streaming (which wasn't necessary to get started). After a tour of the app I was able to jump straight into the work.
+
+## The Process
+
+After a couple of days, I had found a rhythm. After a couple of weeks, the process was clear enough to outline. 
+
+
+<Caption value="Change the backdrop" className="mx-auto">
+  <Image
+    alt={`v2 studio change backdrop`}
+    src={`/images/blog/glossi_v2_studio_backdrop.png`}
+    width={1000}
+    height={500}
+    className="mx-auto" 
+  />
+</Caption>
+
+<Caption value="Add a new focus" className="mx-auto">
+  <Image
+    alt={`v2 studio add new shot`}
+    src={`/images/blog/glossi_v2_studio_addShot.png`}
+    width={1000}
+    height={1000}
+    className="mx-auto" 
+  />
+</Caption>
+
+This was my order of operations when I did not have a list of requests to go by:
+
+#### Scouting
+1. Look at the design in Figma to see what needs to be done
+2. Look at the website to check for current implementations
+3. Look at the code to see if anything was scaffolded
+
+#### Actual Work
+4. Modify code or create new components, making everything as standard and reusable as possible
+5. Test the changes to ensure they work as expected
+6. Find other areas where the same change (or similar) can be applied
+
+#### Publishing
+7. Push the changes to the repo
+8. Create a pull request
+9. Wait for the pull request to be approved and merged
+
+#### Repeat
+10. Take a break before repeating the process
+
+{/* ## The designer */}
+
+{/* The one who originally saw the vision for the app needs to be involved with the process. This especially applies if you have things laid out for you in something like Figma. I could point to the thing I needed clarification on and get swift answers. I was able to get clarity on things several times by quickly throwing a question over to him.  */}
+
+## The Lessons
+
+Much was learned during this process, but here are the biggest takeaways.
+
+- Fonts, colors, and text should be implemented first
+- When in doubt, always get a second opinion on the design
+- Feel free to ask questions like "Can I include this NPM package?" or "Can I change the way that this is done?".
+- Make decisions that improve the user experience when necessary. Bring these up with the team before pushing changes.
+- Enforced commit message quality is good. It encourages smaller commits.
+- Merge conflicts happen a LOT when multiple developers are aware of (and capable of fixing) the same issue. Communicate with the team!
+- It's just as important to organize Tailwind styles as it is to organize React components.
+- I have a long way to go before I fully understand `grid` and `flexbox`
+- React's performance profiler isn't completely useless, but it IS a pain to use.
+
+## What's Next?
+
+More frontend work? Yes, please! My time with React and Tailwind paid off in an unexpected way. Now, I'm wondering how to keep this up.
+
+Everything is a learning opportunity, but this one was one of my best yet. My frontend skill level is higher than I thought it was. There's still a lot of room for improvement, so I'm excited to keep learning.
+
+I'm also grinding away at the Udacity Ethical Hacker challenge. Finally getting around to upping my Linux game.
+
+### Future Learning Plan
+
+Studying the following things will help me become a better frontend developer.
+
+- [Framer-Motion](https://www.framer.com/motion/)
+- [Josh Comeau's Blog](https://www.joshwcomeau.com/)
+- [Radix UI](https://www.radix-ui.com/)
+- Containers
+
+Paid courses
+- [BuildUI](https://buildui.com/) - $199
+- [Freelance Mastery](https://freelancemastery.dev/) - $49
+- [Codecademy](https://www.codecademy.com/learn) - $120/year
