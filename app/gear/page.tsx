@@ -73,6 +73,10 @@ const gear: GearList = {
         name: "Editor: VSCode - Theme: Dark Modern",
         link: "https://code.visualstudio.com/",
       },
+      {
+        name: "Ghostty terminal",
+        link: "https://ghostty.org/"
+      }
     ],
   },
   software: {
