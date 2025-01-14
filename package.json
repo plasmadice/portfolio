@@ -35,7 +35,8 @@
     "server-only": "^0.0.1",
     "sharp": "^0.33.2",
     "shiki": "^0.14.7",
-    "swr": "^2.2.4"
+    "swr": "^2.2.4",
+    "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
@@ -48,5 +49,6 @@
     "react-kawaii": "^0.18.0",
     "tailwindcss": "^3.4.1",
     "typescript": "5.2.2"
-  }
+  },
+  "packageManager": "pnpm@9.15.3+sha512.1f79bc245a66eb0b07c5d4d83131240774642caaa86ef7d0434ab47c0d16f66b04e21e0c086eb61e62c77efc4d7f7ec071afad3796af64892fae66509173893a"
 }

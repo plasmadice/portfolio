@@ -5,6 +5,7 @@ import localFont from "next/font/local"
 import Sidebar from "../components/sidebar"
 import { Analytics } from "@vercel/analytics/react"
 import { name, descpription } from "lib/info"
+import { BackgroundPattern } from "@/components/background-pattern"
 
 const kaisei = localFont({
   src: "../public/fonts/kaisei-tokumin-latin-700-normal.woff2",
@@ -72,6 +73,9 @@ export default function RootLayout({
       )}
     >
       <body className="antialiased max-w-5xl justify-center mb-36 flex flex-col md:flex-row mt-8 md:mt-20 lg:mt-32 mx-8 md:mx-auto overflow-x-hidden overflow-y-auto">
+        <div className="fixed inset-0 -z-10">
+          <BackgroundPattern />
+        </div>
         <Sidebar />
         <main className="flex-auto min-w-0 mt-6 md:mt-0 flex flex-col px-2 md:px-0">
           {children}
