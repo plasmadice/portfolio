@@ -37,12 +37,13 @@ const nextConfig = {
 // https://nextjs.org/docs/advanced-features/security-headers
 const ContentSecurityPolicy = `
     default-src 'self' vercel.live *.vercel-insights.com;
-    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.vercel-insights.com vercel.live *.vercel-scripts.com;
+    script-src 'self' 'unsafe-eval' 'unsafe-inline' *.vercel-insights.com vercel.live *.vercel-scripts.com comments.haku.lol;
     style-src 'self' 'unsafe-inline';
     img-src * blob: data:;
     media-src 'self' blob: data:;
     connect-src *;
     font-src 'self';
+    frame-src comments.haku.lol;
 `
 
 const securityHeaders = [
@@ -55,11 +56,6 @@ const securityHeaders = [
   {
     key: "Referrer-Policy",
     value: "origin-when-cross-origin",
-  },
-  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
-  {
-    key: "X-Frame-Options",
-    value: "DENY",
   },
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
   {
