@@ -6,6 +6,21 @@ interface CommentsProps {
   pageId: string
 }
 
+// Custom CSS variables to match hwhite.dev dark theme
+// These are passed to Remark42 iframe via window.name
+const customColors = {
+  '--color-background': '#171717',
+  '--color-font': '#e5e5e5',
+  '--color-font-secondary': '#a3a3a3',
+  '--color-border': '#404040',
+  '--color-hover': '#262626',
+  '--color-primary': '#47a3f3',
+  '--color-link': '#47a3f3',
+  '--color-success': '#22c55e',
+  '--color-warning': '#eab308',
+  '--color-danger': '#ef4444',
+}
+
 export function Comments({ pageId }: CommentsProps) {
   useEffect(() => {
     // Clean up any existing remark42 instance
@@ -14,13 +29,14 @@ export function Comments({ pageId }: CommentsProps) {
       existingDiv.innerHTML = ''
     }
 
-    // Configure remark42
+    // Configure remark42 with custom colors
     ;(window as any).remark_config = {
       host: 'https://comments.haku.lol',
       site_id: 'hwhite.dev',
       components: ['embed'],
       url: typeof window !== 'undefined' ? window.location.origin + window.location.pathname : '',
       theme: 'dark',
+      __colors__: customColors,
     }
 
     // Load the script
