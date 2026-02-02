@@ -5,6 +5,7 @@ import { allBlogs } from "contentlayer/generated"
 import Balancer from "react-wrap-balancer"
 // import ViewCounter from "../view-counter"
 import Link from "next/link"
+import { Comments } from "components/comments"
 
 export async function generateStaticParams() {
   return allBlogs.map((post) => ({
@@ -84,6 +85,7 @@ export default async function Blog({ params }) {
         )}
       </div>
       <Mdx code={post.body.code} />
+      <Comments pageId={post.slug} />
     </section>
   )
 }
