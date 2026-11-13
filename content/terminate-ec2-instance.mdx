@@ -23,7 +23,7 @@ aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,Sta
 alt={`AWS instance information formatted as a table`}
 src={`/images/blog/terminate-ec2.png`}
 width={1000}
-height={700}
+height={226}
 className="-auto"
 />
 
@@ -44,7 +44,7 @@ aws ec2 terminate-instances --instance-ids i-1234567890abcdef0
 alt={`JSON data returned after sending the termination command`}
 src={`/images/blog/terminate-ec2-2.png`}
 width={1000}
-height={700}
+height={592}
 className="-auto"
 />
 
@@ -63,7 +63,7 @@ aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,Sta
 alt={`View of terminated EC2 instance`}
 src={`/images/blog/terminate-ec2-3.png`}
 width={500}
-height={500}
+height={291}
 className="mx-auto"
 />
 </Caption>

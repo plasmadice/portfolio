@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 interface CommentsProps {
   pageId: string
@@ -22,7 +22,15 @@ const customColors = {
 }
 
 export function Comments({ pageId }: CommentsProps) {
+  const [isAvailable, setIsAvailable] = useState(false)
+
   useEffect(() => {
+    if (!['hwhite.dev', 'www.hwhite.dev'].includes(window.location.hostname)) {
+      return
+    }
+
+    setIsAvailable(true)
+
     // Clean up any existing remark42 instance
     const existingDiv = document.getElementById('remark42')
     if (existingDiv) {
@@ -56,7 +64,11 @@ export function Comments({ pageId }: CommentsProps) {
   return (
     <div className="mt-16 pt-8 border-t border-neutral-700">
       <h2 className="font-bold text-2xl mb-8">Comments</h2>
-      <div id="remark42" />
+      {isAvailable ? (
+        <div id="remark42" />
+      ) : (
+        <p>Comments are available on hwhite.dev.</p>
+      )}
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { allBlogs } from 'contentlayer/generated'
+import { allBlogs } from 'lib/blogs'
 
 export async function GET() {
   const siteUrl = 'https://hwhite.dev'

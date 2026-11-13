@@ -1,16 +1,23 @@
-import { ImageResponse } from "@vercel/og"
-import { NextRequest } from "next/server"
+import { readFile } from "node:fs/promises"
+import path from "node:path"
+import { ImageResponse } from "next/og"
+import type { NextRequest } from "next/server"
 
-export const runtime = "edge"
+export const runtime = "nodejs"
 
-const font = fetch(
-  new URL("../../../public/fonts/kaisei-tokumin-bold.ttf", import.meta.url)
-).then((res) => res.arrayBuffer())
+const publicDirectory = path.join(process.cwd(), "public")
+const font = readFile(
+  path.join(publicDirectory, "fonts/kaisei-tokumin-bold.ttf")
+).then((buffer) => new Uint8Array(buffer).buffer)
+
+const background = readFile(path.join(publicDirectory, "og-bg.png")).then(
+  (buffer) => `data:image/png;base64,${buffer.toString("base64")}`
+)
 
 export async function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl
   const postTitle = searchParams.get("title")
-  const fontData = await font
+  const [fontData, backgroundImage] = await Promise.all([font, background])
 
   return new ImageResponse(
     (
@@ -22,7 +29,7 @@ export async function handler(req: NextRequest) {
           flexDirection: "column",
           alignItems: "flex-start",
           justifyContent: "center",
-          backgroundImage: `url(${process.env.NEXT_PUBLIC_URL}/og-bg.png)`,
+          backgroundImage: `url(${backgroundImage})`,
         }}
       >
         <div

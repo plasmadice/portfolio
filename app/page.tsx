@@ -1,6 +1,7 @@
 import Image from "next/image";
 import {
   // getBlogViews,
+  formatCommitCount,
   getRecentCommitCount,
   // increaseProjectViews,
 } from "lib/metrics";
@@ -15,15 +16,10 @@ import Skills from "../components/Skills";
 import Projects from "../components/Projects";
 
 export const revalidate = 0;
-export const runtime = "edge";
 
 export default async function HomePage() {
   let [recentCommits] = await Promise.all([
-    getRecentCommitCount(
-      "plasmadice",
-      process.env.GITHUB_EMAIL as string,
-      30
-    ),
+    getRecentCommitCount("plasmadice", 30),
   ]);
 
   return (
@@ -37,11 +33,9 @@ export default async function HomePage() {
           <div className="tooltip tooltip-bottom rounded-full">
             <Image
               alt={name}
-              className="rounded-full"
+              className="rounded-full w-37.5 h-auto"
               src={avatar}
               placeholder="blur"
-              width={150}
-              height={150}
               priority
             />
           </div>
@@ -54,7 +48,7 @@ export default async function HomePage() {
               rel="noopener noreferrer"
             >
               <BsGithub className="text-primary" size="1.5em" />
-              {`${recentCommits} public commits in the last 30 days`}
+              {formatCommitCount(recentCommits, true)}
             </a>
 
             <a

@@ -65,9 +65,5 @@ module.exports = {
   future: {
     hoverOnlyWhenSupported: true,
   },
-  plugins: [require("@tailwindcss/typography"), require("daisyui")],
-  daisyui: {
-    themes: ["lofi", "business"],
-    darkTheme: "business",
-  }
+  plugins: [require("@tailwindcss/typography")],
 }

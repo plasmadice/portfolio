@@ -2,13 +2,13 @@ import { queryBuilder } from "lib/planetscale"
 import { NextResponse } from "next/server"
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export async function handler(req: Request, { params }: Props) {
-  const slug = params.slug
+  const { slug } = await params
 
   const main = async () => {
     if (!slug) {

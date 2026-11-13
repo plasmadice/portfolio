@@ -1,7 +1,7 @@
 import { formatDistanceToNowStrict, parseISO, differenceInDays, differenceInYears, differenceInMonths } from "date-fns"
 import type { Metadata } from "next"
 import Link from "next/link"
-import { allBlogs } from "contentlayer/generated"
+import { allBlogs } from "lib/blogs"
 // import ViewCounter from "./view-counter"
 
 export const revalidate = 3600 // revalidate once per hour

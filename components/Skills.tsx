@@ -23,7 +23,6 @@ import {
   SiTailwindcss,
   SiFigma,
   SiJira,
-  SiSlack,
   SiConfluence,
   SiSentry,
   SiRedux,
@@ -35,11 +34,11 @@ import {
   SiFramer,
   SiGithub,
   SiVercel,
-  SiCsharp,
   SiTypescript,
 } from 'react-icons/si';
 
-import { FaDatabase } from 'react-icons/fa';
+import { FaDatabase, FaSlack } from 'react-icons/fa';
+import { TbBrandCSharp } from 'react-icons/tb';
 
 const skills = [
   // Languages
@@ -48,7 +47,7 @@ const skills = [
   { name: 'HTML5', icon: <DiHtml5 size="3em" color="#E34F26" /> },
   { name: 'CSS3', icon: <DiCss3 size="3em" color="#1572B6" /> },
   { name: 'Python', icon: <DiPython size="3em" color="#3776AB" /> },
-  { name: 'C#', icon: <SiCsharp size="3em" color="#239120" /> },
+  { name: 'C#', icon: <TbBrandCSharp size="3em" color="#239120" /> },
   { name: 'SQL', icon: <FaDatabase size="3em" color="#4479A1" /> },
   { name: 'Bash', icon: <SiGnubash size="3em" color="#4EAA25" /> },
   // Libraries and Frameworks
@@ -72,7 +71,7 @@ const skills = [
   { name: 'Vercel', icon: <SiVercel size="3em" color="#000000" /> },
   { name: 'Figma', icon: <SiFigma size="3em" color="#F24E1E" /> },
   { name: 'Jira', icon: <SiJira size="3em" color="#0052CC" /> },
-  { name: 'Slack', icon: <SiSlack size="3em" color="#4A154B" /> },
+  { name: 'Slack', icon: <FaSlack size="3em" color="#4A154B" /> },
   { name: 'Confluence', icon: <SiConfluence size="3em" color="#172B4D" /> },
   { name: 'Sentry', icon: <SiSentry size="3em" color="#FB4226" /> },
   // Data Reporting Tools

@@ -1,5 +1,4 @@
-const { get } = require("@vercel/edge-config")
-const { withContentlayer } = require("next-contentlayer")
+const { get } = require("@vercel/global-config")
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -17,12 +16,11 @@ const nextConfig = {
       },
     ],
   },
-  redirects() {
-    try {
-      return get("redirects")
-    } catch {
+  async redirects() {
+    if (!process.env.GLOBAL_CONFIG && !process.env.EDGE_CONFIG) {
       return []
     }
+    return await get("redirects")
   },
   headers() {
     return [
@@ -79,4 +77,4 @@ const securityHeaders = [
   },
 ]
 
-module.exports = withContentlayer(nextConfig)
+module.exports = nextConfig

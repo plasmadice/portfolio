@@ -1,8 +1,12 @@
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { useMDXComponent } from "next-contentlayer/hooks"
+import { MDXRemote, type MDXRemoteProps } from "next-mdx-remote/rsc"
 import * as ReactKawaii from "react-kawaii"
+import remarkGfm from "remark-gfm"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import rehypePrettyCode from "rehype-pretty-code"
+import rehypeSlug from "rehype-slug"
 
 const CustomLink = (props) => {
   const href = props.href
@@ -91,6 +95,7 @@ function GIF({ className, size, ...otherProps }: ExtendedImageProps) {
       className={rounded}
       height={dimensions}
       width={dimensions}
+      unoptimized
       {...otherProps}
     />
   )
@@ -239,16 +244,50 @@ const components = {
   Kawaii,
 }
 
-interface MdxProps {
-  code: string
+const mdxOptions: NonNullable<MDXRemoteProps["options"]>["mdxOptions"] = {
+  remarkPlugins: [remarkGfm],
+  rehypePlugins: [
+    rehypeSlug,
+    [
+      rehypePrettyCode,
+      {
+        theme: "one-dark-pro",
+        keepBackground: false,
+        onVisitHighlightedLine(node) {
+          node.properties.className =
+            node.properties.className === undefined
+              ? []
+              : node.properties.className
+          node.properties.className?.push("data-highlighted-line")
+        },
+        onVisitHighlightedChars(node) {
+          node.properties.className = ["data-highlighted-chars"]
+        },
+      },
+    ],
+    [
+      rehypeAutolinkHeadings,
+      {
+        properties: {
+          className: ["anchor"],
+        },
+      },
+    ],
+  ],
 }
 
-export function Mdx({ code }: MdxProps) {
-  const Component = useMDXComponent(code)
+interface MdxProps {
+  source: string
+}
 
+export function Mdx({ source }: MdxProps) {
   return (
     <article className="prose prose-quoteless prose-neutral dark:prose-invert">
-      <Component components={{ ...components }} />
+      <MDXRemote
+        source={source}
+        components={components}
+        options={{ mdxOptions, blockJS: false }}
+      />
     </article>
   )
 }

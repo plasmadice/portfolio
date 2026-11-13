@@ -7,6 +7,16 @@ import { Analytics } from "@vercel/analytics/react"
 import { name, descpription } from "lib/info"
 import { BackgroundPattern } from "@/components/background-pattern"
 
+const publicUrl = process.env.NEXT_PUBLIC_URL
+
+if (!publicUrl) {
+  throw new Error(
+    "NEXT_PUBLIC_URL is required to build site metadata. Set it in the build environment."
+  )
+}
+
+const siteUrl = new URL(publicUrl)
+
 const kaisei = localFont({
   src: "../public/fonts/kaisei-tokumin-latin-700-normal.woff2",
   weight: "700",
@@ -15,7 +25,7 @@ const kaisei = localFont({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_URL as string),
+  metadataBase: siteUrl,
   title: {
     default: `${name} | Software Engineer`,
     template: `%s | ${name}`,
@@ -24,11 +34,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: name,
     description: descpription,
-    url: process.env.NEXT_PUBLIC_URL,
+    url: siteUrl.toString(),
     siteName: name,
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_URL}/og.jpg`,
+        url: new URL("/og.jpg", siteUrl).toString(),
         width: 1920,
         height: 1080,
       },

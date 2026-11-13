@@ -8,7 +8,6 @@ export const revalidate = 300 // revalidate every 5 minutes
 export default async function page() {
   const { totalCommits, pushEvents } = await getRecentCommits(
     "plasmadice",
-    process.env.GITHUB_EMAIL as string,
     30
   )
 

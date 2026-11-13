@@ -13,15 +13,15 @@
 ```bash
 git clone https://github.com/plasmadice/portfolio.git
 cd portfolio
-yarn install
-yarn dev
+npm install
+npm run dev
 ```
 
 Create a `.env` file similar to [`.env.example`](https://github.com/leerob/leerob.io/blob/main/.env.example).
 
 ## Connecting Database
 
-1. Create a [Planetscale](https://planetscale.com/) and crete a database
+1. Create a [Planetscale](https://planetscale.com/) and create a database
 2. Go to the console page for you database and enter this query:
 
 ```
@@ -45,4 +45,4 @@ Locally - Set in `.env.local`
 Preview - `NEXT_PUBLIC_URL=https://$NEXT_PUBLIC_VERCEL_URL`
 Production - `NEXT_PUBLIC_URL=https://www.yourdomain.com` Be sure to specify `www` if vercel automatically redirects there!
 
-The .env.production file may not be needed. It contains `NEXT_PUBLIC_URL=https://$NEXT_PUBLIC_VERCEL_URL`. If you `yarn build` and `yarn start` this may be needed for some things to work locally, but this may not be the case.
+`NEXT_PUBLIC_URL` must be set at build time because site metadata requires an absolute origin. For a local production build, run `NEXT_PUBLIC_URL=http://localhost:3000 npm run build`; on Vercel, configure it as above. A `.env.production` file is only needed when the build environment does not already provide this variable.

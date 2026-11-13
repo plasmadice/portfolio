@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import { Mdx } from "components/mdx"
-import { allBlogs } from "contentlayer/generated"
-import Balancer from "react-wrap-balancer"
+import { allBlogs } from "lib/blogs"
+import { JsonLd } from "components/json-ld"
 // import ViewCounter from "../view-counter"
 import Link from "next/link"
 import { Comments } from "components/comments"
@@ -15,8 +15,11 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({
   params,
+}: {
+  params: Promise<{ slug: string }>
 }): Promise<Metadata | undefined> {
-  const post = allBlogs.find((post) => post.slug === params.slug)
+  const { slug: postSlug } = await params
+  const post = allBlogs.find((post) => post.slug === postSlug)
 
   if (!post) {
     return
@@ -51,8 +54,13 @@ export async function generateMetadata({
   }
 }
 
-export default async function Blog({ params }) {
-  const post = allBlogs.find((post) => post.slug === params.slug)
+export default async function Blog({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const post = allBlogs.find((post) => post.slug === slug)
   const jsonLd = post?.structuredData
 
   if (!post) {
@@ -61,12 +69,9 @@ export default async function Blog({ params }) {
 
   return (
     <section>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <h1 className="font-bold text-3xl font-serif max-w-[650px]">
-        <Balancer>{post.title}</Balancer>
+      {jsonLd && <JsonLd data={jsonLd} />}
+      <h1 className="font-bold text-3xl font-serif max-w-[650px] text-balance">
+        {post.title}
       </h1>
       <div className="grid grid-cols-[auto_1fr_auto] items-center mt-4 mb-8 font-mono text-sm max-w-[650px]">
         <div className="bg-primary text-primary-content rounded-md px-2 py-1 tracking-tighter">
@@ -84,7 +89,7 @@ export default async function Blog({ params }) {
           </Link>
         )}
       </div>
-      <Mdx code={post.body.code} />
+      <Mdx source={post.source} />
       <Comments pageId={post.slug} />
     </section>
   )
