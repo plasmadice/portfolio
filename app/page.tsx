@@ -1,9 +1,7 @@
 import Image from "next/image";
 import {
-  // getBlogViews,
   formatCommitCount,
   getRecentCommitCount,
-  // increaseProjectViews,
 } from "lib/metrics";
 
 import {

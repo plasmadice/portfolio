@@ -2,7 +2,6 @@ import { formatDistanceToNowStrict, parseISO, differenceInDays, differenceInYear
 import type { Metadata } from "next"
 import Link from "next/link"
 import { allBlogs } from "lib/blogs"
-// import ViewCounter from "./view-counter"
 
 export const revalidate = 3600 // revalidate once per hour
 
@@ -48,7 +47,6 @@ export default async function BlogPage() {
               <div className="w-full flex flex-col">
                 <p>{post.title}</p>
                 <div className="w-full grid grid-cols-2">
-                  {/* <ViewCounter slug={post.slug} trackView={false} /> */}
                   <p className="text-sm text-neutral-500 tracking-tighter">
                     {displayDate}
                   </p>

@@ -3,8 +3,7 @@
 ### Tech Stack
 
 - **Framework**: [Next.js](https://nextjs.org/)
-- **Database**: [PlanetScale](https://planetscale.com)
-- **Deployment**: [Vercel](https://vercel.com)
+- **Deployment**: Vercel (production) and Coolify (local staging)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com)
 - **Analytics**: [Vercel Analytics](https://vercel.com/analytics)
 
@@ -18,20 +17,6 @@ npm run dev
 ```
 
 Create a `.env` file similar to [`.env.example`](https://github.com/leerob/leerob.io/blob/main/.env.example).
-
-## Connecting Database
-
-1. Create a [Planetscale](https://planetscale.com/) and create a database
-2. Go to the console page for you database and enter this query:
-
-```
-CREATE TABLE views (
-  slug VARCHAR(255) NOT NULL PRIMARY KEY,
-  count INT NOT NULL
-);
-```
-
-3. Grab the connect link and place it in .env file as `DATABASE_URL`
 
 ## Cloning / Forking
 

@@ -10,7 +10,6 @@ WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-ARG DATABASE_URL
 ARG GITHUB_TOKEN
 ARG NEXT_PUBLIC_URL
 RUN npm run build

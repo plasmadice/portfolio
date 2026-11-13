@@ -9,7 +9,6 @@
     "clean": "rm -rf .next ./node_modules && npm install && npm run dev"
   },
   "dependencies": {
-    "@planetscale/database": "^2.0.0",
     "@vercel/analytics": "^2.0.1",
     "@vercel/global-config": "^1.5.1",
     "clsx": "^2.1.1",
@@ -19,8 +18,6 @@
     "encoding": "^0.1.14",
     "framer-motion": "^14.13.0",
     "gray-matter": "^4.0.3",
-    "kysely": "^0.29.9",
-    "kysely-planetscale": "^1.7.1",
     "next": "^16.4.6",
     "next-mdx-remote": "^6.0.0",
     "react": "^19.3.1",
@@ -33,7 +30,6 @@
     "server-only": "^0.0.1",
     "sharp": "^0.35.5",
     "shiki": "^4.6.0",
-    "swr": "^2.5.1",
     "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {

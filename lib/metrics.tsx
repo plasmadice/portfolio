@@ -1,41 +1,5 @@
 import "server-only"
 
-import { queryBuilder } from "lib/planetscale"
-import { cache } from "react"
-
-export const getBlogViews = cache(async () => {
-  const data = await queryBuilder
-    .selectFrom("views")
-    .select(["count"])
-    .execute()
-
-  return data.reduce((acc, curr) => acc + Number(curr.count), 0)
-})
-
-const getProjectViews = cache(async (id: string) => {
-  const data = await queryBuilder
-    .selectFrom("metrics")
-    .where("project_id", "=", id)
-    .select(["views"])
-    .execute()
-
-  return data.reduce((acc, curr) => acc + Number(curr.views), 0)
-})
-
-export const increaseProjectViews = async (id: string) => {
-  let views = await getProjectViews(id)
-
-  if (process.env.NODE_ENV === "production") {
-    await queryBuilder
-    .insertInto("metrics")
-    .values({ project_id: id, views: 1 })
-    .onDuplicateKeyUpdate({ views: views + 1 })
-    .execute()
-  }
-
-  return views + 1
-}
-
 type Repository = {
   id: number
   node_id: string

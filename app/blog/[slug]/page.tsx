@@ -3,7 +3,6 @@ import { notFound } from "next/navigation"
 import { Mdx } from "components/mdx"
 import { allBlogs } from "lib/blogs"
 import { JsonLd } from "components/json-ld"
-// import ViewCounter from "../view-counter"
 import Link from "next/link"
 import { Comments } from "components/comments"
 
@@ -78,7 +77,6 @@ export default async function Blog({
           {post.publishedAt}
         </div>
         <div className="h-[0.2em] bg-secondary mx-2" />
-        {/* <ViewCounter slug={post.slug} trackView /> */}
         {process.env.NODE_ENV === "development" && (
           <Link 
             prefetch={false}
