@@ -17,6 +17,9 @@ RUN npm run build
 
 FROM node:24.11.1-bookworm-slim AS runner
 WORKDIR /app
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
 ENV NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1 \
     PORT=3000 \
