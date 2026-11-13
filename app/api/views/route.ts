@@ -11,8 +11,11 @@ export async function handler(req: NextRequest, res: NextResponse) {
     return NextResponse.json(data)
   }
 
-  return main().catch((e) => {
-    NextResponse.json({ message: e.message })
+  return main().catch(() => {
+    return NextResponse.json(
+      { message: "Unable to fetch view counts." },
+      { status: 500 },
+    )
   })
 }
 
