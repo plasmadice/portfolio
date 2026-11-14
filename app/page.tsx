@@ -10,8 +10,6 @@ import {
   BsEnvelope,
 } from "react-icons/bs";
 import { name, about, bio, avatar } from "lib/info";
-import Skills from "../components/Skills";
-import Projects from "../components/Projects";
 
 export const revalidate = 0;
 
@@ -71,14 +69,6 @@ export default async function HomePage() {
 
         <p className="my-5">{bio()}</p>
       </div>
-      <div className="flex flex-col">
-        {/* Projects Section */}
-        <Projects />
-        
-        {/* Skills Section */}
-        <Skills />
-      </div>
-
     </section>
   );
 }

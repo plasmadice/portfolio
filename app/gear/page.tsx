@@ -1,5 +1,4 @@
 import type { Metadata } from "next"
-import { Backpack } from "react-kawaii"
 import Link from "next/link"
 
 export const metadata: Metadata = {
@@ -170,11 +169,6 @@ export default function UsesPage() {
         {Object.values(gear).map((category) => (
           <Category key={category.id} {...category} />
         ))}
-      </div>
-      
-      <div className="fixed bottom-16 right-16">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 opacity-30 blur-2xl animate-pulse" />
-        <Backpack size={320} mood="excited" color="#64748b" />
       </div>
     </section>
   )
