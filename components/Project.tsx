@@ -10,6 +10,7 @@ export default function Project({
   description,
   technologies,
   links,
+  imagePosition = 'center',
   variant = 'primary',
 }) {
   return (
@@ -21,21 +22,25 @@ export default function Project({
             alt={`Screenshot of ${title} project`}
             height={320}
             width={320}
-            className={`object-cover overflow-hidden !h-48 !w-full ${links.demo.length || links.github.length ? 'cursor-pointer' : ''}`}
+            className={`object-cover overflow-hidden !h-48 !w-full ${imagePosition === 'top' ? 'object-top' : 'object-center'} ${links.demo.length || links.appStore?.length || links.github.length ? 'cursor-pointer' : ''}`}
             onClick={(e) => {
-              if (links.demo?.length || links.github?.length) {
-                window.open(links.demo?.length ? links.demo : links.github);                
+              if (links.demo?.length || links.appStore?.length || links.github?.length) {
+                window.open(links.demo?.length ? links.demo : links.appStore?.length ? links.appStore : links.github);
               }
             }}
            />
         </div>
         <div className="card-body">
-          <a
-            href={links.demo ? links.demo : links.github ? links.github : '/'}
-            className="card-title w-fit hover:underline"
-          >
-            {title}
-          </a>
+          {links.demo?.length || links.appStore?.length || links.github?.length ? (
+            <a
+              href={links.demo?.length ? links.demo : links.appStore?.length ? links.appStore : links.github}
+              className="card-title w-fit hover:underline"
+            >
+              {title}
+            </a>
+          ) : (
+            <h3 className="card-title w-fit">{title}</h3>
+          )}
           <p>{description}</p>
           <p className="mt-4">
             <strong>Stack: </strong> {technologies.join(', ')}
@@ -49,6 +54,16 @@ export default function Project({
                 rel="noopener noreferrer"
               >
                 Visit
+              </a>
+            ) : null}
+            {links.appStore?.length ? (
+              <a
+                href={links.appStore}
+                className="project-button-secondary !rounded-md !bg-neutral-600 !text-neutral-200/90 hover:!text-neutral-900"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                App Store
               </a>
             ) : null}
             {links.github?.length ? (

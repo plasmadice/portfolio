@@ -5,6 +5,27 @@ export const descpription = "Developer, creator, and skater."
 export const avatar = me
 export const projects = [
   {
+    title: "Onnee PillBox",
+    img: "/images/onnee-pillbox.jpg",
+    description:
+      "Medication management app for building routines, scanning medication labels, scheduling reminders, and tracking adherence. Developed mobile UI/UX, onboarding, routine workflows, and API integrations.",
+    technologies: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Expo Router",
+      "NativeWind",
+      "Fastify",
+      "gRPC",
+      "DynamoDB",
+    ],
+    links: {
+      demo: "https://onnee.com",
+      appStore: "https://apps.apple.com/us/app/onnee/id6756633185",
+      github: "",
+    },
+  },
+  {
     title: "Glossi",
     img: "/images/glossi.png",
     description:
@@ -49,25 +70,6 @@ export const projects = [
     },
   },
   {
-    title: "Seemail",
-    img: "/images/seemail.png",
-    description:
-      "Web app for accessing emails through the browser. Uses serverless functions and Puppeteer to automate adding devices to shared accounts.",
-    technologies: [
-      "React",
-      "Next.js",
-      "Tailwind CSS",
-      "AWS Lambda",
-      "Serverless Functions",
-      "Puppeteer",
-      "API Development",
-    ],
-    links: {
-      demo: "https://www.seemail.dev/",
-      github: "https://github.com/plasmadice/seemail",
-    },
-  },
-  {
     title: "LazyFTP",
     img: "/images/lazyftp.png",
     description:
@@ -83,17 +85,6 @@ export const projects = [
     links: {
       demo: "https://lazyftp.com/",
       github: "https://github.com/plasmadice/lazyftp",
-    },
-  },
-  {
-    title: "Previous Portfolio",
-    img: "/images/oldportfolio.png",
-    description:
-      "My previous portfolio site built with Next.js and Material-UI, showcasing projects and skills.",
-    technologies: ["React", "Next.js", "Material-UI"],
-    links: {
-      demo: "",
-      github: "https://github.com/plasmadice/port-foe-leo",
     },
   },
 ];

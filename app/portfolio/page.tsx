@@ -1,5 +1,3 @@
-import { projects } from "lib/info"
-import Project from "components/Project"
 import Projects from "components/Projects"
 
 export default function page() {

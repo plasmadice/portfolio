@@ -31,36 +31,16 @@ const gear: GearList = {
         link: "https://support.apple.com/kb/SP889?locale=en_US",
       },
       {
-        name: '27" LG UltraGear 27GL83A-B',
-        link: "https://www.lg.com/us/monitors/lg-27gl83a-b-gaming-monitor",
-      },
-      {
-        name: '27” Samsung ViewFinity S80A',
-        link: "https://www.samsung.com/us/computing/monitors/uhd-and-wqhd/27--s804a-uhd-monitor-ls27a804nmnxgo/"
-      },
-      {
-        name: "CalDigit TS3+",
-        link: "https://www.caldigit.com/ts3-plus/",
+        name: "2x Dell UltraSharp 27 4K Thunderbolt Hub Monitor - U2725QE",
+        link: "https://www.dell.com/en-us/shop/monitors/apd/dell-ultrasharp-27-4k-thunderbolt-hub-monitor-u2725qe/u2725qe_monitor/-",
       },
       {
         name: "Logitech G604",
         link: "https://www.rtings.com/mouse/reviews/logitech/g604-lightspeed",
       },
       {
-        name: "Keychron Q5",
-        link: "https://www.keychron.com/products/keychron-q5-qmk-custom-mechanical-keyboard",
-      },
-      {
-        name: "HyperX QuadCast S",
-        link: "https://hyperx.com/products/hyperx-quadcast-s-usb-microphone?variant=42438091866269",
-      },
-      {
-        name: "IKEA IDÅSEN",
-        link: "https://www.ikea.com/us/en/p/idasen-desk-brown-dark-gray-s49281027/#content",
-      },
-      {
-        name: "Steelcase Gesture",
-        link: "https://store.steelcase.com/gesture",
+        name: "Keychron V1 Ultra 8K",
+        link: "https://www.keychron.com/products/keychron-v1-ultra-8k-wireless-custom-mechanical-keyboard",
       },
     ],
   },
@@ -74,8 +54,20 @@ const gear: GearList = {
       },
       {
         name: "Ghostty terminal",
-        link: "https://ghostty.org/"
-      }
+        link: "https://ghostty.org/",
+      },
+      {
+        name: "herdr",
+        link: "https://herdr.dev",
+      },
+      {
+        name: "hermes",
+        link: "https://hermes-agent.nousresearch.com",
+      },
+      {
+        name: "LazyVim",
+        link: "https://www.lazyvim.org",
+      },
     ],
   },
   software: {
@@ -83,8 +75,8 @@ const gear: GearList = {
     name: "Favorite Software",
     items: [
       {
-        name: "Raycast",
-        link: "https://www.raycast.com/",
+        name: "Vicinae",
+        link: "https://www.vicinae.com",
       },
       {
         name: "Karabiner",
@@ -95,27 +87,15 @@ const gear: GearList = {
         link: "https://obsidian.md/",
       },
       {
-        name: "Moom 3",
-        link: "https://manytricks.com/moom/",
+        name: "Kanata",
+        link: "https://github.com/plasmadice/kanata",
       },
-      {
-        name: "Capslock",
-        link: "https://github.com/Plasmadice/Capslock",
-      },
-      {
-        name: "Synergy",
-        link: "https://symless.com/synergy"
-      }
     ],
   },
   other: {
     id: "other",
     name: "Other Stuff",
     items: [
-      {
-        name: "ROG Ally X",
-        link: "https://rog.asus.com/us/gaming-handhelds/rog-ally/rog-ally-x-2024/",
-      },
       {
         name: "Logitech MX Keys Mini",
         link: "https://www.logitech.com/en-us/products/keyboards/mx-keys-mini.920-010388.html",
@@ -127,15 +107,19 @@ const gear: GearList = {
       {
         name: "16-inch 1440p 120hz portable monitor",
         link: "https://www.uperfectmonitor.com/products/120hz-gaming-monitor",
-      }, 
+      },
       {
         name: "Duramont Ergonomic Office Chair",
         link: "https://duramontchairs.com/products/duramont-ergonomic-office-chair",
       },
       {
-        name: "AirPods Pro 2",
-        link: "https://www.apple.com/airpods-pro/"
-      }
+        name: "Keychron Q5",
+        link: "https://www.keychron.com/products/keychron-q5-qmk-custom-mechanical-keyboard",
+      },
+      {
+        name: "AirPods Pro 3",
+        link: "https://www.apple.com/airpods-pro/",
+      },
     ],
   },
 }
